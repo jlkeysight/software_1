@@ -1,0 +1,20 @@
+9620 24 2  -1.0000001E-08   1.0000001E-08      SECONDS 
+'neg edge WRT CLKRB  (-t is before clkrb +t after) '
+ 1.00000E+00  0.00000E+00            0 
+
+9620 24 2  -1.0000001E-08   1.0000001E-08      SECONDS 
+'pos edge WRT CLKRB (-t is before clkrb +t after)  '
+ 1.00000E+00  0.00000E+00            0 
+
+9620 24 2  -8.9999999E-09   8.9999999E-09      SECONDS 
+'drvrskew   T rise - T fall (rise & fall WRT CLKRB)'
+ 1.00000E+00  0.00000E+00            0 
+
+9620 48 2  -1.0000001E-08   1.0000001E-08      SECONDS 
+'Edge plc accy when programmed for 100nSec delay   '
+ 1.00000E+00  0.00000E+00            0 
+
+9620 24 2  -8.9999999E-09   8.9999999E-09      SECONDS 
+'drvrskew T rise - T fall with delay = 100nSec     '
+ 1.00000E+00  0.00000E+00            0 
+

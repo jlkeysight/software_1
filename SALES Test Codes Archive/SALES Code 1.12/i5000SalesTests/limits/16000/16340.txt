@@ -1,0 +1,16 @@
+16340 1 2  0.1550  0.2341         AMPS 
+'+DC SOURCE SOURCING MAXIMUM I (HIGH)              '
+ 1.00000E+00  0.00000E+00            0 
+
+16340 1 2  0.1550  0.2341         AMPS 
+'+DC SOURCE SINKING MAXIMUM I (HIGH)               '
+ 1.00000E+00  0.00000E+00            0 
+
+16340 1 2  0.1550  0.2341         AMPS 
+'-DC SOURCE SOURCING MAXIMUM I (HIGH)              '
+ 1.00000E+00  0.00000E+00            0 
+
+16340 1 2  0.1550  0.2341         AMPS 
+'-DC SOURCE SINKING MAXIMUM I (HIGH)               '
+ 1.00000E+00  0.00000E+00            0 
+

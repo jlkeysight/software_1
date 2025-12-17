@@ -1,0 +1,27 @@
+Sales01.20 released 11-27-2025(MM-DD-YYYY)
+Built by: Fikri Abdullah
+CC Build Machine: SGH829S1S3.png.is.keysight.com
+
+1  DGN built-date version:
+1.1  Debug built version: DGN 11.21
+
+2  Config Spec:
+   N/A
+
+
+
+3 Change Summary:
+3.1  First development using clone from GitHub & Bitbucket implement
+3.2  added xtpc card npi project (Blackhawk)
+
+
+4 Files updated in CC Build Server
+4.1  \dgn\src\salestests\
+
+5 Files updated in Test Controller
+5.1  ag3070SalesTests.dll
+
+
+6 Effective Date - 
+6.1 Pintarmas Site : 5 Dec 2025
+6.2 VES Site       : NA

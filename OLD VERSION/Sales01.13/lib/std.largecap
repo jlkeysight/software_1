@@ -1,0 +1,10 @@
+  10E-3        128   0.1    0      0.100  1      1      1      1      1      1      0      0      0      0      0.890  0.0    1      1      1      1      2
+   1E-3        128   0.1    0      0.100  1      1      1      1      1      1      0      0      0      0      0.446  0.0    1      1      1      1      1
+ 100E-6        128   0.1    0      0.100  1      1      1      1      1      1      0      0      0      0      0.075  0.0    1      1      1      1      0
+** COMMENT ** Deleted the last two subtests because the fixture cannot be easily calibrated at both 128Hz and 1024Hz.
+** Added 0.1 second source wait 5/21/91 due to the fact that the large value capacitors are synthesized (by the Genrad Box).  
+   1E-3       1024   0.1    0      0.000  1      1      1      1      1      1      0      0      0      0      0.866  0      1      1      1      1
+ 100E-6       1024   0.1    0      0.000  1      1      1      1      1      1      0      0      0      0      0.392  0      1      1      1      1
+  value       src    src    src    src    src    en     ed     Rf     sa     sb     sl     wb     hfs    diff   moa    det    src    ser    comp   dc
+              freq   amp    off    wait   comp                                                    cap    det    out    wait   ac/dc  mode   type   rej
+# What String Identification: @(#)3.1	03/23/93 14:06:02 std.largecap

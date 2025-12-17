@@ -1,0 +1,7 @@
+16203 1 2   1.10000E-02   1.99999E-02      HENRIES 
+'SERIES G BUS INDUCTANCE (side A)                  '
+ 1.00000E+00  0.00000E+00            0 
+
+16203 1 2   1.30000E-02   2.09999E-02      HENRIES 
+'SERIES G BUS INDUCTANCE (side B)                  '
+ 1.00000E+00  0.00000E+00            0 

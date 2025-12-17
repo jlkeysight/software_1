@@ -1,0 +1,4 @@
+9804 1 3  -0.010000   0.000000   0.010000        VOLTS 
+'[TWINPIN] GND DIFF TEST - TO AIM SWDGND           '
+ 1.00000E+00  0.00000E+00            0 
+

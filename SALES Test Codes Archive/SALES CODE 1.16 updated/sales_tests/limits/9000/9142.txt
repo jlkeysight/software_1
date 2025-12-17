@@ -1,0 +1,4 @@
+9142 8 2   5.0000001E-02   6.8999998E-02         AMPS 
+'LOW LEVEL CURRENT LIMIT SOURCING                  '
+ 1.00000E+00  0.00000E+00            0 
+

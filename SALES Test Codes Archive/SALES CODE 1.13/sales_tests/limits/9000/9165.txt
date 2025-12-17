@@ -1,0 +1,4 @@
+9165 8 2  4.400  5.400        VOLTS 
+'RECEIVER INPUT CLAMP - PULL UP                    '
+ 1.00000E+00  0.00000E+00            0 
+

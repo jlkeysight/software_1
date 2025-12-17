@@ -1,0 +1,61 @@
+Sales01.12 released 1-19-2017(MM-DD-YYYY)
+Built by: Sri Tharan
+CC Build Machine: SGPBLD10
+
+1  DGN built-date version:
+1.1  Debug built version: //yisnas1.yis.is.keysight.com/v12/VERSIONS/9.00p.2016_04_08 sgpbld10
+
+2  Config Spec:
+
+element * CHECKEDOUT 
+element * /main/nt_dir/LATEST -nocheckout 
+element .../licensing/tst/flexlm/... .../main/LATEST 
+element config_specs/... /main/LATEST 
+
+element * .../pat_09.00p/LATEST 
+mkbranch pat_09.00p
+
+element * 09.00P 
+element .../wind/... .../mtdtornado200/LATEST 
+element .../wind/... TORNADO_2.0.0 
+element .../wind22/... .../mtdtornado22cp1/LATEST 
+element .../wind22/... TORNADO_2.2CP1 
+element * /main/LATEST 
+
+end mkbranch pat_09.00p
+
+
+
+3 Change Summary:
+3.1  9859, 9828, 9837, 9870, equivalent to existing 9860, 9829, 9836, 9871 are all disabled in the SALES DIGITAL test list file, these will be run by GUTI based on SN# detection during mass pro. concerning to ROHS Heron P5 support.
+3.2  Generated new SALES test 9431 to test NASRU P10 at 99V - detector attenuator only run based on NASRU P10 SN-PART# detection. OCP enabled including for existing T9451->T9455.
+3.3  Introducing new .dll using new instrument 33250B(Function Gen) for Talon testing.
+3.4  Reduced lower limit of T9310 to 0.1 ohm to cater for NASRU P10.
+
+
+4 Files updated in CC Build Server
+4.1  \dgn\src\sales_tests\
+	-mt9250_p.cpp
+	-mt9250_p.h
+        -mtglobal.cpp
+	-dispense_p.cpp
+        -testdesc.ascii
+4.2  MAKE file : limits\9000
+4.3  Limit file added/change: limits\9000
+	-9431.txt
+        -9310.txt 
+	
+
+
+5 Files updated in Test Controller
+5.1  ag3070SalesTests.dll
+5.2  AGT3070SalesTestOrder
+5.3  AGT3070.sales_dig
+5.4  AGT3070SalesLimits
+5.5  AGT3070SalesTestDescription
+5.6  agi5000SalesTests.dll
+
+
+6 Effective Date - Manufacturing Site ONLY to support proto build for HERON P5.
+6.1 Pintarmas Site : 
+6.2 VES Site       : 

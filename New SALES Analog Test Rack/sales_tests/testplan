@@ -1,0 +1,4769 @@
+!!!!    4    0    1 1464070775   0000
+! Testplan for Heron_Pin_Card  Mon Apr 27 17:24:45 2015
+execute "title Heron_Pin_Card"
+! Heron_Pin_Card
+
+!   AGILENT ICT STANDARD TESTMAIN       Revision: "Agilent i3070 07.20p 0808 WN"
+!   STANDARD VERSION
+!##############################################################################
+!   This "main" program sequences execution of testplan subroutines and
+!   assumes that the current working directory is already set to the
+!   appropriate board directory.
+!   This testmain has included the code to support the following optional
+!   features:
+!        Data Logging for PushButton QSTATS, QSTATS-II and ART
+!        Chek-Point (pin tests)
+!        Boundary Scan: Interconnect Plus & ScanWorks
+!        Agilent Intelligent Yield Enhancement Test (IYET)
+!        Agilent Worst Probe Report (WPR)
+!        Agilent First Pass Yield (FPY)
+!   Once the testplan is working, you may selectively enable
+!   any combination of the features by changing the 'flag' variables
+!   in the subroutine "Set_Custom_Options".  Use the following command:
+!         find  "!   Other"&" parameters"  ! takes you to option settings
+!
+!   Turn learn on and run the testplan on a known good board.  After the
+!   learning run is successfully completed, the testplan is ready for
+!   customization, debug and production testing.
+!   Analog limits are logged by standard testmain if and only if the
+!   learn flag is on.  Limits must be logged once each time they change
+!   in order for PushButton Q-STATS or Q-STATS II to produce histograms.
+!
+!   If flash is to be programmed on this board, the testplan needs to have the
+!   locations marked !flash! modified or reviewed.  Please review the flash
+!   manual for full explanation. Key elements include:
+!
+!   full disabling of buses and upstream control lines is required for safety
+!   use ID check for digital test subroutine to ensure proper part placement
+!   Cycle power if required to three-state upstream devices
+
+! Miscellaneous string variable size declarations:
+dim InvOn$[28], InvOff$[11], O$[128], Retry_Pintest$[168]
+dim Cycle_Vacuum$[128], Recycle_Vacuum$[128]
+dim Testmain_Revision$[70]
+dim Batch$[12], Oper$[25], Testplan$[14], Testrev$[4]
+dim Board$[14], Board_Rev$[14], Known_Good$[1]
+dim Proc_Step$[5], Log_Path$[80]
+! The following is used in the power-supply setup routine for parallel
+! power supplies.  It holds masks for comparison.
+dim Psgroup(1:16)
+option bit 32     ! Prevents range error when comparing Psgroup with MSB set
+! IYET
+dim IYET_Failing_Tests$(0:2047)[40]
+dim IYET_Retest_Failing_Devices$(0:8191)[40]
+dim IYET_Top_Retests$(0:8191,2)[40]
+
+!       INITIALIZE BREAK AND ERROR TRAPPING
+
+on break recover Break_Trap
+on error recover Error_Trap
+
+!       INITIALIZE VARIABLES
+
+call Initializations
+
+!       SET UP FAILURE ACKNOWLEDGMENT
+acknowledge all failures
+
+!       MAIN LOOP FOR REPEATEDLY TESTING A BOARD
+!          (executed only once if "learning")
+
+Wait_For_Start:
+
+Pass_Fail_Reported = False
+Logging_Started = False
+Tests_On_This_Board = 0
+print | print Place_Board_Prompt$
+wait for start
+if Serializing then
+  print using "@"
+  Serial$ = fn Get_Serial_Num$(Serial_Prompt$)
+  Known_Good$ = "n"
+  if Serial$ = Known_Good_Board$ then Known_Good$ = "y"
+  if Using_AwareTest = True then
+    ! remove special characters
+    Serial_New$ = fn Remove_Special_Characters$(Serial$)
+    Path$ = Serial_Number_Directory$ & Serial_New$ & Serial_Suffix$
+    enter Path$,, Err
+
+    !! Added the following code to check for all uppercase or all lowercase
+    !! serial numbers.
+    if Err then
+       Path$ = Serial_Number_Directory$ & upc$(Serial_New$) & Serial_Suffix$
+       enter Path$,, Err
+       if Err then
+          Path$ = Serial_Number_Directory$ & lwc$(Serial_New$) & Serial_Suffix$
+          enter Path$,, Err
+       end if
+    end if
+
+    if Err then
+      ! serial number file was not found -- board was not tested on AXI
+      if AXI_Tested_Override = False then
+        print Not_AXI_Tested$
+        goto Wait_For_Start
+      else
+        ! Add custom code here if serial number is missing and
+        ! you do not want to completely skip the PC board test
+      end if
+    end if
+  end if
+end if
+if Using_Multiple_Versions and Version_Prompting = Per_Board then
+  call Get_Version_Label
+  if nrun = 1 or Version_Inits_Needed then
+    call Do_Version_Inits
+  end if
+end if
+
+!       RE-TEST AFTER PIN-TEST FAILURE
+
+ChekPoint_Retry:
+
+print using "@,/"
+if Serializing then print But$; Serial$
+Tests_On_This_Board = Tests_On_This_Board + 1
+if Tests_On_This_Board > 1 then print Rep_Test$
+
+!       START LOGGING FOR THIS BOARD
+
+report is Report_Printer$
+if Logging then call Start_Logging
+Logging_Started = True   ! Also used as reporting flag
+
+!       ACTIVATE VACUUM IN PREPARATION FOR TEST
+
+if Tests_On_This_Board = 1 then faon 1.5
+! Warning: Reducing the value for 'faon' from the default value of 1.5
+! can potentially cause testhead damage.
+
+
+!       CHECK FIXTURE CONTACT, THEN
+!       LEARN OR TEST (OR RE-TEST) BOARD
+
+unpowered
+if (not learning) and Chek_Point_Mode = Pretest then
+  if not fn Chek_Point_OK then goto Cleanup
+end if
+call Test_Sections
+
+!       IF ANY BOARD FAILED TEST, TRY TO FIX IT BY RUNNING PIN TEST
+
+Cleanup:
+
+if boardfailed and Status <> Failed_In_Preshorts then
+  if Tests_On_This_Board = 1 and Chek_Point_Mode = Failures then
+    unpowered
+    if fn Chek_Point_OK then goto ChekPoint_Retry
+  end if
+end if
+
+!       REMOVE BOARD FROM TESTHEAD AND GENERATE PASS/FAIL MESSAGE
+!       THEN TERMINATE LOGGING (IF ENABLED) AND REPORTING
+
+faoff
+Pass_Fail_Reported = True
+
+Eject_Ticket: image 13/
+
+if boardfailed then
+  if not Using_BtBasic then first pass yield 0, 1 !FPY not Passed and Tested
+  print "     **  ";Fail_Msg$;"  **"
+  copy Fail_File$ over "/dev/tty"
+  if Status = Failed_Pin_Test then
+    print " ** ";Pin_Msg$;" **"
+  end if
+  if learning then Status = Failed_In_Learn
+  if Serializing then report Serial_Nr$ & Serial$
+  report using Eject_Ticket
+  if Using_Buffered_Reporting then report out
+else
+  if not Using_BtBasic then first pass yield 1, 1 !FPY Passed and Tested
+  print "     **  ";Pass_Msg$;"  **"
+  copy Pass_File$ over "/dev/tty"
+  if Using_AwareTest = True then
+    enter Path$,, Err  ! check to see if serial number file exists
+                       ! Err = 100009 (File Not Found)
+    if not Err then    ! Do not create new serial number files
+      enter "date +%Y%m%d%H%M |"; Passed_Datetime$
+      assign @SNF,Err to Path$; write, append
+      if Err then      ! problems writing to serial number file
+        print SNF_Error_Msg$  |   print "    ";errm$
+        beep
+        ! print | print Stop_Msg$
+        ! stop
+      else
+        output @SNF; "passedICT = " & Passed_Datetime$
+        assign @SNF to *
+      end if
+    end if
+  end if
+end if
+report is *
+if Logging then
+  log board end Status
+  log out Log_Path$ & datetime$ & System$ & th$
+  log clear
+end if
+report clear
+
+clear failures
+Logging_Started = False
+
+!       END PROGRAM IF LEARNING. OTHERWISE RETURN TO MAIN LOOP
+
+if learning then
+   learn off
+   print | print Learning_Off_Msg$ | print Stop_Msg$
+   beep
+   stop
+end if
+goto Wait_For_Start
+
+!       END OF MAIN LOOP
+!       INTERRUPT HANDLING
+! This is the normal entry for Break/Stop detection
+
+Break_Trap:
+
+off break
+off error
+print "     ";Break_Msg$
+unpowered,Err
+if Err then print errmlong$
+if Logging and Logging_Started then
+  log board end Break_Code
+  log out Log_Path$ & datetime$ & System$ & th$
+  log clear
+end if
+faoff, Err
+if Err then print errmlong$
+goto Abort
+
+! This is the normal entry for errors occurring in Basic statements
+
+Error_Trap:
+off error
+print errmlong$
+beep
+SaveErrn = errn
+unpowered,Err
+if Err then print errmlong$
+
+!       IF A BOARD IS PRESENT, FAIL IT
+!       THEN TERMINATE LOGGING (IF ENABLED) AND REPORTING
+
+if Logging_Started and not Pass_Fail_Reported then
+  fail device
+  report Board_Not_Tested$
+  print "     **  ";Fail_Msg$;"  **"
+  copy Fail_File$ over "/dev/tty"
+  if Status = Failed_Pin_Test then
+    print " ** ";Pin_Msg$;" **"
+  end if
+  if Serializing then report Serial_Nr$ & Serial$
+  report using Eject_Ticket
+  if Using_Buffered_Reporting then report out, Err
+  report is *, Err
+  report clear
+end if
+if Logging_Started and Logging then
+  log using """{@RPT~80|"",80a,""}""" ; errm$(SaveErrn)
+  log board end Error_Code, SaveErrn
+  log out Log_Path$ & datetime$ & System$ & th$
+  log clear
+end if
+
+!       REMOVE THE BOARD FROM THE TESTHEAD
+
+faoff, Err
+if Err then print errmlong$
+if learning or Err then goto Abort
+on error recover Error_Trap
+goto Wait_For_Start
+
+!       ABORT PROGRAM: UNRECOVERABLE ERROR, LEARN ERROR OR STOP KEY
+
+Abort:
+
+off break
+off error
+probe report off
+report is *, Err
+log is *, Err
+
+beep
+if (nrun=1) and not Did_First_Run_Inits then
+  print No_Init_Warning$
+  clear nrun
+else
+  if Version_Inits_Needed then
+    print No_Version_Init_Warning$
+    clear nrun
+  end if
+end if
+print "     ";Stop_Msg$
+beep
+stop
+end
+
+!       END OF ERROR TRAPS
+
+!       Test/Learn Sections
+!    [ Assumes unpowered mode. ]
+! Note concerning LEARN MODE:  some sections are not truly "learned" but are
+! run in learn mode for other reasons.  For example, analog tests may be run
+! in learn mode in order to log limits information used by Pushbutton QSTATS,
+! and preshorts/shorts are run "just in case" -- to avoid bad learns & damage.
+! To keep a section from being run in learn mode, place 'if not learning then'
+! just before that section and place 'end if' just after it.
+!##############################################################################
+sub Test_Sections
+global PreshortsMsg$, ShortsMsg$, PowerMsg$, DigitalMsg$, AnalogMsg$
+global DigitalFuncMsg$, AnalogPoweredMsg$, BScanIncktMsg$, BScanIntconMsg$
+global Status, Failed_In_Preshorts, Failed_In_Shorts, Failed_In_Functional
+global Failed_In_Digital, Failed_In_Power_Supplies, Failed_In_Analog
+global Logging, True, False, Passed
+global Mode$, Failed_In_BScan
+global VectorlessTestMsg$, Failed_In_VectorlessTest
+global PolarityMsg$, Failed_In_Polarity_Check
+global BScanPShortsMsg$
+global ConnectCheckMsg$, Failed_In_ConnectCheck
+global VerifyGroundsMsg$, Failed_In_Verify_Grounds
+global Failed_In_Flash, FlashProgMsg$, Programming
+global AnalogClusterMsg$, Failed_In_Analog_Cluster
+global BScanSiNailsMsg$, Failed_In_BScan_SiNails
+global CoverExtendMsg$, Failed_In_Cover_Extend
+global SW_ScanPathVerifyMsg$, Failed_In_SW_Testing
+global SW_DrVerifyMsg$, SW_IrVerifyMsg$
+global SW_InterconnectMsg$, SW_MemInterconnectMsg$
+global SW_ClusterMsg$, SW_MemBistMsg$
+global SW_ProgrammingMsg$, Failed_In_SW_Programming
+global SW_FlashMsg$, Failed_In_SW_Flash
+global PrePoweredMsg$, Failed_In_Pre_Powered
+! IYET
+global Using_IYET, Sampling, IYET_Preshorts_Attempts, IYET_Shorts_Attempts
+global IYET_Analog_Tests_Attempts, IYET_VectorlessTest_Attempts
+
+if Using_IYET then
+  call IYET (PreshortsMsg$, IYET_Preshorts_Attempts)
+else
+  call Pre_Shorts (Failed_In_Preshorts, Mode$ & PreshortsMsg$)
+end if
+if boardfailed then subexit
+
+if Using_IYET then
+  call IYET (ShortsMsg$, IYET_Shorts_Attempts)
+else
+   call Shorts (Failed_In_Shorts, Mode$ & ShortsMsg$)
+end if
+if boardfailed then subexit
+
+if Logging or not learning then
+  if Using_IYET and not learning and not Sampling then
+     call IYET (AnalogMsg$, IYET_Analog_Tests_Attempts)
+  else
+     call Analog_Tests (Failed_In_Analog, Mode$ & AnalogMsg$)
+  end if
+  if boardfailed then subexit
+end if
+
+if Using_IYET then
+  call IYET (VectorlessTestMsg$, IYET_VectorlessTest_Attempts)
+else
+  call VectorlessTest (Failed_In_VectorlessTest, Mode$ & VectorlessTestMsg$)
+end if
+if boardfailed then subexit
+
+call Polarity_Check (Failed_In_Polarity_Check, Mode$ & PolarityMsg$)
+if boardfailed then subexit
+
+call Connect_Check (Failed_In_ConnectCheck, Mode$ & ConnectCheckMsg$)
+if boardfailed then subexit
+
+call Analog_Cluster_Tests (Failed_In_Analog_Cluster, Mode$ & AnalogClusterMsg$)
+if boardfailed then subexit
+
+! The subroutine, "Verify_Grounds" must be run prior to the "powered" command.
+! If the board fails, then DO NOT execute the "powered" command.
+call Verify_Grounds (Failed_In_Verify_Grounds, Mode$ & VerifyGroundsMsg$)
+if boardfailed then subexit
+
+powered
+
+call Pre_Powered_Tests (Failed_In_Pre_Powered, Mode$ & PrePoweredMsg$)
+if boardfailed then subexit
+
+call Setup_Power_Supplies (Failed_In_Power_Supplies, PowerMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call ScanWorks_Scan_Path_Verify_Tests (Failed_In_SW_Testing, Mode$ & SW_ScanPathVerifyMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call ScanWorks_Pretest
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call BScan_Powered_Shorts_Tests (Failed_In_Shorts, Mode$ & BScanPShortsMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call BScan_Interconnect_Tests (Failed_In_BScan, Mode$ & BScanIntconMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+!If you:
+!       * use both ScanWorks and ICT InterconnectPlus chain tests
+! AND   * comment out any ICT interconnect tests (e.g. duplicate coverage)
+! AND   * those commented tests have unnailed nodes (possible undetected shorts)
+!THEN   * Move the following BScan_Incircuit_Tests routine below the ScanWorks
+!               Interconnect_Tests call
+
+! Reason: an interconnect test, which finds shorts, should be run on each chain
+! prior to the BScan_Incircuit_Tests routine. The connect tests give precise
+! opens diagnostics, but board damage from undetected shorts could occur while
+! they are being run.
+
+call BScan_Incircuit_Tests (Failed_In_BScan, Mode$ & BScanIncktMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call ScanWorks_Interconnect_Tests (Failed_In_SW_Testing, Mode$ & SW_InterconnectMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call BScan_Silicon_Nails_Tests (Failed_In_BScan_SiNails, Mode$ & BScanSiNailsMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call Cover_Extend_Tests (Failed_In_Cover_Extend, Mode$ & CoverExtendMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+! If you are using Boundary-Scan and you want to cycle power,
+! then uncomment the following call and the if-then-else statements.
+! call Reset_Board
+! if boardfailed then
+!   call Disconnect_Power_On_Board
+!   subexit
+! end if
+
+call Digital_Tests (Failed_In_Digital, Mode$ & DigitalMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call ScanWorks_Mem_Interconnect_Tests (Failed_In_SW_Testing, Mode$ & SW_MemInterconnectMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call ScanWorks_Cluster_Tests (Failed_In_SW_Testing, Mode$ & SW_ClusterMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call ScanWorks_Mem_BIST (Failed_In_SW_Testing, Mode$ & SW_MemBistMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+! If you are using Boundary-Scan and you want to cycle power,
+! then uncomment the following call and the if-then-else statements.
+! call Reset_Board
+! if boardfailed then
+!   call Disconnect_Power_On_Board
+!   subexit
+! end if
+
+call Analog_Functional_Tests (Failed_In_Functional, Mode$ & AnalogPoweredMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+call Functional_Tests (Failed_In_Functional, Mode$ & DigitalFuncMsg$)
+if boardfailed then
+  call Disconnect_Power_On_Board
+  subexit
+end if
+
+if Programming then
+  if learning then subexit
+
+  !----------------------------------------------------------------------------
+  ! Only add the following powersupply setup if it is necessary to cycle power.
+  ! Perhaps to get FPGAs or other ASICs to a three-state condition.
+  !
+  !    !flash! unpowered  ! Only if volatile logic exists upstream
+  !
+  !    !flash!  put any required gprelays here
+  !
+  !    !flash!  powered    ! if unpowered above, also use the following only if
+  !                        ! digital devices aren't interferring
+  !    ! call Setup_Power_Supplies (Failed_In_Power_Supplies, PowerMsg$)
+  !    ! if boardfailed then
+  !    !    call Disconnect_Power_On_Board
+  !    !    subexit
+  !    ! end if
+  !----------------------------------------------------------------------------
+  ! Add the device name to be tested in the call to the Program_Flash
+  ! subroutine. If multiple devices are installed, duplicate the call line for
+  ! each device.  Pass an empty string as the Message$ parameter to supress
+  ! printing messages for devices 2 through N.
+  !----------------------------------------------------------------------------
+
+  ! call Program_Flash ("", Failed_In_Flash, FlashProgMsg$)
+  if boardfailed then
+    call Disconnect_Power_On_Board
+    subexit
+  end if
+
+  call ScanWorks_Device_Programming (Failed_In_SW_Programming, SW_ProgrammingMsg$)
+  if boardfailed then
+    call Disconnect_Power_On_Board
+    subexit
+  end if
+
+  call ScanWorks_Flash_Programming (Failed_In_SW_Flash, SW_FlashMsg$)
+  if boardfailed then
+    call Disconnect_Power_On_Board
+    subexit
+  end if
+end if
+
+  call Disconnect_Power_On_Board
+  wait100m
+  powered
+  test "analog/u7002_disch"
+  wait100m
+  unpowered
+
+Status = Passed
+call Record_SN
+subend
+
+!       Pin Test Subroutines
+
+!##############################################################################
+def fn Chek_Point_OK
+! This is the subroutine for forcing the testing of pin contacts.
+! If this routine is called before Test_sections (Chek_Point_Mode = Pretest),
+! then the internal status will be set to Passed or Failed_Pin_Test.
+! If this routine is called after test (Chek_Point_Mode = Failures), then the
+! internal status is modified only if failures occur.
+!
+! The meaning of the function is slightly different when it is called before
+! test versus after test.  If called before test, the function returns True
+! if, no matter how many times it was cycled, pin test did finally pass.
+! If called after test, the function returns True if pin test failed but
+! passed after retry.
+!
+! Note: fn Pinsfailed is external to testmain.
+!
+global Pin_Msg$, Passed, Chek_Point_Msg$
+global Retry_PinTest$, Recycle_Vacuum$, Status, True, False
+global Cycle_Vacuum$, Failed_Pin_Test, Max_Times_To_Fix_Contact
+global Logging, Serial$, Known_Good$, Chek_Point_Mode, Pretest, Failures
+
+if learning then return (False)
+Attempts = 0
+loop
+  Contact_Passed = not fn Pinsfailed (Chek_Point_Msg$)
+  if not Contact_Passed then
+    Status = Failed_Pin_Test
+  else
+    if Chek_Point_Mode = Pretest then Status = Passed
+  end if
+  Attempts = Attempts + 1
+  exit if Contact_Passed or (Attempts > Max_Times_To_Fix_Contact)
+  print Pin_Msg$
+  question Retry_PinTest$, Retry
+  exit if not Retry
+  if Logging and Chek_Point_Mode = Pretest then
+    if Status = Failed_Pin_Test then log board end Failed_Pin_Test
+  end if
+  question Cycle_Vacuum$, Cycle
+  if Cycle then
+    faoff
+    question Recycle_Vacuum$
+    faon 1.5
+! Warning: Reducing the value for 'faon' from the default value of 1.5
+! can potentially cause testhead damage.
+    unpowered
+  end if
+  if Chek_Point_Mode = Pretest then
+    clear failures
+    if Logging then log board start Serial$, Known_Good$
+  end if
+end loop
+if Chek_Point_Mode = Failures then
+  if Contact_Passed and Attempts > 1 then
+    if Logging then
+      log clear for retest
+      log board end Failed_Pin_Test
+    end if
+    clear failures
+    report clear
+  end if
+  return (Contact_Passed and Attempts > 1)
+else
+  return (Contact_Passed)
+end if
+fnend
+
+!       Reset_Board Subroutine
+
+!##############################################################################
+sub Reset_Board
+   !---------------------------------------------------------------------------
+   ! This 'pause' section is placed here to remind the test programmer
+   ! that some powered tests may depend upon the TCK/TMS signals of
+   ! boundary scan chains/devices being held in a stable state.
+   ! When the testplan is run, the tests are properly sequenced
+   ! to assure that the disabled state is set; however, board level
+   ! circuitry may interfere with the persistence of the disabled state.
+   ! You may need to take additional measures; for example, you may
+   ! place your own pullup/down resistor in the fixture to assure a
+   ! stable TMS and/or TCK, or utilize a GP relay to disable some TCK
+   ! oscillator, etc.
+   ! For further explanation, see the Boundary-Scan Manual for the
+   ! section titled 'Maintaining Persistence of Boundary-Scan Disables'.
+   !
+   !---------------------------------------------------------------------------
+   ! When Boundary-Scan tests are complete, you may need to produce
+   ! a hard reset on the board-under-test to bring the ICs back into
+   ! operational mode.  One way of doing this is to cycle power to the
+   ! board using the following call:
+
+   call Cycle_Power_On_Board ! Cycle Power to reset digital state of board
+   ! call ScanWorks_Pretest    ! Configure volatile devices, if needed
+
+   ! Power cycling is time consuming and may not be necessary.  Some boards
+   ! may not need any resetting.  Others may have a digital reset node
+   ! you can toggle with a digital test to reset the board.
+   !
+   ! When you have evaluated the needs of this board and modified this
+   ! section, remove the pause and these comments.  You should take care
+   ! to document the action you have taken for future reference.
+   !---------------------------------------------------------------------------
+subend
+
+!       Data Logging Subroutines
+
+!##############################################################################
+sub Start_Logging
+global Analog_Sample_Rate, QSTATS_Mode, Histo, Board$, Tests_On_This_Board
+global Sampling, True, False
+global Proc_Step$, Batch$, Oper$, Board_Rev$, Testplan$
+global Testrev$, Known_Good$, Serial$, Version_Label$
+
+Sampling = False
+if learning then
+  log level is all
+else
+  if rnd < Analog_Sample_Rate * (QSTATS_Mode = Histo) then
+    log level is analog without nhls, pins
+    Sampling = True
+  else
+    log level is indictments without nhls
+  end if
+end if
+print "Log level: ";lli$;";  Report level: ";rli$;";  Board type: ";Board$
+PS$ = Proc_Step$
+if Tests_On_This_Board = 1 then
+  log board Board$, PS$, Batch$, Oper$, Board_Rev$, Testplan$, Testrev$, "", "", Version_Label$
+end if
+log board start Serial$, Known_Good$
+print
+subend
+
+!##############################################################################
+def fn Get_Serial_Num$(Prompt$)
+global Bad_Serial_Image$, Default_Serial_Number$
+global Serial_Length, Using_BtBasic
+
+loop
+  Ident$=""
+  if Using_BtBasic then
+    print using """"&Prompt$&""",#"
+    input "",Ident$
+  else
+    input prompt Prompt$; Ident$
+  end if
+  if Ident$ = "" then Ident$ = Default_Serial_Number$
+  exit if Ident$ = Default_Serial_Number$
+  exit if (len(Ident$) = Serial_Length) or not Serial_Length
+  print using Bad_Serial_Image$; len(Ident$), Serial_Length
+end loop
+return (Ident$)
+! return (lwc$(Ident$))
+fnend
+
+!##############################################################################
+!  If the Board name contains any invalid characters, stop processing.
+sub Verify_Board_Names
+global Stop_Msg$, Bad_Board_Name$, Board$
+
+Found_Bad = 0
+if fn IllegalChars_In_Board_Name(Board$) then
+  Found_Bad = 1
+  print Bad_Board_Name$  |   print "    ";Board$
+end if
+if Found_Bad then
+  print | print Stop_Msg$
+  beep
+  stop
+end if
+subend
+
+!##############################################################################
+! Check to see if the Board name contains any invalid characters, now only
+! check spaces.  Return 1 if yes, and 0 if no.
+def fn IllegalChars_In_Board_Name (Board$)
+global True, False
+
+if len (Board$) > 0 and pos (Board$, " ") > 0  then
+  return True
+else
+  return False
+end if
+fnend
+
+!##############################################################################
+sub Create_Log_Queue
+global Log_Path$, Directory_Exists, Queue_Error_Msg$, Stop_Msg$
+
+create dir Log_Path$, Err
+Err = Err and (Err <> Directory_Exists)
+if Err then
+  print Queue_Error_Msg$  |   print "    ";errm$
+  print | print Stop_Msg$
+  beep
+  stop
+end if
+subend
+
+!##############################################################################
+sub Setup_Logging
+global Serial$, Default_Serial_Number$, Testplan$, Batch$
+global Known_Good_Board$, Using_ART, Proc_Step$, Oper_Id_Prompt$
+global Board$, Oper$, Known_Good_Prompt$
+global Serializing, Using_BtBasic
+
+randomize
+Proc_Step$             = "btest"
+Batch$                 = datetime$ ! Set to a unique identifier so that Q-STATS II can
+                                   ! calculate interboard handling and system idle times
+Testplan$              = Board$
+Default_Serial_Number$ = "default_SN" & th$
+Serial$                = Default_Serial_Number$
+Known_Good_Board$      = ""
+Oper$                  = ""
+if Using_ART then
+  if Using_BtBasic then
+    print using """"&Oper_Id_Prompt$&""",#"
+    input "",Oper$
+  else
+    input prompt Oper_Id_Prompt$; Oper$
+  end if
+end if
+if Serializing then Known_Good_Board$ = fn Get_Serial_Num$(Known_Good_Prompt$)
+subend
+
+!       Initialization Subroutines
+
+!##############################################################################
+sub Initializations
+global Logging, Using_Buffered_Reporting, Report_Printer$, Using_ART
+global Serializing, Logging_Started, First_Run$, Testmain_Revision$
+global Did_First_Run_Inits, QSTATS_Mode
+global True, False, Off, No_Histo, Histo, Pretest, Failures
+global Version_Inits_Needed, Using_Multiple_Versions
+global Per_Run, Per_Board, Version_Prompting
+global Using_AwareTest
+! IYET, WPR
+global Using_IYET, Using_WPR
+
+Testmain_Revision$="i3070 07.20p 0808 WN(full)"
+True = 1
+False = 0
+Off = 0
+No_Histo = 1
+Histo = 2
+Pretest = 1
+Failures = 2
+Per_Run = 1
+Per_Board = 2
+Version_Inits_Needed = False
+call Set_Custom_Options
+call Initialize_Board_Constants ! external to testmain
+call Initialize_Constants
+call Verify_Board_Names
+Logging_Started = False
+Logging = (QSTATS_Mode <> Off) or Using_ART
+if Using_ART then Serializing = True
+if Using_AwareTest then Serializing = True
+
+! call Get_Board_Revision        ! to interactively set Board_Rev$
+
+call Print_Startup_Message       ! prints out many variables' values
+acknowledge all failures
+learn capacitance off
+if Using_Buffered_Reporting then
+  buffered reporting on
+else
+  buffered reporting off
+end if
+report is Report_Printer$
+printer is *
+if Logging then
+  call Setup_Logging
+  call Create_Log_Queue
+else
+  log level is none
+end if
+if Using_ART then
+  report level is all
+else
+  report level is report
+end if
+if nrun = 1 then
+  print First_Run$
+  load board
+
+!'object checking on/off' statement goes here. Default is 'on'
+  object checking on
+end if
+if Using_Multiple_Versions and Version_Prompting = Per_Run then
+  call Get_Version_Label
+end if
+if nrun = 1 or Version_Inits_Needed then
+  call Do_Version_Inits
+  Did_First_Run_Inits=True
+end if
+
+! WPR
+if Using_WPR then probe report on
+
+! IYET
+if Using_IYET then call IYET_Initialize
+subend
+
+!##############################################################################
+sub Print_Startup_Message
+global Board$, Board_Rev$, Using_ART, QSTATS_Mode, Histo
+global Analog_Sample_Rate, Chek_Point_Mode, Failures
+global Report_Printer$, Using_Buffered_Reporting, Testmain_Revision$
+global Serializing, Serial_Length
+! IYET
+global Using_IYET, IYET_Report_On
+
+print using "@,2/"
+print "BOARD TYPE"
+print "  Name:     ";Board$
+print "  Revision: ";Board_Rev$
+print "AGILENT ICT TESTMAIN"
+print "  Report Printer: ";Report_Printer$
+print "  Revision:       ";Testmain_Revision$
+!   Build list of options to be printed
+!     O1$ is first line, O2$ is second line
+O1$ =  "  Options: "
+if Using_ART then O1$=O1$&" PR+"
+if QSTATS_Mode then O1$=O1$&" QSTATS"
+if Chek_Point_Mode then
+  O1$=O1$&" Chek-Point"
+  if Chek_Point_Mode = Failures then
+    O1$=O1$&"-Failures"
+  else
+    O1$=O1$&"-Pretest"
+  end if
+end if
+if (O1$="  Options: ") then
+  O2$=O1$
+else
+  print O1$
+  O2$= "           "
+end if
+if Serializing then O2$=O2$&" Serializing("&val$(Serial_Length)&")"
+if learning then O2$=O2$&" LEARNING"
+if Using_Buffered_Reporting then O2$=O2$&" Buffered-Reporting"
+if QSTATS_Mode = Histo then
+  O2$=O2$&" Histograms("&val$(Analog_Sample_Rate)&")"
+end if
+if not (O2$ = "           ") then print O2$
+! IYET
+O3$="           "
+if Using_IYET then
+  O3$=O3$&" Intelligent Yield Enhancement Test"
+  if IYET_Report_On then O3$=O3$&"-Report"
+end if
+print O3$
+print using "2/"
+subend
+
+!##############################################################################
+sub Get_Board_Revision
+global Board_Rev$, Board_Rev_Prompt$
+global Using_BtBasic
+
+if Board_Rev$ = "" then
+  if Using_BtBasic then
+    print using """" & Board_Rev_Prompt$ & """,#"
+    input "",Board_Rev$
+  else
+    input prompt Board_Rev_Prompt$; Board_Rev$
+  end if
+end if
+subend
+
+!##############################################################################
+sub Do_Version_Inits
+global Version_Inits_Needed, Chek_Point_Mode, True, False, Off, Logging
+
+unpowered
+faoff
+call Characterize
+if Chek_Point_Mode <> Off then   ! preload pins into testhead memory
+  Log_Level_Reset = False
+  if lli$ = "all" then
+    log level is none            ! turn off digital datalogging
+    Log_Level_Reset = True       ! for 'ignore all failures'
+  end if
+  ignore all failures
+  Err = fn Pinsfailed ("")       ! external to testmain
+  acknowledge all failures
+  if Log_Level_Reset = True then log level is all  ! reset datalogging
+end if
+Version_Inits_Needed = False
+subend
+
+!##############################################################################
+sub Get_Version_Label
+global Version_Label$, Version_Prompt$, True, False
+global Version_Inits_Needed, Using_BtBasic
+
+Old_Version$ = bvi$
+Version_Inits_Needed = True
+loop
+  Version_Label$ = ""
+  if Using_BtBasic then
+    print using """" & Version_Prompt$ & """,#"
+    input "", Version_Label$
+  else
+    input prompt Version_Prompt$; Version_Label$
+  end if
+  if Version_Label$ = "" or Version_Label$ = "*" then
+    board version is *, Err
+  else
+    board version is Version_Label$, Err
+  end if
+  exit if not Err
+  print errmlong$
+end loop
+if bvi$ = Old_Version$ then
+  Version_Inits_Needed = False
+end if
+subend
+
+!##############################################################################
+def fn Replace_Character$(Char$)
+  Val = num(Char$)
+  if Val < 9 then
+    String$ = "%00" & val$(Val)
+  else
+    if Val < 99 then
+      String$ = "%0" & val$(Val)
+    else
+      String$ = "%" & val$(Val)
+    end if
+  end if
+  return(String$)
+fnend
+
+def fn Replace_All_Chars$(String$, Char$)
+To_Return$ = ""
+
+String_Loop:
+
+String_Loc = pos(String$, Char$)
+if String_Loc = 0 then
+  To_Return_New$ = To_Return$ & String$
+else
+  To_Return_New$ = To_Return$ & String$[1;String_Loc - 1] & fn Replace_Character$(Char$)
+  String$ = String$[String_Loc + 1]
+end if
+To_Return$ = To_Return_New$
+if String_Loc <> 0 then goto String_Loop
+return(To_Return$)
+fnend
+
+def fn Remove_Special_Characters$(String$)
+! used only with AwareTest.  Replaces all characters that cannot be
+! used in an NT filename with their ASCII equivalent.
+
+  To_Replace$ = fn Replace_All_Chars$(String$, "%")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, "|")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, "\")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, "/")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, "<")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, ">")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, "*")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, "?")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, ":")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, " ")
+  To_Replace$ = fn Replace_All_Chars$(To_Replace$, """")
+  return(To_Replace$)
+fnend
+
+!##############################################################################
+sub Initialize_Constants
+global PreshortsMsg$, ShortsMsg$, PowerMsg$, DigitalMsg$, AnalogMsg$
+global DigitalFuncMsg$, AnalogPoweredMsg$, O$
+global Break_Detected, Mode$, Board_Not_Tested$
+global True, False, InvOn$, InvOff$, First_Run$, Board_Rev_Prompt$
+global Pass_Msg$, Fail_Msg$, Pass_File$, Fail_File$, Stop_Msg$, Break_Msg$
+global No_Init_Warning$, Rep_Test$, Place_Board_Prompt$, Learning_Off_Msg$
+global BT_Passed$, BT_SR_Fail$, BT_CRC_Fail$, BT_Notest$, BT_Indeter$
+global BT_Interm$, BT_Incons$, BT_Open$, BT_NResults$
+global Confirming$, Confirm_Failed$
+global Failed_In_Learn, Failed_Pin_Test, Failed_In_Preshorts, Failed_In_Shorts
+global Failed_In_Analog, Failed_In_Power_Supplies, Failed_In_Digital
+global Failed_In_Functional, Failed_In_BScan, Passed, Failed
+global Directory_Exists, Log_Path$, System$, Queue_Error_Msg$, Board$
+global Break_Code, Error_Code, Using_BtBasic
+global But$, Serial_Prompt$, Bad_Serial_Image$, Oper_Id_Prompt$
+global Known_Good_Prompt$, Serial_Nr$
+global Retry_PinTest$, Cycle_Vacuum$, Recycle_Vacuum$
+global Pin_Msg$, Max_Times_To_Fix_Contact
+global BScanIntconMsg$, BScanIncktMsg$, Chek_Point_Msg$
+global VectorlessTestMsg$, Failed_In_VectorlessTest
+global PolarityMsg$, Failed_In_Polarity_Check
+global BScanPShortsMsg$, No_Version_Init_Warning$
+global Version_Label$, Version_Prompt$
+global ConnectCheckMsg$, Failed_In_ConnectCheck
+global Failed_In_Flash, FlashProgMsg$
+global Serial_Number_Directory$, Not_AXI_Tested$, Serial_Suffix$
+global AnalogClusterMsg$, Failed_In_Analog_Cluster
+global PrePoweredMsg$, Failed_In_Pre_Powered
+global BScanSiNailsMsg$, Failed_In_BScan_SiNails
+global CoverExtendMsg$, Failed_In_Cover_Extend
+global SW_ScanPathVerifyMsg$, Failed_In_SW_Testing
+global SW_DrVerifyMsg$, SW_IrVerifyMsg$
+global SW_InterconnectMsg$, SW_MemInterconnectMsg$
+global SW_ClusterMsg$, SW_MemBistMsg$
+global SW_ProgrammingMsg$, Failed_In_SW_Programming
+global SW_FlashMsg$, Failed_In_SW_Flash
+global VerifyGroundsMsg$, Failed_In_Verify_Grounds
+global Bad_Board_Name$
+
+Using_BtBasic = True
+if localizable then Using_BtBasic = False
+
+if Using_BtBasic then
+  InvOn$                 = chr$(27)&"&dB"&chr$(7)  ! chr$(7) rings bell
+  InvOff$                = chr$(27)&"&d@"
+else
+  InvOn$                 = "<FONT COLOR=blue SIZE=+2><B>"
+  InvOff$                = "</B></FONT>"
+end if
+
+Break_Detected           = False
+Passed                   = 0
+Failed                   = 1
+Failed_Pin_Test          = 2
+Failed_In_Learn          = 3
+Failed_In_Shorts         = 4
+Failed_In_Analog         = 6
+Failed_In_Power_Supplies = 7
+Failed_In_Digital        = 8
+Failed_In_Functional     = 9
+Failed_In_Preshorts      = 10
+! Status codes 11, 12 reserved for use by EFS
+Failed_In_BScan          = 8      ! Equate to Failed_In_Digital
+Failed_In_VectorlessTest = 14
+Failed_In_Polarity_Check = 15
+Failed_In_ConnectCheck   = 16
+Failed_In_Analog_Cluster = 17
+Failed_In_Flash          = 18
+Failed_In_BScan_SiNails  = 19
+Failed_In_SW_Testing     = 8      ! Equate to Failed_In_Digital
+Failed_In_SW_Programming = 20
+Failed_In_SW_Flash       = 21
+Failed_In_Verify_Grounds = 22
+Failed_In_Cover_Extend   = 23
+Failed_In_Pre_Powered    = 24
+Error_Code               = 80
+Break_Code               = 82
+Directory_Exists         = 100312
+Log_Path$                = btgetenv$("AGILENT3070_ROOT")&"/qm/logdata/testerq/"&Board$&"/"
+enter "uname -n |";System$              ! gets hostname (without domain)
+Max_Times_To_Fix_Contact = 4            ! MUST BE >= 1
+Pin_Msg$                 = "FIXTURE CONTACT PROBLEM"
+O$                       = InvOn$&"Press YES"&InvOff$
+O$                       = O$&" to retry Pins Test, "&InvOn$&"NO"&InvOff$
+Retry_PinTest$           = O$&" to test a new board."
+O$                       = InvOn$&"Press YES"&InvOff$&" to cycle vacuum, "
+Cycle_Vacuum$            = O$&InvOn$&"NO"&InvOff$&" Otherwise."
+O$                       = InvOn$&"Press YES"&InvOff$
+Recycle_Vacuum$          = O$&" to turn vacuum on and continue testing."
+Queue_Error_Msg$         = "Cannot create directory to queue up log data.  Error is:"
+But$                     = "Board Under Test: "
+Serial_Prompt$           = InvOn$&"Enter"&InvOff$&" Board Identifier: "
+O$                       = "/,""Identifier has wrong length ("",dd,""), must be "
+Bad_Serial_Image$        = O$&""",dd,""."",/"
+Oper_Id_Prompt$          = InvOn$&"Enter"&InvOff$&" Operator Identifier: "
+Known_Good_Prompt$       = InvOn$&"Enter"&InvOff$&" Verification Board Identifier: "
+Rep_Test$                = "Repeating test of this board!"
+First_Run$               = "Please stand by -- doing first-run initializations"
+No_Init_Warning$         = "** WARNING: FIRST RUN INITIALIZATIONS NOT COMPLETED --"
+No_Init_Warning$         = No_Init_Warning$ & " CLEARING NRUN **"
+O$                       = "** WARNING: VERSION CHANGE INITIALIZATIONS NOT"
+No_Version_Init_Warning$ = O$ & " COMPLETED -- CLEARING NRUN **"
+Pass_File$               = btgetenv$("AGILENT3070_ROOT")&"/util/pass"
+Fail_File$               = btgetenv$("AGILENT3070_ROOT")&"/util/fail"
+Board_Not_Tested$        = "Board not tested."
+Pass_Msg$                = "P A S S E D"
+Fail_Msg$                = "F A I L E D"
+Stop_Msg$                = "P R O G R A M   S T O P P E D"
+Break_Msg$               = "Break/Stop detected."
+Place_Board_Prompt$      = "Place board on fixture and "&InvOn$&"press START"
+Board_Rev_Prompt$        = InvOn$&"Enter"&InvOff$&" Board Revision: "
+Confirming$              = "Confirming diagnosis..."
+Confirm_Failed$          = "Confirm failed; restarting at node """
+Learning_Off_Msg$        = "Learning turned off"
+if learning then
+  Mode$                  = "Learning "
+else
+  Mode$                  = "Testing "
+end if
+PreshortsMsg$            = "Preshorts"
+ShortsMsg$               = "Shorts"
+PowerMsg$                = "Setting Up Power Supplies"
+DigitalMsg$              = "Digital Incircuit"
+AnalogMsg$               = "Analog Unpowered"
+AnalogClusterMsg$        = "Analog Cluster"
+VectorlessTestMsg$       = "Vectorless Test"
+PolarityMsg$             = "Polarity Check"
+ConnectCheckMsg$         = "Connect Check"
+DigitalFuncMsg$          = "Digital Functional"
+AnalogPoweredMsg$        = "Analog Powered and Mixed"
+BScanIntconMsg$          = "Boundary Scan Interconnect"
+BScanIncktMsg$           = "Boundary Scan Incircuit"
+BScanPShortsMsg$         = "Boundary Scan Powered Shorts"
+BScanSiNailsMsg$         = "Boundary Scan Silicon Nails"
+CoverExtendMsg$          = "Cover-Extend"
+PrePoweredMsg$           = "Pre Powered Tests"
+FlashProgMsg$            = "Programming Flash"
+SW_ScanPathVerifyMsg$    = "Scan Path Verify with ScanWorks"
+SW_DrVerifyMsg$          = "DR Verify with ScanWorks"
+SW_IrVerifyMsg$          = "IR Verify with ScanWorks"
+SW_InterconnectMsg$      = "Interconnect with ScanWorks"
+SW_MemInterconnectMsg$   = "Memory Interconnect with ScanWorks"
+SW_ClusterMsg$           = "Cluster with ScanWorks"
+SW_MemBistMsg$           = "Memory BIST with ScanWorks"
+SW_ProgrammingMsg$       = "Programming Devices with ScanWorks"
+SW_FlashMsg$             = "Programming Flash with ScanWorks"
+VerifyGroundsMsg$        = "Verify Grounds"
+Serial_Nr$               = "Serial #: "
+BT_Passed$               = "passed"
+BT_SR_Fail$              = "failed vector "
+BT_CRC_Fail$             = "failed CRC is """
+BT_Notest$               = "was not tested"
+BT_Indeter$              = "was indeterminate"
+BT_Interm$               = "was intermittent"
+BT_Incons$               = "was inconsistent"
+BT_Open$                 = "has an open trace"
+BT_NResults$             = "noderesults= "
+Chek_Point_Msg$          = "Testing Pin Contact"
+Version_Label$           = ""
+Version_Prompt$          = InvOn$&"Enter"&InvOff$&" Version Label: "
+Serial_Number_Directory$ = "AXI_passed_boards/"
+Serial_Suffix$           = ".SNF"
+Not_AXI_Tested$          = "Board did not pass AXI; cannot test on Agilent ICT."
+SNF_Error_Msg$           = "Error accessing serial number file. Error is: "
+Bad_Board_Name$          = "Board name contains space, cannot proceed:"
+subend
+
+!##############################################################################
+sub Set_Custom_Options
+!  All variables likely to need to be changed are initialized here.
+!  The Usage flag(s) can be set True or False to selectively enable or
+!  disable the code needed for each indicated subsystem or feature.
+global Using_ART, QSTATS_Mode, Testrev$
+global Analog_Sample_Rate
+global Serializing, Serial_Length
+global Chek_Point_Mode
+global Report_Printer$, True, False, Using_Buffered_Reporting
+global Off, Pretest, Failures, No_Histo, Histo
+global Per_Run, Per_Board, Version_Prompting
+global Programming, AXI_Tested_Override
+! IYET, WPR
+global Using_IYET, IYET_Shorts_Attempts, IYET_Analog_Tests_Attempts
+global IYET_Report_On, IYET_VectorlessTest_Attempts, IYET_Preshorts_Attempts
+global Using_WPR
+
+!   Usage flag(s)
+
+QSTATS_Mode                  = Off       ! Choose {Off, No_Histo, Histo}
+Chek_Point_Mode              = Failures  ! Choose {Off, Pretest, Failures}
+Using_ART                    = False     ! Agilent Repair Tool.
+Serializing                  = False     ! Will get set True if Using_ART.
+Using_Buffered_Reporting     = True      ! Report failures during board handling
+Programming                  = False     ! Execute Flash and device programming.
+Using_IYET                   = False     ! Agilent Intelligent Yield Enhancement
+                                         ! Test (IYET)
+IYET_Report_On               = True      !   Create & display report on breaks
+IYET_Preshorts_Attempts      = 3         !   Preshorts re-test attempts
+IYET_Shorts_Attempts         = 3         !   Shorts re-test attempts
+IYET_Analog_Tests_Attempts   = 3         !   Analog unp. re-test attempts
+IYET_VectorlessTest_Attempts = 3         !   VectorlessTest re-test attempts
+Using_WPR                    = False     ! Agilent Worse Probe Report (WPR)
+
+!   Other parameters
+
+Report_Printer$           = btgetenv$("RPR"&th$) ! Final report destination
+!Report_Printer$           = "/dev/tty"  ! Send reports to the screen
+Testrev$                  = "RevA"      ! Update this faithfully
+Analog_Sample_Rate        = .10         ! Meaningful if QSTATS_Mode = Histo
+Serial_Length             = 28          ! Board Id Length (0 = no checking)
+Version_Prompting         = Per_Board   ! Choose {Per_Board, Per_Run}
+                                        ! Used only on multiple version board
+AXI_Tested_Override       = False       ! Choose {True, False}
+subend
+
+!##############################################################################
+sub Cleanup_Flash
+global Logging, Report_level$
+
+if Report_level$ = "all" then report level is all
+if Report_level$ = "none" then report level is none
+if Report_level$ = "log" then report level is log
+if Report_level$ = "report" then report level is report
+if Logging then
+  call Set_Log_Level
+end if
+subend
+
+!       Data Logging Subroutines
+
+!##############################################################################
+sub Set_Log_Level
+global Sampling
+
+if learning then
+  log level is all
+else
+  if Sampling then
+    log level is analog without nhls, pins
+  else
+    log level is indictments without nhls
+  end if
+end if
+subend
+
+!       IYET Subroutines
+
+!##############################################################################
+sub IYET_Initialize
+
+global IYET_Path$, IYET_Failure_File$, IYET_Retest_Log_File$
+global O$, InvOn$, InvOff$
+global IYET_Vacuum_Off_Delay, IYET_Vacuum_On_Delay
+global IYET_Report_On, IYET_Max_Report_Count, IYET_File_Timeout
+global IYET_Err_Msg$, IYET_NoRT_Msg$
+global IYET_Test_Msg$, IYET_Max_Msg$, IYET_Fail_Msg$
+global IYET_Rpt1_Msg$, IYET_Rpt2_Msg$, IYET_Rpt3_Msg$
+global Chek_Point_Mode, Max_Times_To_Fix_Contact, Failures, True, False
+
+! Initialize paths and files
+IYET_Path$                = "./iyet/"
+IYET_Retest_Log_File$     = IYET_Path$&"retest"&datetime$[1;6]&".txt"
+IYET_Failure_File$        = IYET_Path$&"failure.txt"
+
+! Initialize variables
+IYET_Vacuum_Off_Delay     = 1.5
+IYET_Vacuum_On_Delay      = 1.5
+IYET_Max_Report_Count     = 10
+IYET_File_Timeout         = 5
+
+! Initialize message strings
+IYET_Err_Msg$  = "Error with file: "
+IYET_NoRT_Msg$ = "No re-tests found or missing file: "
+IYET_Test_Msg$ = "Re-testing "
+IYET_Max_Msg$  = "Maximum number of attempts for IYET must be >= 1."
+IYET_Fail_Msg$ = " failed, releasing board..."
+
+! Initialize report strings
+IYET_Rpt1_Msg$ = "IYET Unstable Test Report - from file: "
+IYET_Rpt2_Msg$ = "Unstable Test"
+IYET_Rpt3_Msg$ = "# Re-tests"
+
+! When pins test is "Failures", disable redundant re-contacts
+if Chek_Point_Mode = Failures then Max_Times_To_Fix_Contact = 1
+
+! Create IYET directory
+create dir IYET_Path$, Error
+if (Error <> 100312) and (Error <> 0) then
+   print IYET_Err_Msg$ & IYET_Path$
+   print errmlong$(Error)
+   beep
+   stop
+end if
+
+! Generate and print re-test report
+if (Error = 100312) and IYET_Report_On then
+   print using "@"
+   print IYET_Rpt1_Msg$ & IYET_Retest_Log_File$
+   print
+   call IYET_Create_Report
+   print
+   O$ = InvOn$&"Press YES"&InvOff$
+   Prompt$ = O$&" to continue testing with IYET."
+   question Prompt$, Continue
+   if not Continue then stop
+   print using "@"
+end if
+subend
+
+!##############################################################################
+sub IYET_Create_Report
+! Collect all failing devices from log file and create retest report
+
+global IYET_Retest_Log_File$
+global IYET_Retest_Failing_Devices$(*), IYET_Top_Retests$(*)
+global IYET_Max_Report_Count, IYET_File_Timeout
+global IYET_NoRT_Msg$, IYET_Err_Msg$
+global IYET_Rpt1_Msg$, IYET_Rpt2_Msg$, IYET_Rpt3_Msg$
+
+! Open retest log file and get failing devices
+assign @Retest_Log, Error to IYET_Retest_Log_File$;read
+if Error then
+   print IYET_NoRT_Msg$ & IYET_Retest_Log_File$
+   print
+   subexit
+end if
+
+! Read all failing devices until end of file or until IYET_File_Timeout.
+Start_Time = msec
+I = 0
+loop
+   Input$ = ""
+   enter @Retest_Log,,Error;Input$
+   if (Error <> 0) and (Error <> 101007) then
+      print IYET_Err_Msg$ & IYET_Retest_Log_File$
+      print errmlong$(Error)
+      beep
+      stop
+   end if
+
+   ! Look for shorts, vectorless test failures
+   if pos(Input$," Report for """) then
+      End_Input = pos(Input$,""".")
+      Begin_Input = pos(Input$,"""") + 1
+      Temp_device$ = Input$[Begin_Input;End_Input - Begin_Input]
+      IYET_Retest_Failing_Devices$(I) = Temp_device$
+      I = I + 1
+   end if
+
+   ! Look for analog failures
+   if pos(Input$,"HAS FAILED") then
+      IYET_Retest_Failing_Devices$(I) = Input$[1;pos(Input$,"HAS FAILED")-1]
+      I = I + 1
+   end if
+
+   exit if Error = 101007
+
+   if (msec - Start_Time)/1000 > IYET_File_Timeout then
+      print IYET_Err_Msg$ & IYET_Retest_Log_File$
+      beep
+      stop
+   end if
+end loop
+
+assign @Retest_Log to *
+Device_Total = I-1
+
+! Count failures and remove duplicates
+K = 0
+for I = 0 to Device_Total
+   if IYET_Retest_Failing_Devices$(I) <> "" then
+      Temp$ =  IYET_Retest_Failing_Devices$(I)
+      Temp_Retests = 1
+      for J = I + 1 to Device_Total
+         if IYET_Retest_Failing_Devices$(J) <> "" then
+            if Temp$ = IYET_Retest_Failing_Devices$(J) then
+               Temp_Retests = Temp_Retests + 1
+               IYET_Retest_Failing_Devices$(J) = ""
+            end if
+         end if
+      next J
+      IYET_Top_Retests$(K,1) = Temp$
+      IYET_Top_Retests$(K,2) = val$(Temp_Retests)
+      K = K + 1
+   end if
+next I
+Top_Retest_Total = K-1
+
+! Sort ascending
+for I = 0 to Top_Retest_Total
+   for J = Top_Retest_Total to 1 step -1
+      if val(IYET_Top_Retests$(J,2)) > val(IYET_Top_Retests$(J-1,2)) then
+         Temp$ = IYET_Top_Retests$(J-1,1)
+         Temp_Retests = val(IYET_Top_Retests$(J-1,2))
+
+         IYET_Top_Retests$(J-1,1) = IYET_Top_Retests$(J,1)
+         IYET_Top_Retests$(J-1,2) = IYET_Top_Retests$(J,2)
+
+         IYET_Top_Retests$(J,1) = Temp$
+         IYET_Top_Retests$(J,2) = val$(Temp_Retests)
+      end if
+   next J
+next I
+
+! Print
+IYET_Max_Report_Count = IYET_Max_Report_Count - 1
+if Top_Retest_Total <= IYET_Max_Report_Count then
+   IYET_Max_Report_Count = Top_Retest_Total
+end if
+
+print IYET_Rpt2_Msg$;tab (50);IYET_Rpt3_Msg$
+
+for I = 0 to IYET_Max_Report_Count
+   print IYET_Top_Retests$(I,1);tab (55);IYET_Top_Retests$(I,2)
+next I
+subend
+
+!##############################################################################
+sub IYET_Vacuum_Off
+! Edit this subroutine to match your vacuum actuation commands. Note that the
+! delay for vacuum off is completed in the "IYET_Vacuum_On" subroutine.
+
+global IYET_Start_Vacuum_Off
+
+IYET_Start_Vacuum_Off = msec
+faoff 0
+subend
+
+!##############################################################################
+sub IYET_Vacuum_On(Prompt$)
+! Edit this subroutine to match your vacuum actuation commands. Do not
+! comment the line:
+!
+!  question Prompt$,Continue | if not Continue then stop
+!
+! unless your fixture is approved for actuation without operator
+! intervention.
+
+global IYET_Start_Vacuum_Off, IYET_Vacuum_Off_Delay, IYET_Vacuum_On_Delay
+
+question Prompt$,Continue | if not Continue then stop
+
+! Wait for vacuum to release
+loop
+   exit if (msec - IYET_Start_Vacuum_Off)/1000 > IYET_Vacuum_Off_Delay
+end loop
+
+faon IYET_Vacuum_On_Delay
+subend
+
+!##############################################################################
+sub IYET_Get_Failed_Tests (IYET_Abort)
+! Collect all failing tests from failure file.
+! To save time, this is called between the vacuum off and vacuum on.
+
+global IYET_Failing_Tests$(*), IYET_Test_Total, IYET_File_Timeout
+global IYET_Failure_File$, IYET_Retest_Log_File$, IYET_Err_Msg$
+global Report_Printer$, Serial$, True, False
+
+! Save failure ticket to retry log file
+report is IYET_Retest_Log_File$,,Error;append
+if Error then
+   print IYET_Err_Msg$ & IYET_Retest_Log_File$
+   print errmlong$(Error)
+   beep
+   stop
+end if
+report "Board #:";bni
+report "Version:";bvi$
+report "S/N:"&Serial$| report out
+
+! Save failure ticket to temporary file
+report is IYET_Failure_File$,,Err
+if Error then
+   print IYET_Err_Msg$ & IYET_Failure_File$
+   print errmlong$(Error)
+   beep
+   stop
+end if
+report out
+
+! Restore original report printer
+report is Report_Printer$
+
+! Open failure ticket and get failing tests
+assign @Ticket, Error to IYET_Failure_File$;read
+if Error then
+   print IYET_Err_Msg$ & IYET_Failure_File$
+   print errmlong$(Error)
+   beep
+   stop
+end if
+
+! Read all failing tests until end of file or until IYET_File_Timeout.
+Start_Time = msec
+I = 0
+IYET_Abort = False
+loop
+   Input$ = ""
+   enter @Ticket,,Error;Input$
+   if (Error <> 0) and (Error <> 101007) then
+      print IYET_Err_Msg$ & IYET_Failure_File$
+      print errmlong$(Error)
+      beep
+      stop
+   end if
+
+   ! Look for shorts, vectorless test failures
+   if pos(Input$," Report for """) then
+      End_Input = pos(Input$,""".")
+      Begin_Input = pos(Input$,"""") + 1
+      IYET_Failing_Tests$(I) = Input$[Begin_Input;End_Input - Begin_Input]
+      I = I + 1
+   end if
+
+   ! Look for analog test failures
+   if pos(Input$,"HAS FAILED") then
+      IYET_Failing_Tests$(I) = Input$[1;pos(Input$,"HAS FAILED")-1]
+      I = I + 1
+   end if
+
+   ! Look for compensation failures and set abort flag
+   if pos(Input$,"Compensation capacitance has not been") then
+      IYET_Abort = True
+   end if
+
+   exit if IYET_Abort
+
+   exit if Error = 101007
+
+   if (msec - Start_Time)/1000 > IYET_File_Timeout then
+      print IYET_Err_Msg$ & IYET_Failure_File$
+      beep
+      stop
+   end if
+end loop
+
+assign @Ticket to *
+IYET_Test_Total = I - 1
+
+! Abort if no tests are found
+if IYET_Test_Total < 0 then IYET_Abort = True
+
+! Clear report buffer and failures unless aborted
+if not IYET_Abort then
+   report clear
+   clear failures
+end if
+subend
+
+!##############################################################################
+sub IYET_Retest_Failed_Tests
+global IYET_Failing_Tests$(*), IYET_Test_Total, IYET_Test_Msg$
+
+for I = 0 to IYET_Test_Total
+    print tab(11);IYET_Test_Msg$;lwc$(IYET_Failing_Tests$(I))
+    test lwc$(IYET_Failing_Tests$(I))
+next I
+subend
+
+!##############################################################################
+sub IYET (TestType$, Maximum_Number_Attempts)
+global Failed_In_Preshorts, PreshortsMsg$, Failed_In_Shorts, ShortsMsg$
+global Failed_In_Analog, AnalogMsg$
+global Failed_In_VectorlessTest, VectorlessTestMsg$
+global Using_Buffered_Reporting, Logging, True, False, Mode$
+global IYET_Fail_Msg$, IYET_Max_Msg$, Recycle_Vacuum$
+
+! Check that maximum number of attempts is OK.
+if Maximum_Number_Attempts < 1 then
+   print IYET_Max_Msg$
+   beep
+   stop
+end if
+Retests_Remaining = dround(Maximum_Number_Attempts,1)
+
+! Force log level, will be restored by Cleanup_Flash
+if Logging then
+  log level is none
+end if
+
+! Force buffered reporting, save flag to restore at end
+if not Using_Buffered_Reporting then
+   buffered reporting on
+   Not_Using_Buffered_Reporting = True
+end if
+
+! Call the test subroutine for the first time...
+if TestType$ = PreshortsMsg$ then
+   call Pre_Shorts (Failed_In_Preshorts, Mode$ & PreshortsMsg$)
+end if
+
+if TestType$ = ShortsMsg$ then
+   call Shorts (Failed_In_Shorts, Mode$ & ShortsMsg$)
+end if
+
+if TestType$ = AnalogMsg$ then
+   call Analog_Tests (Failed_In_Analog, Mode$ & AnalogMsg$)
+end if
+
+if TestType$ = VectorlessTestMsg$ then
+   call VectorlessTest (Failed_In_VectorlessTest, Mode$ & VectorlessTestMsg$)
+end if
+
+Retests_Remaining = Retests_Remaining - 1
+
+loop
+
+   ! Exit if attempt is successful
+   exit if (not boardfailed)
+
+   ! Exit if done with re-tests
+   exit if (Retests_Remaining = 0)
+
+   ! Process failures during vacuum cycle time
+   print tab(8);TestType$ & IYET_Fail_Msg$
+   call IYET_Vacuum_Off
+   call IYET_Get_Failed_Tests (IYET_Abort)
+   call IYET_Vacuum_On(Recycle_Vacuum$)
+
+   ! Exit if aborted
+   exit if IYET_Abort
+
+   ! For last time through the loop, restore logging and reporting
+   if Retests_Remaining = 1 then call Cleanup_Flash
+
+   ! Re-test
+   call IYET_Retest_Failed_Tests
+   Retests_Remaining = Retests_Remaining - 1
+
+end loop
+
+! Now some clean up. Could be redundant.
+
+! Restore Log & Report level
+call Cleanup_Flash
+
+! Restore 'unbuffered' reporting, after dumping report buffer
+if Not_Using_Buffered_Reporting then
+   if boardfailed then report out
+   buffered reporting off
+end if
+subend
+
+!                          END OF TESTMAIN
+!##############################################################################
+
+
+sub Initialize_Board_Constants
+global Board$,Board_Rev$
+global Using_Multiple_Versions, True, False
+global Using_AwareTest
+
+   Board$ = "Heron_Pin_Card"
+   Board_Rev$ = ""
+
+! 'vacuum well' statement goes here (if required)
+   vacuum well a is 0,1,2,3
+   Using_Multiple_Versions = False
+   Using_AwareTest = False
+subend
+
+sub Characterize
+global Status, Failed_In_Learn
+
+   Status = Failed_In_Learn
+   learn capacitance on
+   test "analog/c319"
+   test "analog/c320"
+   test "analog/c321"
+   test "analog/c322"
+   test "analog/c323"
+   test "analog/c324"
+   test "analog/c882"
+   test "analog/c883"
+   test "analog/c884"
+   test "analog/c885"
+   test "analog/c886"
+   test "analog/c887"
+   test "analog/c888"
+   test "analog/c889"
+   test "analog/c890"
+   test "analog/c891"
+   test "analog/c892"
+   test "analog/c893"
+   test "analog/c894"
+   test "analog/c895"
+   test "analog/c896"
+   test "analog/c621"
+   test "analog/c622"
+   test "analog/c623"
+   test "analog/c624"
+   test "analog/c625"
+   test "analog/c626"
+   test "analog/c627"
+   test "analog/c628"
+   test "analog/c629"
+   test "analog/c630"
+   test "analog/c631"
+   test "analog/c632"
+   test "analog/c633"
+   test "analog/c634"
+   test "analog/c635"
+   test "analog/c636"
+   test "analog/c853"
+   test "analog/c866"
+   test "analog/c867"
+   test "analog/c868"
+   test "analog/c869"
+   test "analog/c870"
+   test "analog/c871"
+   test "analog/c872"
+   test "analog/c873"
+   test "analog/c874"
+   test "analog/c875"
+   test "analog/c876"
+   test "analog/c877"
+   test "analog/c878"
+   test "analog/c879"
+   test "analog/c880"
+   test "analog/c881"
+   learn capacitance off
+subend
+
+sub Pre_Shorts (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   test "analog/u113"   !m51-a230x
+   test "analog/u114"   !m51-a230x
+   test "analog/u115"   !m51-a230x
+   test "analog/u116"   !m51-a230x
+   test "analog/f1"
+   test "analog/f2"
+   test "analog/f4"
+   test "analog/f5"
+   test "analog/f6"
+   test "analog/f7"
+   test "analog/e1%jp1"
+   test "analog/e2%jp1"
+   test "analog/e3%jp1"
+   test "analog/e4%jp1"
+   test "analog/e5%jp1"
+   test "analog/e6%jp1"
+   test "analog/e7%jp1"
+   test "analog/e8%jp1"
+   test "analog/e9%jp1"
+   test "analog/e10%jp1"
+   test "analog/e11%jp1"
+   test "analog/e12%jp1"
+   test "analog/e13%jp1"
+   test "analog/e14%jp1"
+   test "analog/e15%jp1"
+   test "analog/e16%jp1"
+   test "analog/r591%jumper"
+   test "analog/r592%jumper"
+   test "analog/r593%jumper"
+   test "analog/r594%jumper"
+   test "analog/r595%jumper"
+   test "analog/r596%jumper"
+   test "analog/r597%jumper"
+   test "analog/r598%jumper"
+   test "analog/r599%jumper"
+   test "analog/r600%jumper"
+   test "analog/r601%jumper"
+   test "analog/r602%jumper"
+   test "analog/r603%jumper"
+   test "analog/r604%jumper"
+   test "analog/r605%jumper"
+   test "analog/r606%jumper"
+   test "analog/kac0%contact"
+   test "analog/kac1%contact"
+   test "analog/kac2%contact"
+   test "analog/kac3%contact"
+   test "analog/kac4%contact"
+   test "analog/kac5%contact"
+   test "analog/kac6%contact"
+   test "analog/kac7%contact"
+   test "analog/kad00%contact"
+   test "analog/kad01%contact"
+   test "analog/kad02%contact"
+   test "analog/kad03%contact"
+   test "analog/kad04%contact"
+   test "analog/kad05%contact"
+   test "analog/kad06%contact"
+   test "analog/kad07%contact"
+   test "analog/kad08%contact"
+   test "analog/kad09%contact"
+   test "analog/kad10%contact"
+   test "analog/kad11%contact"
+   test "analog/kad12%contact"
+   test "analog/kad13%contact"
+   test "analog/kad14%contact"
+   test "analog/kad15%contact"
+   test "analog/kad16%contact"
+   test "analog/kad17%contact"
+   test "analog/kad18%contact"
+   test "analog/kad19%contact"
+   test "analog/kad20%contact"
+   test "analog/kad21%contact"
+   test "analog/kad22%contact"
+   test "analog/kad23%contact"
+   test "analog/kad24%contact"
+   test "analog/kad25%contact"
+   test "analog/kad26%contact"
+   test "analog/kad27%contact"
+   test "analog/kad28%contact"
+   test "analog/kad29%contact"
+   test "analog/kad30%contact"
+   test "analog/kad31%contact"
+   test "analog/kad32%contact"
+   test "analog/kad33%contact"
+   test "analog/kad34%contact"
+   test "analog/kad35%contact"
+   test "analog/kad36%contact"
+   test "analog/kad37%contact"
+   test "analog/kad38%contact"
+   test "analog/kad39%contact"
+   test "analog/kad40%contact"
+   test "analog/kad41%contact"
+   test "analog/kad42%contact"
+   test "analog/kad43%contact"
+   test "analog/kad44%contact"
+   test "analog/kad45%contact"
+   test "analog/kad46%contact"
+   test "analog/kad47%contact"
+   test "analog/kad48%contact"
+   test "analog/kad49%contact"
+   test "analog/kad50%contact"
+   test "analog/kad51%contact"
+   test "analog/kad52%contact"
+   test "analog/kad53%contact"
+   test "analog/kad54%contact"
+   test "analog/kad55%contact"
+   test "analog/kad56%contact"
+   test "analog/kad57%contact"
+   test "analog/kad58%contact"
+   test "analog/kad59%contact"
+   test "analog/kad60%contact"
+   test "analog/kad61%contact"
+   test "analog/kad62%contact"
+   test "analog/kad63%contact"
+   test "analog/kad64%contact"
+   test "analog/kad65%contact"
+   test "analog/kad66%contact"
+   test "analog/kad67%contact"
+   test "analog/kad68%contact"
+   test "analog/kad69%contact"
+   test "analog/kad70%contact"
+   test "analog/kad71%contact"
+   test "analog/kad72%contact"
+   test "analog/kad73%contact"
+   test "analog/kad74%contact"
+   test "analog/kad75%contact"
+   test "analog/kad76%contact"
+   test "analog/kad77%contact"
+   test "analog/kad78%contact"
+   test "analog/kad79%contact"
+   test "analog/kag19%contact"
+   test "analog/kag20%contact"
+   test "analog/kag39%contact"
+   test "analog/kag40%contact"
+   test "analog/kag59%contact"
+   test "analog/kag60%contact"
+   test "analog/kap0%contact"
+   test "analog/kap1%contact"
+   test "analog/kap2%contact"
+   test "analog/kap3%contact"
+   test "analog/kap4%contact"
+   test "analog/kap5%contact"
+   test "analog/kap6%contact"
+   test "analog/kap7%contact"
+   test "analog/kar00%contact"
+   test "analog/kar01%contact"
+   test "analog/kar02%contact"
+   test "analog/kar03%contact"
+   test "analog/kar04%contact"
+   test "analog/kar05%contact"
+   test "analog/kar06%contact"
+   test "analog/kar07%contact"
+   test "analog/kar08%contact"
+   test "analog/kar09%contact"
+   test "analog/kar10%contact"
+   test "analog/kar11%contact"
+   test "analog/kar12%contact"
+   test "analog/kar13%contact"
+   test "analog/kar14%contact"
+   test "analog/kar15%contact"
+   test "analog/kar16%contact"
+   test "analog/kar17%contact"
+   test "analog/kar18%contact"
+   test "analog/kar19%contact"
+   test "analog/kar20%contact"
+   test "analog/kar21%contact"
+   test "analog/kar22%contact"
+   test "analog/kar23%contact"
+   test "analog/kar24%contact"
+   test "analog/kar25%contact"
+   test "analog/kar26%contact"
+   test "analog/kar27%contact"
+   test "analog/kar28%contact"
+   test "analog/kar29%contact"
+   test "analog/kar30%contact"
+   test "analog/kar31%contact"
+   test "analog/kar32%contact"
+   test "analog/kar33%contact"
+   test "analog/kar34%contact"
+   test "analog/kar35%contact"
+   test "analog/kar36%contact"
+   test "analog/kar37%contact"
+   test "analog/kar38%contact"
+   test "analog/kar39%contact"
+   test "analog/kar40%contact"
+   test "analog/kar41%contact"
+   test "analog/kar42%contact"
+   test "analog/kar43%contact"
+   test "analog/kar44%contact"
+   test "analog/kar45%contact"
+   test "analog/kar46%contact"
+   test "analog/kar47%contact"
+   test "analog/kar48%contact"
+   test "analog/kar49%contact"
+   test "analog/kar50%contact"
+   test "analog/kar51%contact"
+   test "analog/kar52%contact"
+   test "analog/kar53%contact"
+   test "analog/kar54%contact"
+   test "analog/kar55%contact"
+   test "analog/kar56%contact"
+   test "analog/kar57%contact"
+   test "analog/kar58%contact"
+   test "analog/kar59%contact"
+   test "analog/kar60%contact"
+   test "analog/kar61%contact"
+   test "analog/kar62%contact"
+   test "analog/kar63%contact"
+   test "analog/kar64%contact"
+   test "analog/kar65%contact"
+   test "analog/kar66%contact"
+   test "analog/kar67%contact"
+   test "analog/kar68%contact"
+   test "analog/kar69%contact"
+   test "analog/kar70%contact"
+   test "analog/kar71%contact"
+   test "analog/kar72%contact"
+   test "analog/kar73%contact"
+   test "analog/kar74%contact"
+   test "analog/kar75%contact"
+   test "analog/kar76%contact"
+   test "analog/kar77%contact"
+   test "analog/kar78%contact"
+   test "analog/kar79%contact"
+   test "analog/kas00%contact"
+   test "analog/kas11%contact"
+   test "analog/kas17%contact"
+   test "analog/kas22%contact"
+   test "analog/kas28%contact"
+   test "analog/kas31%contact"
+   test "analog/kas33%contact"
+   test "analog/kas42%contact"
+   test "analog/kas44%contact"
+   test "analog/kas53%contact"
+   test "analog/kas55%contact"
+   test "analog/kas64%contact"
+   test "analog/kas66%contact"
+   test "analog/kas75%contact"
+   test "analog/kas77%contact"
+   test "analog/kas86%contact"
+   test "analog/kas88%contact"
+   test "analog/kas90%contact"
+   test "analog/kas99%contact"
+   test "analog/kax00%contact"
+   test "analog/kax1%contact"
+   test "analog/kax09%contact"
+   test "analog/kax10%contact"
+   test "analog/kax12%contact"
+   test "analog/kax19%contact"
+   test "analog/kax20%contact"
+   test "analog/kax23%contact"
+   test "analog/kax29%contact"
+   test "analog/kax30%contact"
+   test "analog/kax34%contact"
+   test "analog/kax39%contact"
+   test "analog/kax40%contact"
+   test "analog/kax45%contact"
+   test "analog/kax49%contact"
+   test "analog/kax50%contact"
+   test "analog/kax56%contact"
+   test "analog/kax59%contact"
+   test "analog/kax60%contact"
+   test "analog/kax67%contact"
+   test "analog/kax69%contact"
+   test "analog/kax70%contact"
+   test "analog/kax78%contact"
+   test "analog/kax79%contact"
+   test "analog/kbc0%contact"
+   test "analog/kbc1%contact"
+   test "analog/kbc2%contact"
+   test "analog/kbc3%contact"
+   test "analog/kbc4%contact"
+   test "analog/kbc5%contact"
+   test "analog/kbc6%contact"
+   test "analog/kbc7%contact"
+   test "analog/kbd00%contact"
+   test "analog/kbd01%contact"
+   test "analog/kbd02%contact"
+   test "analog/kbd03%contact"
+   test "analog/kbd04%contact"
+   test "analog/kbd5%contact"
+   test "analog/kbd06%contact"
+   test "analog/kbd07%contact"
+   test "analog/kbd08%contact"
+   test "analog/kbd09%contact"
+   test "analog/kbd10%contact"
+   test "analog/kbd11%contact"
+   test "analog/kbd12%contact"
+   test "analog/kbd13%contact"
+   test "analog/kbd14%contact"
+   test "analog/kbd15%contact"
+   test "analog/kbd16%contact"
+   test "analog/kbd17%contact"
+   test "analog/kbd18%contact"
+   test "analog/kbd19%contact"
+   test "analog/kbd20%contact"
+   test "analog/kbd21%contact"
+   test "analog/kbd22%contact"
+   test "analog/kbd23%contact"
+   test "analog/kbd24%contact"
+   test "analog/kbd25%contact"
+   test "analog/kbd26%contact"
+   test "analog/kbd27%contact"
+   test "analog/kbd28%contact"
+   test "analog/kbd29%contact"
+   test "analog/kbd30%contact"
+   test "analog/kbd31%contact"
+   test "analog/kbd32%contact"
+   test "analog/kbd33%contact"
+   test "analog/kbd34%contact"
+   test "analog/kbd35%contact"
+   test "analog/kbd36%contact"
+   test "analog/kbd37%contact"
+   test "analog/kbd38%contact"
+   test "analog/kbd39%contact"
+   test "analog/kbd40%contact"
+   test "analog/kbd41%contact"
+   test "analog/kbd42%contact"
+   test "analog/kbd43%contact"
+   test "analog/kbd44%contact"
+   test "analog/kbd45%contact"
+   test "analog/kbd46%contact"
+   test "analog/kbd47%contact"
+   test "analog/kbd48%contact"
+   test "analog/kbd49%contact"
+   test "analog/kbd50%contact"
+   test "analog/kbd51%contact"
+   test "analog/kbd52%contact"
+   test "analog/kbd53%contact"
+   test "analog/kbd54%contact"
+   test "analog/kbd55%contact"
+   test "analog/kbd56%contact"
+   test "analog/kbd57%contact"
+   test "analog/kbd58%contact"
+   test "analog/kbd59%contact"
+   test "analog/kbd60%contact"
+   test "analog/kbd61%contact"
+   test "analog/kbd62%contact"
+   test "analog/kbd63%contact"
+   test "analog/kbd64%contact"
+   test "analog/kbd65%contact"
+   test "analog/kbd66%contact"
+   test "analog/kbd67%contact"
+   test "analog/kbd68%contact"
+   test "analog/kbd69%contact"
+   test "analog/kbd70%contact"
+   test "analog/kbd71%contact"
+   test "analog/kbd72%contact"
+   test "analog/kbd73%contact"
+   test "analog/kbd74%contact"
+   test "analog/kbd75%contact"
+   test "analog/kbd76%contact"
+   test "analog/kbd77%contact"
+   test "analog/kbd78%contact"
+   test "analog/kbd79%contact"
+   test "analog/kbg19%contact"
+   test "analog/kbg20%contact"
+   test "analog/kbg39%contact"
+   test "analog/kbg40%contact"
+   test "analog/kbg59%contact"
+   test "analog/kbg60%contact"
+   test "analog/kbp0%contact"
+   test "analog/kbp1%contact"
+   test "analog/kbp2%contact"
+   test "analog/kbp3%contact"
+   test "analog/kbp4%contact"
+   test "analog/kbp5%contact"
+   test "analog/kbp6%contact"
+   test "analog/kbp7%contact"
+   test "analog/kbr00%contact"
+   test "analog/kbr01%contact"
+   test "analog/kbr02%contact"
+   test "analog/kbr03%contact"
+   test "analog/kbr04%contact"
+   test "analog/kbr5%contact"
+   test "analog/kbr06%contact"
+   test "analog/kbr07%contact"
+   test "analog/kbr08%contact"
+   test "analog/kbr09%contact"
+   test "analog/kbr10%contact"
+   test "analog/kbr11%contact"
+   test "analog/kbr12%contact"
+   test "analog/kbr13%contact"
+   test "analog/kbr14%contact"
+   test "analog/kbr15%contact"
+   test "analog/kbr16%contact"
+   test "analog/kbr17%contact"
+   test "analog/kbr18%contact"
+   test "analog/kbr19%contact"
+   test "analog/kbr20%contact"
+   test "analog/kbr21%contact"
+   test "analog/kbr22%contact"
+   test "analog/kbr23%contact"
+   test "analog/kbr24%contact"
+   test "analog/kbr25%contact"
+   test "analog/kbr26%contact"
+   test "analog/kbr27%contact"
+   test "analog/kbr28%contact"
+   test "analog/kbr29%contact"
+   test "analog/kbr30%contact"
+   test "analog/kbr31%contact"
+   test "analog/kbr32%contact"
+   test "analog/kbr33%contact"
+   test "analog/kbr34%contact"
+   test "analog/kbr35%contact"
+   test "analog/kbr36%contact"
+   test "analog/kbr37%contact"
+   test "analog/kbr38%contact"
+   test "analog/kbr39%contact"
+   test "analog/kbr40%contact"
+   test "analog/kbr41%contact"
+   test "analog/kbr42%contact"
+   test "analog/kbr43%contact"
+   test "analog/kbr44%contact"
+   test "analog/kbr45%contact"
+   test "analog/kbr46%contact"
+   test "analog/kbr47%contact"
+   test "analog/kbr48%contact"
+   test "analog/kbr49%contact"
+   test "analog/kbr50%contact"
+   test "analog/kbr51%contact"
+   test "analog/kbr52%contact"
+   test "analog/kbr53%contact"
+   test "analog/kbr54%contact"
+   test "analog/kbr55%contact"
+   test "analog/kbr56%contact"
+   test "analog/kbr57%contact"
+   test "analog/kbr58%contact"
+   test "analog/kbr59%contact"
+   test "analog/kbr60%contact"
+   test "analog/kbr61%contact"
+   test "analog/kbr62%contact"
+   test "analog/kbr63%contact"
+   test "analog/kbr64%contact"
+   test "analog/kbr65%contact"
+   test "analog/kbr66%contact"
+   test "analog/kbr67%contact"
+   test "analog/kbr68%contact"
+   test "analog/kbr69%contact"
+   test "analog/kbr70%contact"
+   test "analog/kbr71%contact"
+   test "analog/kbr72%contact"
+   test "analog/kbr73%contact"
+   test "analog/kbr74%contact"
+   test "analog/kbr75%contact"
+   test "analog/kbr76%contact"
+   test "analog/kbr77%contact"
+   test "analog/kbr78%contact"
+   test "analog/kbr79%contact"
+   test "analog/kbs00%contact"
+   test "analog/kbs11%contact"
+   test "analog/kbs17%contact"
+   test "analog/kbs22%contact"
+   test "analog/kbs28%contact"
+   test "analog/kbs31%contact"
+   test "analog/kbs33%contact"
+   test "analog/kbs42%contact"
+   test "analog/kbs44%contact"
+   test "analog/kbs53%contact"
+   test "analog/kbs55%contact"
+   test "analog/kbs64%contact"
+   test "analog/kbs66%contact"
+   test "analog/kbs75%contact"
+   test "analog/kbs77%contact"
+   test "analog/kbs86%contact"
+   test "analog/kbs88%contact"
+   test "analog/kbs90%contact"
+   test "analog/kbs99%contact"
+   test "analog/kbv11%contact"
+   test "analog/kbv12%contact"
+   test "analog/kbv13%contact"
+   test "analog/kbv14%contact"
+   test "analog/kbv15%contact"
+   test "analog/kbv16%contact"
+   test "analog/kbv17%contact"
+   test "analog/kbv18%contact"
+   test "analog/kbv19%contact"
+   test "analog/kbv31%contact"
+   test "analog/kbv32%contact"
+   test "analog/kbv33%contact"
+   test "analog/kbv34%contact"
+   test "analog/kbv35%contact"
+   test "analog/kbv36%contact"
+   test "analog/kbv37%contact"
+   test "analog/kbv38%contact"
+   test "analog/kbv39%contact"
+   test "analog/kbv41%contact"
+   test "analog/kbv42%contact"
+   test "analog/kbv43%contact"
+   test "analog/kbv44%contact"
+   test "analog/kbv45%contact"
+   test "analog/kbv46%contact"
+   test "analog/kbv47%contact"
+   test "analog/kbv48%contact"
+   test "analog/kbv49%contact"
+   test "analog/kbv61%contact"
+   test "analog/kbv62%contact"
+   test "analog/kbv63%contact"
+   test "analog/kbv64%contact"
+   test "analog/kbv65%contact"
+   test "analog/kbv66%contact"
+   test "analog/kbv67%contact"
+   test "analog/kbv68%contact"
+   test "analog/kbv69%contact"
+   test "analog/kbx00%contact"
+   test "analog/kbx1%contact"
+   test "analog/kbx09%contact"
+   test "analog/kbx10%contact"
+   test "analog/kbx12%contact"
+   test "analog/kbx19%contact"
+   test "analog/kbx20%contact"
+   test "analog/kbx23%contact"
+   test "analog/kbx29%contact"
+   test "analog/kbx30%contact"
+   test "analog/kbx34%contact"
+   test "analog/kbx39%contact"
+   test "analog/kbx40%contact"
+   test "analog/kbx45%contact"
+   test "analog/kbx49%contact"
+   test "analog/kbx50%contact"
+   test "analog/kbx56%contact"
+   test "analog/kbx59%contact"
+   test "analog/kbx60%contact"
+   test "analog/kbx67%contact"
+   test "analog/kbx69%contact"
+   test "analog/kbx70%contact"
+   test "analog/kbx78%contact"
+   test "analog/kbx79%contact"
+   test "analog/j7001-sp"        !X:TEST FOR NOLOAD
+subend
+
+sub Shorts (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   test "shorts"
+subend
+
+sub Analog_Tests (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   test "analog/c296"
+   test "analog/c434"
+   test "analog/c435"
+   test "analog/c437"
+   test "analog/c438"
+   test "analog/c460"
+   test "analog/c461"
+   test "analog/c462"
+   test "analog/c463"
+   test "analog/c464"
+   test "analog/c465"
+   test "analog/c466"
+   test "analog/c467"
+   test "analog/c468"
+   test "analog/c469"
+   test "analog/c470"
+   test "analog/c471"
+   test "analog/c472"
+   test "analog/c473"
+   test "analog/c474"
+   test "analog/c475"
+   test "analog/c476"
+   test "analog/c477"
+   test "analog/c478"
+   test "analog/c479"
+   test "analog/c480"
+   test "analog/c481"
+   test "analog/c482"
+   test "analog/c483"
+   test "analog/c484"
+   test "analog/c485"
+   test "analog/c486"
+   test "analog/c487"
+   test "analog/c488"
+   test "analog/c489"
+   test "analog/c490"
+   test "analog/c491"
+   test "analog/c492"
+   test "analog/c449"
+   test "analog/c448"
+   test "analog/c447"
+   test "analog/c450"
+   test "analog/c315"
+   test "analog/c316"
+   test "analog/c317"
+   test "analog/c318"
+   test "analog/c319"
+   test "analog/c320"
+   test "analog/c321"
+   test "analog/c322"
+   test "analog/c323"
+   test "analog/c324"
+   test "analog/c882"
+   test "analog/c883"
+   test "analog/c884"
+   test "analog/c885"
+   test "analog/c886"
+   test "analog/c887"
+   test "analog/c888"
+   test "analog/c889"
+   test "analog/c890"
+   test "analog/c891"
+   test "analog/c892"
+   test "analog/c893"
+   test "analog/c894"
+   test "analog/c895"
+   test "analog/c896"
+   test "analog/c366"
+   test "analog/c373"
+   test "analog/c382"
+   test "analog/c391"
+   test "analog/c717"
+   test "analog/c718"
+   test "analog/c719"
+   test "analog/c720"
+   test "analog/c726"
+   test "analog/c727"
+   test "analog/c732"
+   test "analog/c733"
+   test "analog/c734"
+   test "analog/c735"
+   test "analog/c736"
+   test "analog/c737"
+   test "analog/c743"
+   test "analog/c744"
+   test "analog/c749"
+   test "analog/c750"
+   test "analog/c751"
+   test "analog/c752"
+   test "analog/c753"
+   test "analog/c754"
+   test "analog/c760"
+   test "analog/c761"
+   test "analog/c766"
+   test "analog/c767"
+   test "analog/c768"
+   test "analog/c769"
+   test "analog/c770"
+   test "analog/c771"
+   test "analog/c777"
+   test "analog/c778"
+   test "analog/c783"
+   test "analog/c784"
+   test "analog/c785"
+   test "analog/c786"
+   test "analog/c787"
+   test "analog/c788"
+   test "analog/c794"
+   test "analog/c795"
+   test "analog/c800"
+   test "analog/c801"
+   test "analog/c802"
+   test "analog/c803"
+   test "analog/c804"
+   test "analog/c805"
+   test "analog/c811"
+   test "analog/c812"
+   test "analog/c817"
+   test "analog/c818"
+   test "analog/c819"
+   test "analog/c820"
+   test "analog/c821"
+   test "analog/c822"
+   test "analog/c828"
+   test "analog/c829"
+   test "analog/c834"
+   test "analog/c835"
+   test "analog/c836"
+   test "analog/c837"
+   test "analog/c838"
+   test "analog/c839"
+   test "analog/c845"
+   test "analog/c846"
+   test "analog/c851"
+   test "analog/c852"
+   test "analog/c7001"
+   test "analog/c7002"
+   test "analog/c409"
+   test "analog/c410"
+   test "analog/c411"
+   test "analog/c412"
+   test "analog/c413"
+   test "analog/c414"
+   test "analog/c415"
+   test "analog/c416"
+   test "analog/c417"
+   test "analog/c418"
+   test "analog/c420"
+   test "analog/c421"
+   test "analog/c426"
+   test "analog/c427"
+   test "analog/c431"
+   test "analog/c432"
+   test "analog/c451"
+   test "analog/c453"
+   test "analog/c455"
+   test "analog/c457"
+   test "analog/c605"
+   test "analog/c606"
+   test "analog/c607"
+   test "analog/c608"
+   test "analog/c609"
+   test "analog/c610"
+   test "analog/c611"
+   test "analog/c612"
+   test "analog/c613"
+   test "analog/c614"
+   test "analog/c615"
+   test "analog/c616"
+   test "analog/c617"
+   test "analog/c618"
+   test "analog/c619"
+   test "analog/c620"
+   test "analog/c7008"
+   test "analog/c621"
+   test "analog/c622"
+   test "analog/c623"
+   test "analog/c624"
+   test "analog/c625"
+   test "analog/c626"
+   test "analog/c627"
+   test "analog/c628"
+   test "analog/c629"
+   test "analog/c630"
+   test "analog/c631"
+   test "analog/c632"
+   test "analog/c633"
+   test "analog/c634"
+   test "analog/c635"
+   test "analog/c636"
+   test "analog/c853"      !X:TEST FOR NOLOAD
+!@ test "analog/c866"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c867"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c868"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c869"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c870"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c871"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c872"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c873"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c874"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c875"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c876"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c877"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c878"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c879"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c880"      ! 6.9pf Too small for reliable measurement
+!@ test "analog/c881"      ! 6.9pf Too small for reliable measurement
+   test "analog/kac0%coil"
+   test "analog/kac1%coil"
+   test "analog/kac2%coil"
+   test "analog/kac3%coil"
+   test "analog/kac4%coil"
+   test "analog/kac5%coil"
+   test "analog/kac6%coil"
+   test "analog/kac7%coil"
+   test "analog/kad00%coil"
+   test "analog/kad01%coil"
+   test "analog/kad02%coil"
+   test "analog/kad03%coil"
+   test "analog/kad04%coil"
+   test "analog/kad05%coil"
+   test "analog/kad06%coil"
+   test "analog/kad07%coil"
+   test "analog/kad08%coil"
+   test "analog/kad09%coil"
+   test "analog/kad10%coil"
+   test "analog/kad11%coil"
+   test "analog/kad12%coil"
+   test "analog/kad13%coil"
+   test "analog/kad14%coil"
+   test "analog/kad15%coil"
+   test "analog/kad16%coil"
+   test "analog/kad17%coil"
+   test "analog/kad18%coil"
+   test "analog/kad19%coil"
+   test "analog/kad20%coil"
+   test "analog/kad21%coil"
+   test "analog/kad22%coil"
+   test "analog/kad23%coil"
+   test "analog/kad24%coil"
+   test "analog/kad25%coil"
+   test "analog/kad26%coil"
+   test "analog/kad27%coil"
+   test "analog/kad28%coil"
+   test "analog/kad29%coil"
+   test "analog/kad30%coil"
+   test "analog/kad31%coil"
+   test "analog/kad32%coil"
+   test "analog/kad33%coil"
+   test "analog/kad34%coil"
+   test "analog/kad35%coil"
+   test "analog/kad36%coil"
+   test "analog/kad37%coil"
+   test "analog/kad38%coil"
+   test "analog/kad39%coil"
+   test "analog/kad40%coil"
+   test "analog/kad41%coil"
+   test "analog/kad42%coil"
+   test "analog/kad43%coil"
+   test "analog/kad44%coil"
+   test "analog/kad45%coil"
+   test "analog/kad46%coil"
+   test "analog/kad47%coil"
+   test "analog/kad48%coil"
+   test "analog/kad49%coil"
+   test "analog/kad50%coil"
+   test "analog/kad51%coil"
+   test "analog/kad52%coil"
+   test "analog/kad53%coil"
+   test "analog/kad54%coil"
+   test "analog/kad55%coil"
+   test "analog/kad56%coil"
+   test "analog/kad57%coil"
+   test "analog/kad58%coil"
+   test "analog/kad59%coil"
+   test "analog/kad60%coil"
+   test "analog/kad61%coil"
+   test "analog/kad62%coil"
+   test "analog/kad63%coil"
+   test "analog/kad64%coil"
+   test "analog/kad65%coil"
+   test "analog/kad66%coil"
+   test "analog/kad67%coil"
+   test "analog/kad68%coil"
+   test "analog/kad69%coil"
+   test "analog/kad70%coil"
+   test "analog/kad71%coil"
+   test "analog/kad72%coil"
+   test "analog/kad73%coil"
+   test "analog/kad74%coil"
+   test "analog/kad75%coil"
+   test "analog/kad76%coil"
+   test "analog/kad77%coil"
+   test "analog/kad78%coil"
+   test "analog/kad79%coil"
+   test "analog/kag19%coil"
+   test "analog/kag20%coil"
+   test "analog/kag39%coil"
+   test "analog/kag40%coil"
+   test "analog/kag59%coil"
+   test "analog/kag60%coil"
+   test "analog/kap0%coil"
+   test "analog/kap1%coil"
+   test "analog/kap2%coil"
+   test "analog/kap3%coil"
+   test "analog/kap4%coil"
+   test "analog/kap5%coil"
+   test "analog/kap6%coil"
+   test "analog/kap7%coil"
+   test "analog/kar00%coil"
+   test "analog/kar01%coil"
+   test "analog/kar02%coil"
+   test "analog/kar03%coil"
+   test "analog/kar04%coil"
+   test "analog/kar05%coil"
+   test "analog/kar06%coil"
+   test "analog/kar07%coil"
+   test "analog/kar08%coil"
+   test "analog/kar09%coil"
+   test "analog/kar10%coil"
+   test "analog/kar11%coil"
+   test "analog/kar12%coil"
+   test "analog/kar13%coil"
+   test "analog/kar14%coil"
+   test "analog/kar15%coil"
+   test "analog/kar16%coil"
+   test "analog/kar17%coil"
+   test "analog/kar18%coil"
+   test "analog/kar19%coil"
+   test "analog/kar20%coil"
+   test "analog/kar21%coil"
+   test "analog/kar22%coil"
+   test "analog/kar23%coil"
+   test "analog/kar24%coil"
+   test "analog/kar25%coil"
+   test "analog/kar26%coil"
+   test "analog/kar27%coil"
+   test "analog/kar28%coil"
+   test "analog/kar29%coil"
+   test "analog/kar30%coil"
+   test "analog/kar31%coil"
+   test "analog/kar32%coil"
+   test "analog/kar33%coil"
+   test "analog/kar34%coil"
+   test "analog/kar35%coil"
+   test "analog/kar36%coil"
+   test "analog/kar37%coil"
+   test "analog/kar38%coil"
+   test "analog/kar39%coil"
+   test "analog/kar40%coil"
+   test "analog/kar41%coil"
+   test "analog/kar42%coil"
+   test "analog/kar43%coil"
+   test "analog/kar44%coil"
+   test "analog/kar45%coil"
+   test "analog/kar46%coil"
+   test "analog/kar47%coil"
+   test "analog/kar48%coil"
+   test "analog/kar49%coil"
+   test "analog/kar50%coil"
+   test "analog/kar51%coil"
+   test "analog/kar52%coil"
+   test "analog/kar53%coil"
+   test "analog/kar54%coil"
+   test "analog/kar55%coil"
+   test "analog/kar56%coil"
+   test "analog/kar57%coil"
+   test "analog/kar58%coil"
+   test "analog/kar59%coil"
+   test "analog/kar60%coil"
+   test "analog/kar61%coil"
+   test "analog/kar62%coil"
+   test "analog/kar63%coil"
+   test "analog/kar64%coil"
+   test "analog/kar65%coil"
+   test "analog/kar66%coil"
+   test "analog/kar67%coil"
+   test "analog/kar68%coil"
+   test "analog/kar69%coil"
+   test "analog/kar70%coil"
+   test "analog/kar71%coil"
+   test "analog/kar72%coil"
+   test "analog/kar73%coil"
+   test "analog/kar74%coil"
+   test "analog/kar75%coil"
+   test "analog/kar76%coil"
+   test "analog/kar77%coil"
+   test "analog/kar78%coil"
+   test "analog/kar79%coil"
+   test "analog/kas00%coil"
+   test "analog/kas11%coil"
+   test "analog/kas17%coil"
+   test "analog/kas22%coil"
+   test "analog/kas28%coil"
+   test "analog/kas31%coil"
+   test "analog/kas33%coil"
+   test "analog/kas42%coil"
+   test "analog/kas44%coil"
+   test "analog/kas53%coil"
+   test "analog/kas55%coil"
+   test "analog/kas64%coil"
+   test "analog/kas66%coil"
+   test "analog/kas75%coil"
+   test "analog/kas77%coil"
+   test "analog/kas86%coil"
+   test "analog/kas88%coil"
+   test "analog/kas90%coil"
+   test "analog/kas99%coil"
+   test "analog/kax00%coil"
+   test "analog/kax1%coil"
+   test "analog/kax09%coil"
+   test "analog/kax10%coil"
+   test "analog/kax12%coil"
+   test "analog/kax19%coil"
+   test "analog/kax20%coil"
+   test "analog/kax23%coil"
+   test "analog/kax29%coil"
+   test "analog/kax30%coil"
+   test "analog/kax34%coil"
+   test "analog/kax39%coil"
+   test "analog/kax40%coil"
+   test "analog/kax45%coil"
+   test "analog/kax49%coil"
+   test "analog/kax50%coil"
+   test "analog/kax56%coil"
+   test "analog/kax59%coil"
+   test "analog/kax60%coil"
+   test "analog/kax67%coil"
+   test "analog/kax69%coil"
+   test "analog/kax70%coil"
+   test "analog/kax78%coil"
+   test "analog/kax79%coil"
+   test "analog/kbc0%coil"
+   test "analog/kbc1%coil"
+   test "analog/kbc2%coil"
+   test "analog/kbc3%coil"
+   test "analog/kbc4%coil"
+   test "analog/kbc5%coil"
+   test "analog/kbc6%coil"
+   test "analog/kbc7%coil"
+   test "analog/kbd00%coil"
+   test "analog/kbd01%coil"
+   test "analog/kbd02%coil"
+   test "analog/kbd03%coil"
+   test "analog/kbd04%coil"
+   test "analog/kbd5%coil"
+   test "analog/kbd06%coil"
+   test "analog/kbd07%coil"
+   test "analog/kbd08%coil"
+   test "analog/kbd09%coil"
+   test "analog/kbd10%coil"
+   test "analog/kbd11%coil"
+   test "analog/kbd12%coil"
+   test "analog/kbd13%coil"
+   test "analog/kbd14%coil"
+   test "analog/kbd15%coil"
+   test "analog/kbd16%coil"
+   test "analog/kbd17%coil"
+   test "analog/kbd18%coil"
+   test "analog/kbd19%coil"
+   test "analog/kbd20%coil"
+   test "analog/kbd21%coil"
+   test "analog/kbd22%coil"
+   test "analog/kbd23%coil"
+   test "analog/kbd24%coil"
+   test "analog/kbd25%coil"
+   test "analog/kbd26%coil"
+   test "analog/kbd27%coil"
+   test "analog/kbd28%coil"
+   test "analog/kbd29%coil"
+   test "analog/kbd30%coil"
+   test "analog/kbd31%coil"
+   test "analog/kbd32%coil"
+   test "analog/kbd33%coil"
+   test "analog/kbd34%coil"
+   test "analog/kbd35%coil"
+   test "analog/kbd36%coil"
+   test "analog/kbd37%coil"
+   test "analog/kbd38%coil"
+   test "analog/kbd39%coil"
+   test "analog/kbd40%coil"
+   test "analog/kbd41%coil"
+   test "analog/kbd42%coil"
+   test "analog/kbd43%coil"
+   test "analog/kbd44%coil"
+   test "analog/kbd45%coil"
+   test "analog/kbd46%coil"
+   test "analog/kbd47%coil"
+   test "analog/kbd48%coil"
+   test "analog/kbd49%coil"
+   test "analog/kbd50%coil"
+   test "analog/kbd51%coil"
+   test "analog/kbd52%coil"
+   test "analog/kbd53%coil"
+   test "analog/kbd54%coil"
+   test "analog/kbd55%coil"
+   test "analog/kbd56%coil"
+   test "analog/kbd57%coil"
+   test "analog/kbd58%coil"
+   test "analog/kbd59%coil"
+   test "analog/kbd60%coil"
+   test "analog/kbd61%coil"
+   test "analog/kbd62%coil"
+   test "analog/kbd63%coil"
+   test "analog/kbd64%coil"
+   test "analog/kbd65%coil"
+   test "analog/kbd66%coil"
+   test "analog/kbd67%coil"
+   test "analog/kbd68%coil"
+   test "analog/kbd69%coil"
+   test "analog/kbd70%coil"
+   test "analog/kbd71%coil"
+   test "analog/kbd72%coil"
+   test "analog/kbd73%coil"
+   test "analog/kbd74%coil"
+   test "analog/kbd75%coil"
+   test "analog/kbd76%coil"
+   test "analog/kbd77%coil"
+   test "analog/kbd78%coil"
+   test "analog/kbd79%coil"
+   test "analog/kbg19%coil"
+   test "analog/kbg20%coil"
+   test "analog/kbg39%coil"
+   test "analog/kbg40%coil"
+   test "analog/kbg59%coil"
+   test "analog/kbg60%coil"
+   test "analog/kbp0%coil"
+   test "analog/kbp1%coil"
+   test "analog/kbp2%coil"
+   test "analog/kbp3%coil"
+   test "analog/kbp4%coil"
+   test "analog/kbp5%coil"
+   test "analog/kbp6%coil"
+   test "analog/kbp7%coil"
+   test "analog/kbr00%coil"
+   test "analog/kbr01%coil"
+   test "analog/kbr02%coil"
+   test "analog/kbr03%coil"
+   test "analog/kbr04%coil"
+   test "analog/kbr5%coil"
+   test "analog/kbr06%coil"
+   test "analog/kbr07%coil"
+   test "analog/kbr08%coil"
+   test "analog/kbr09%coil"
+   test "analog/kbr10%coil"
+   test "analog/kbr11%coil"
+   test "analog/kbr12%coil"
+   test "analog/kbr13%coil"
+   test "analog/kbr14%coil"
+   test "analog/kbr15%coil"
+   test "analog/kbr16%coil"
+   test "analog/kbr17%coil"
+   test "analog/kbr18%coil"
+   test "analog/kbr19%coil"
+   test "analog/kbr20%coil"
+   test "analog/kbr21%coil"
+   test "analog/kbr22%coil"
+   test "analog/kbr23%coil"
+   test "analog/kbr24%coil"
+   test "analog/kbr25%coil"
+   test "analog/kbr26%coil"
+   test "analog/kbr27%coil"
+   test "analog/kbr28%coil"
+   test "analog/kbr29%coil"
+   test "analog/kbr30%coil"
+   test "analog/kbr31%coil"
+   test "analog/kbr32%coil"
+   test "analog/kbr33%coil"
+   test "analog/kbr34%coil"
+   test "analog/kbr35%coil"
+   test "analog/kbr36%coil"
+   test "analog/kbr37%coil"
+   test "analog/kbr38%coil"
+   test "analog/kbr39%coil"
+   test "analog/kbr40%coil"
+   test "analog/kbr41%coil"
+   test "analog/kbr42%coil"
+   test "analog/kbr43%coil"
+   test "analog/kbr44%coil"
+   test "analog/kbr45%coil"
+   test "analog/kbr46%coil"
+   test "analog/kbr47%coil"
+   test "analog/kbr48%coil"
+   test "analog/kbr49%coil"
+   test "analog/kbr50%coil"
+   test "analog/kbr51%coil"
+   test "analog/kbr52%coil"
+   test "analog/kbr53%coil"
+   test "analog/kbr54%coil"
+   test "analog/kbr55%coil"
+   test "analog/kbr56%coil"
+   test "analog/kbr57%coil"
+   test "analog/kbr58%coil"
+   test "analog/kbr59%coil"
+   test "analog/kbr60%coil"
+   test "analog/kbr61%coil"
+   test "analog/kbr62%coil"
+   test "analog/kbr63%coil"
+   test "analog/kbr64%coil"
+   test "analog/kbr65%coil"
+   test "analog/kbr66%coil"
+   test "analog/kbr67%coil"
+   test "analog/kbr68%coil"
+   test "analog/kbr69%coil"
+   test "analog/kbr70%coil"
+   test "analog/kbr71%coil"
+   test "analog/kbr72%coil"
+   test "analog/kbr73%coil"
+   test "analog/kbr74%coil"
+   test "analog/kbr75%coil"
+   test "analog/kbr76%coil"
+   test "analog/kbr77%coil"
+   test "analog/kbr78%coil"
+   test "analog/kbr79%coil"
+   test "analog/kbs00%coil"
+   test "analog/kbs11%coil"
+   test "analog/kbs17%coil"
+   test "analog/kbs22%coil"
+   test "analog/kbs28%coil"
+   test "analog/kbs31%coil"
+   test "analog/kbs33%coil"
+   test "analog/kbs42%coil"
+   test "analog/kbs44%coil"
+   test "analog/kbs53%coil"
+   test "analog/kbs55%coil"
+   test "analog/kbs64%coil"
+   test "analog/kbs66%coil"
+   test "analog/kbs75%coil"
+   test "analog/kbs77%coil"
+   test "analog/kbs86%coil"
+   test "analog/kbs88%coil"
+   test "analog/kbs90%coil"
+   test "analog/kbs99%coil"
+   test "analog/kbv11%coil"
+   test "analog/kbv12%coil"
+   test "analog/kbv13%coil"
+   test "analog/kbv14%coil"
+   test "analog/kbv15%coil"
+   test "analog/kbv16%coil"
+   test "analog/kbv17%coil"
+   test "analog/kbv18%coil"
+   test "analog/kbv19%coil"
+   test "analog/kbv31%coil"
+   test "analog/kbv32%coil"
+   test "analog/kbv33%coil"
+   test "analog/kbv34%coil"
+   test "analog/kbv35%coil"
+   test "analog/kbv36%coil"
+   test "analog/kbv37%coil"
+   test "analog/kbv38%coil"
+   test "analog/kbv39%coil"
+   test "analog/kbv41%coil"
+   test "analog/kbv42%coil"
+   test "analog/kbv43%coil"
+   test "analog/kbv44%coil"
+   test "analog/kbv45%coil"
+   test "analog/kbv46%coil"
+   test "analog/kbv47%coil"
+   test "analog/kbv48%coil"
+   test "analog/kbv49%coil"
+   test "analog/kbv61%coil"
+   test "analog/kbv62%coil"
+   test "analog/kbv63%coil"
+   test "analog/kbv64%coil"
+   test "analog/kbv65%coil"
+   test "analog/kbv66%coil"
+   test "analog/kbv67%coil"
+   test "analog/kbv68%coil"
+   test "analog/kbv69%coil"
+   test "analog/kbx00%coil"
+   test "analog/kbx1%coil"
+   test "analog/kbx09%coil"
+   test "analog/kbx10%coil"
+   test "analog/kbx12%coil"
+   test "analog/kbx19%coil"
+   test "analog/kbx20%coil"
+   test "analog/kbx23%coil"
+   test "analog/kbx29%coil"
+   test "analog/kbx30%coil"
+   test "analog/kbx34%coil"
+   test "analog/kbx39%coil"
+   test "analog/kbx40%coil"
+   test "analog/kbx45%coil"
+   test "analog/kbx49%coil"
+   test "analog/kbx50%coil"
+   test "analog/kbx56%coil"
+   test "analog/kbx59%coil"
+   test "analog/kbx60%coil"
+   test "analog/kbx67%coil"
+   test "analog/kbx69%coil"
+   test "analog/kbx70%coil"
+   test "analog/kbx78%coil"
+   test "analog/kbx79%coil"
+   test "analog/r29"
+   test "analog/r30"
+   test "analog/r35"
+   test "analog/r36"
+   test "analog/r37"
+   test "analog/r38"
+   test "analog/r397"
+   test "analog/r398"
+   test "analog/r405"
+   test "analog/r406"
+   test "analog/r413"      !?:ON BOARD MEAS 800ohms
+   test "analog/r414"
+   test "analog/r421"
+   test "analog/r422"
+   test "analog/r429"
+   test "analog/r430"
+   test "analog/r437"
+   test "analog/r438"
+   test "analog/r445"
+   test "analog/r446"
+   test "analog/r453"
+   test "analog/r454"
+   test "analog/r54"
+   test "analog/r55"
+   test "analog/r56"
+   test "analog/r57"
+   test "analog/r58"
+   test "analog/r59"
+   test "analog/r60"
+   test "analog/r61"
+   test "analog/r62"
+   test "analog/r63"
+   test "analog/r64"
+   test "analog/r65"
+   test "analog/r66"
+   test "analog/r67"
+   test "analog/r68"
+   test "analog/r69"
+   test "analog/r70"
+   test "analog/r71"
+   test "analog/r72"
+   test "analog/r73"
+   test "analog/r74"
+   test "analog/r75"
+   test "analog/r76"
+   test "analog/r77"
+   test "analog/r78"
+   test "analog/r79"
+   test "analog/r80"
+   test "analog/r81"
+   test "analog/r82"
+   test "analog/r83"
+   test "analog/r84"
+   test "analog/r85"
+   test "analog/r86"
+   test "analog/r87"
+   test "analog/r88"
+   test "analog/r89"
+   test "analog/r90"
+   test "analog/r91"
+   test "analog/r92"
+   test "analog/r93"
+   test "analog/r94"
+   test "analog/r95"
+   test "analog/r96"
+   test "analog/r97"
+   test "analog/r98"
+   test "analog/r99"
+   test "analog/r100"
+   test "analog/r101"
+   test "analog/r102"
+   test "analog/r103"
+   test "analog/r104"
+   test "analog/r105"
+   test "analog/r106"
+   test "analog/r107"
+   test "analog/r108"
+   test "analog/r211"
+   test "analog/r212"
+   test "analog/r213"
+   test "analog/r266"
+   test "analog/r267"
+   test "analog/r268"
+   test "analog/r269"
+   test "analog/r270"
+   test "analog/r271"
+   test "analog/r272"
+   test "analog/r273"
+   test "analog/r274"
+   test "analog/r275"
+   test "analog/r276"
+   test "analog/r277"
+   test "analog/r278"
+   test "analog/r279"
+   test "analog/r280"
+   test "analog/r461"
+   test "analog/r462"
+   test "analog/r463"
+   test "analog/r464"
+   test "analog/r465"
+   test "analog/r466"
+   test "analog/r467"
+   test "analog/r468"
+   test "analog/r469"
+   test "analog/r470"
+   test "analog/r471"
+   test "analog/r472"
+   test "analog/r473"
+   test "analog/r474"
+   test "analog/r475"
+   test "analog/r476"
+   test "analog/r589"
+   test "analog/r590"
+   test "analog/r609"
+   test "analog/r610"
+   test "analog/r116"
+   test "analog/r132"
+   test "analog/r190"
+   test "analog/r191"
+   test "analog/r118"
+   test "analog/r119"
+   test "analog/r120"
+   test "analog/r121"
+   test "analog/r122"
+   test "analog/r123"
+   test "analog/r124"
+   test "analog/r125"
+   test "analog/r130"
+   test "analog/r170"
+   test "analog/r171"
+   test "analog/r611"
+   test "analog/r612"
+   test "analog/r613"
+   test "analog/r614"
+   test "analog/r615"
+   test "analog/r616"
+   test "analog/r617"
+   test "analog/r618"
+   test "analog/r619"
+   test "analog/r620"
+   test "analog/r621"
+   test "analog/r622"
+   test "analog/r623"
+   test "analog/r624"
+   test "analog/r625"
+   test "analog/r626"
+   test "analog/r193"
+   test "analog/r194"
+   test "analog/r195"
+   test "analog/r196"
+   test "analog/r197"
+   test "analog/r198"
+   test "analog/r199"
+   test "analog/r200"
+   test "analog/r201"
+   test "analog/r202"
+   test "analog/r203"
+   test "analog/r204"
+   test "analog/r205"
+   test "analog/r206"
+   test "analog/r207"
+   test "analog/r208"
+   test "analog/r262"
+   test "analog/r263"
+   test "analog/r264"
+   test "analog/r265"
+   test "analog/r381"
+   test "analog/r382"
+   test "analog/r383"
+   test "analog/r384"
+   test "analog/r385"
+   test "analog/r386"
+   test "analog/r387"
+   test "analog/r388"
+   test "analog/r389"
+   test "analog/r390"
+   test "analog/r391"
+   test "analog/r392"
+   test "analog/r393"
+   test "analog/r394"
+   test "analog/r395"
+   test "analog/r396"
+   test "analog/r297"
+   test "analog/r298"
+   test "analog/r299"
+   test "analog/r300"
+   test "analog/r533"
+   test "analog/r534"
+   test "analog/r535"
+   test "analog/r536"
+   test "analog/r537"
+   test "analog/r538"
+   test "analog/r539"
+   test "analog/r540"
+   test "analog/r301"
+   test "analog/r302"
+   test "analog/r303"
+   test "analog/r304"
+   test "analog/r305"
+   test "analog/r306"
+   test "analog/r307"
+   test "analog/r308"
+   test "analog/r309"
+   test "analog/r310"
+   test "analog/r311"
+   test "analog/r312"
+   test "analog/r313"
+   test "analog/r314"
+   test "analog/r315"
+   test "analog/r316"
+   test "analog/r573"
+   test "analog/r574"
+   test "analog/r575"
+   test "analog/r576"
+   test "analog/r577"
+   test "analog/r578"
+   test "analog/r579"
+   test "analog/r580"
+   test "analog/r581"
+   test "analog/r582"
+   test "analog/r583"
+   test "analog/r584"
+   test "analog/r585"
+   test "analog/r586"
+   test "analog/r587"
+   test "analog/r349"      !X:TEST FOR NOLOAD
+   test "analog/r350"      !X:TEST FOR NOLOAD
+   test "analog/r351"      !X:TEST FOR NOLOAD
+   test "analog/r352"      !X:TEST FOR NOLOAD
+   test "analog/r353"      !X:TEST FOR NOLOAD
+   test "analog/r354"      !X:TEST FOR NOLOAD
+   test "analog/r355"      !X:TEST FOR NOLOAD
+   test "analog/r356"      !X:TEST FOR NOLOAD
+   test "analog/r357"      !X:TEST FOR NOLOAD
+   test "analog/r358"      !X:TEST FOR NOLOAD
+   test "analog/r359"      !X:TEST FOR NOLOAD
+   test "analog/r360"      !X:TEST FOR NOLOAD
+   test "analog/r361"      !X:TEST FOR NOLOAD
+   test "analog/r362"      !X:TEST FOR NOLOAD
+   test "analog/r363"      !X:TEST FOR NOLOAD
+   test "analog/r364"      !X:TEST FOR NOLOAD
+   test "analog/r365"
+   test "analog/r366"
+   test "analog/r367"
+   test "analog/r368"
+   test "analog/r369"
+   test "analog/r370"
+   test "analog/r371"
+   test "analog/r372"
+   test "analog/r373"
+   test "analog/r374"
+   test "analog/r375"
+   test "analog/r376"
+   test "analog/r377"
+   test "analog/r378"
+   test "analog/r379"
+   test "analog/r380"
+   test "analog/r477"
+   test "analog/r478"
+   test "analog/r479"
+   test "analog/r480"
+   test "analog/r481"
+   test "analog/r482"
+   test "analog/r483"
+   test "analog/r484"
+   test "analog/r485"
+   test "analog/r486"
+   test "analog/r487"
+   test "analog/r488"
+   test "analog/r489"
+   test "analog/r490"
+   test "analog/r491"
+   test "analog/r492"
+   test "analog/r493"
+   test "analog/r494"
+   test "analog/r495"
+   test "analog/r496"
+   test "analog/r497"
+   test "analog/r498"
+   test "analog/r499"
+   test "analog/r500"
+   test "analog/r501"
+   test "analog/r502"
+   test "analog/r503"
+   test "analog/r504"
+   test "analog/r505"
+   test "analog/r506"
+   test "analog/r507"
+   test "analog/r508"
+   test "analog/r509"
+   test "analog/r510"
+   test "analog/r511"
+   test "analog/r512"
+   test "analog/r513"
+   test "analog/r514"
+   test "analog/r515"
+   test "analog/r516"
+   test "analog/r517"
+   test "analog/r518"
+   test "analog/r519"
+   test "analog/r520"
+   test "analog/r521"
+   test "analog/r522"
+   test "analog/r523"
+   test "analog/r524"
+   test "analog/r525"
+   test "analog/r526"
+   test "analog/r527"
+   test "analog/r528"
+   test "analog/r529"
+   test "analog/r530"
+   test "analog/r531"
+   test "analog/r532"
+   test "analog/r7002"
+   test "analog/r7004"
+   test "analog/r7010"
+   test "analog/r541"
+   test "analog/r542"
+   test "analog/r543"
+   test "analog/r544"
+   test "analog/r545"
+   test "analog/r546"
+   test "analog/r547"
+   test "analog/r548"
+   test "analog/r549"
+   test "analog/r550"
+   test "analog/r551"
+   test "analog/r552"
+   test "analog/r553"
+   test "analog/r554"
+   test "analog/r555"
+   test "analog/r556"
+   test "analog/r557"
+   test "analog/r558"
+   test "analog/r559"
+   test "analog/r560"
+   test "analog/r561"
+   test "analog/r562"
+   test "analog/r563"
+   test "analog/r564"
+   test "analog/r565"
+   test "analog/r566"
+   test "analog/r567"
+   test "analog/r568"
+   test "analog/r569"
+   test "analog/r570"
+   test "analog/r571"
+   test "analog/r572"
+   test "analog/r588"      !X:TEST FOR NOLOAD
+   test "analog/r607"
+   test "analog/r608"
+   test "analog/r7005"
+   test "analog/r7006"
+   test "analog/r7007"
+   test "analog/r7008"
+   test "analog/r7003_r7009"     !@L:Tested in-series; no access
+   test "analog/cr8%part"
+   test "analog/cr9%part"
+   test "analog/cr10%part"
+   test "analog/cr13%part"
+   test "analog/cr16%part"
+   test "analog/cr25%cra"
+   test "analog/cr25%crb"
+   test "analog/cr26%cra"
+   test "analog/cr26%crb"
+   test "analog/cr27%cra"
+   test "analog/cr27%crb"
+   test "analog/cr28%cra"
+   test "analog/cr28%crb"
+   test "analog/cr29%cra"
+   test "analog/cr29%crb"
+   test "analog/cr30%cra"
+   test "analog/cr30%crb"
+   test "analog/cr31%cra"
+   test "analog/cr31%crb"
+   test "analog/cr32%cra"
+   test "analog/cr32%crb"
+   test "analog/cr33%cra"
+   test "analog/cr33%crb"
+   test "analog/cr34%cra"
+   test "analog/cr34%crb"
+   test "analog/cr35%cra"
+   test "analog/cr35%crb"
+   test "analog/cr36%cra"
+   test "analog/cr36%crb"
+   test "analog/cr37%cra"
+   test "analog/cr37%crb"
+   test "analog/cr38%cra"
+   test "analog/cr38%crb"
+   test "analog/cr39%cra"
+   test "analog/cr39%crb"
+   test "analog/cr40%cra"
+   test "analog/cr40%crb"
+   test "analog/cr41%cra"
+   test "analog/cr41%crb"
+   test "analog/cr42%cra"
+   test "analog/cr42%crb"
+   test "analog/cr43%cra"
+   test "analog/cr43%crb"
+   test "analog/cr44%cra"
+   test "analog/cr44%crb"
+   test "analog/cr45%cra"
+   test "analog/cr45%crb"
+   test "analog/cr46%cra"
+   test "analog/cr46%crb"
+   test "analog/cr47%cra"
+   test "analog/cr47%crb"
+   test "analog/cr48%cra"
+   test "analog/cr48%crb"
+   test "analog/cr49%cra"
+   test "analog/cr49%crb"
+   test "analog/cr50%cra"
+   test "analog/cr50%crb"
+   test "analog/cr51%cra"
+   test "analog/cr51%crb"
+   test "analog/cr52%cra"
+   test "analog/cr52%crb"
+   test "analog/cr53%cra"
+   test "analog/cr53%crb"
+   test "analog/cr54%cra"
+   test "analog/cr54%crb"
+   test "analog/cr55%cra"
+   test "analog/cr55%crb"
+   test "analog/cr56%cra"
+   test "analog/cr56%crb"
+   test "analog/cr57%cra"
+   test "analog/cr57%crb"
+   test "analog/cr58%cra"
+   test "analog/cr58%crb"
+   test "analog/cr59%cra"
+   test "analog/cr59%crb"
+   test "analog/cr60%cra"
+   test "analog/cr60%crb"
+   test "analog/cr61%cra"
+   test "analog/cr61%crb"
+   test "analog/cr62%cra"
+   test "analog/cr62%crb"
+   test "analog/cr63%cra"
+   test "analog/cr63%crb"
+   test "analog/cr64%cra"
+   test "analog/cr64%crb"
+   test "analog/cr65%cra"
+   test "analog/cr65%crb"
+   test "analog/cr66%cra"
+   test "analog/cr66%crb"
+   test "analog/cr67%cra"
+   test "analog/cr67%crb"
+   test "analog/cr68%cra"
+   test "analog/cr68%crb"
+   test "analog/cr69%cra"
+   test "analog/cr69%crb"
+   test "analog/cr70%cra"
+   test "analog/cr70%crb"
+   test "analog/cr71%cra"
+   test "analog/cr71%crb"
+   test "analog/cr72%cra"
+   test "analog/cr72%crb"
+   test "analog/cr81%part"
+   test "analog/cr17%a"
+   test "analog/cr17%b"
+   test "analog/cr18%a"
+   test "analog/cr18%b"
+   test "analog/cr19%a"
+   test "analog/cr19%b"
+   test "analog/cr20%a"
+   test "analog/cr20%b"
+   test "analog/cr21%a"
+   test "analog/cr21%b"
+   test "analog/cr22%a"
+   test "analog/cr22%b"
+   test "analog/cr23%a"
+   test "analog/cr23%b"
+   test "analog/cr24%a"
+   test "analog/cr24%b"
+   test "analog/cr73%cr"
+   test "analog/cr74%cr"
+   test "analog/cr75%cr"
+   test "analog/cr76%cr"
+   test "analog/cr77%cr"
+   test "analog/cr78%cr"
+   test "analog/cr79%cr"
+   test "analog/cr80%cr"
+   test "analog/cr82%cr1"
+   test "analog/cr82%cr2"
+   test "analog/cr83%cr1"
+   test "analog/cr83%cr2"
+   test "analog/cr84%cr1"
+   test "analog/cr84%cr2"
+   test "analog/cr85%cr1"
+   test "analog/cr85%cr2"
+   test "analog/cr86%cr1"
+   test "analog/cr86%cr2"
+   test "analog/cr87%cr1"
+   test "analog/cr87%cr2"
+   test "analog/cr88%cr1"
+   test "analog/cr88%cr2"
+   test "analog/cr89%cr1"
+   test "analog/cr89%cr2"
+   test "analog/ds1%green"
+   test "analog/ds1%red"
+   test "analog/ds2%green"
+   test "analog/ds2%red"
+
+   test "analog/q33%pnp"
+   test "analog/q34%pnp"
+   test "analog/q35%pnp"
+   test "analog/q36%pnp"
+   test "analog/q37%pnp"
+   test "analog/q38%pnp"
+   test "analog/q39%pnp"
+   test "analog/q40%pnp"
+   test "analog/q41%pnp"
+   test "analog/q42%pnp"
+   test "analog/q43%pnp"
+   test "analog/q44%pnp"
+   test "analog/q45%pnp"
+   test "analog/q46%pnp"
+   test "analog/q47%pnp"
+   test "analog/q48%pnp"
+
+   test "analog/r7011"           !ECN
+   test "analog/r7012"           !ECN
+   test "analog/r7013"           !ECN
+   test "analog/r7014"           !ECN
+   test "analog/r7016"           !ECN
+   test "analog/r7017"           !ECN
+   test "analog/r7018"           !ECN
+   test "analog/r7019"           !ECN
+subend
+
+sub VectorlessTest (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   test "testjet"
+subend
+
+sub Polarity_Check (Status_Code, Message$)
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+subend
+
+sub Connect_Check (Status_Code, Message$)
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+subend
+
+sub Analog_Cluster_Tests (Status_Code, Message$)
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+subend
+
+sub Verify_Grounds (Status_Code, Message$)
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+subend
+
+sub Pre_Powered_Tests (Status_Code, Message$)
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+subend
+
+sub Setup_Power_Supplies (Status_Code, Message$)
+global Status
+global Pslimit
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   cps
+!  sps 9,5.00,4.00;optimize      !5v
+!  sps 12,12.00,2.00;optimize    !12v
+!  sps 11,12.00,2.00;optimize    !12v_quiet
+!  sps 10,12.00,0.80;optimize    !12v_relay
+!  sps 5,10.00,2.00;optimize     !-10v
+!  sps 6,10.00,2.00;optimize     !-10v_quiet
+
+   sps 10,12.00,1.80,wa100m;optimize    !12v_relay
+   sps 11,12.00,2.00;optimize    !12v_quiet
+   sps 12,12.00,2.00;optimize    !12v
+   wait1000m
+   sps 9,5.00,5.00,wa500m;optimize      !5v
+   sps 6,10.00,2.00;optimize     !-10v_quiet
+   sps 5,10.00,2.00;optimize     !-10v
+!  sps 9,5.00,5.00,wa500m;optimize      !5v
+
+   Pslimit = pslimit
+   pass device
+   if Pslimit then
+      dps
+      fail device
+      I = 1
+      for Pscount = 1 to 12
+         if binand (Pslimit,I) then
+            report "Power Supply Number "
+            report Pscount
+            report "In Current Limit"
+         end if
+         I = 2*I
+      next Pscount
+      report "________________________________________"
+      report "Check for backwards"
+      report "IC's or Capacitors."
+      report "________________________________________"
+   end if
+subend
+
+sub Cycle_Power_On_Board
+global PowerMsg$
+global Failed_In_Power_Supplies
+   call Disconnect_Power_On_Board
+   call Setup_Power_Supplies (Failed_In_Power_Supplies, PowerMsg$)
+subend
+
+sub Change_Power_For_Edge
+global PowerMsg$
+global Failed_In_Power_Supplies
+
+   sps 10,10.00,1.80;optimize    !12v_relay
+   wait 100m
+   sps 11,10.00,2.00;optimize    !12v_quiet
+   sps 12,10.00,2.00;optimize    !12v
+   wait 800m                  ! Allow Regulated 8.3v to stabalize
+   sps 9,4.50,4.00;optimize
+   wait 300m
+   sps 6,10.00,2.00;optimize     !-10v_quiet
+   sps 5,10.00,2.00;optimize     !-10v
+subend
+
+sub Disconnect_Power_On_Board
+   rps 9,V,A,Err
+   if Err<>225 then
+     sps 9,0.00,1.50!;optimize      !5v
+     wait300m
+     sps 6,0.00,1.50!;optimize     !-10v_quiet
+     wait300m
+     sps 5,0.00,4.50!;optimize     !-10v
+     wait300m
+     sps 10,0.00,1.50!,wa100m;optimize    !12v_relay
+     wait300m
+     sps 11,0.00,1.50!;optimize    !12v_quiet
+     wait300m
+     sps 12,0.00,1.50!;optimize    !12v
+     wait300m
+     dps
+   end if
+subend
+
+sub BScan_Powered_Shorts_Tests (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   safeguard cool
+   test "digital/u7004_u7004_ps"
+subend
+
+sub BScan_Interconnect_Tests (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   safeguard cool
+   test "digital/u7004_u7004"
+subend
+
+sub BScan_Incircuit_Tests (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   safeguard cool
+   test "digital/u7004_connect_a"
+   test "digital/u7004_u7004_dis"
+subend
+
+sub BScan_Silicon_Nails_Tests (Status_Code, Message$)
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+subend
+
+sub Cover_Extend_Tests (Status_Code, Message$)
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+subend
+
+sub BScan_Disable_All_Chains
+
+   test "digital/u7004_u7004_dis"
+subend
+
+sub Digital_Tests (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   safeguard cool
+
+   test "digital/kad00%digital"        !@Y:ok
+   test "digital/kad10%digital"        !@Y:ok
+   test "digital/kad20%digital"        !@Y:ok
+   test "digital/kad30%digital"        !@Y:ok
+   test "digital/kad40%digital"        !@Y:ok
+   test "digital/kad50%digital"        !@Y:ok
+   test "digital/kad60%digital"        !@Y:ok
+   test "digital/kad70%digital"        !@Y:ok
+   test "digital/kad01%digital"        !@Y:ok
+   test "digital/kad02%digital"        !@Y:ok
+   test "digital/kad03%digital"        !@Y:ok
+   test "digital/kad04%digital"        !@Y:ok
+   test "digital/kad05%digital"        !@Y:ok
+   test "digital/kad06%digital"        !@Y:ok
+   test "digital/kad07%digital"        !@Y:ok
+   test "digital/kad08%digital"        !@Y:ok
+   test "digital/kad09%digital"        !@Y:ok
+   test "digital/kad11%digital"        !@Y:ok
+   test "digital/kad12%digital"        !@Y:ok
+   test "digital/kad13%digital"        !@Y:ok
+   test "digital/kad14%digital"        !@Y:ok
+   test "digital/kad15%digital"        !@Y:ok
+   test "digital/kad16%digital"        !@Y:ok
+   test "digital/kad17%digital"        !@Y:ok
+   test "digital/kad18%digital"        !@Y:ok
+   test "digital/kad19%digital"        !@Y:ok
+   test "digital/kad21%digital"        !@Y:ok
+   test "digital/kad22%digital"        !@Y:ok
+   test "digital/kad23%digital"        !@Y:ok
+   test "digital/kad24%digital"        !@Y:ok
+   test "digital/kad25%digital"        !@Y:ok
+   test "digital/kad26%digital"        !@Y:ok
+   test "digital/kad27%digital"        !@Y:ok
+   test "digital/kad28%digital"        !@Y:ok
+   test "digital/kad29%digital"        !@Y:ok
+   test "digital/kad31%digital"        !@Y:ok
+   test "digital/kad32%digital"        !@Y:ok
+   test "digital/kad33%digital"        !@Y:ok
+   test "digital/kad34%digital"        !@Y:ok
+   test "digital/kad35%digital"        !@Y:ok
+   test "digital/kad36%digital"        !@Y:ok
+   test "digital/kad37%digital"        !@Y:ok
+   test "digital/kad38%digital"        !@Y:ok
+   test "digital/kad39%digital"        !@Y:ok
+   test "digital/kad41%digital"        !@Y:ok
+   test "digital/kad42%digital"        !@Y:ok
+   test "digital/kad43%digital"        !@Y:ok
+   test "digital/kad44%digital"        !@Y:ok
+   test "digital/kad45%digital"        !@Y:ok
+   test "digital/kad46%digital"        !@Y:ok
+   test "digital/kad47%digital"        !@Y:ok
+   test "digital/kad48%digital"        !@Y:ok
+   test "digital/kad49%digital"        !@Y:ok
+   test "digital/kad51%digital"        !@Y:ok
+   test "digital/kad52%digital"        !@Y:ok
+   test "digital/kad53%digital"        !@Y:ok
+   test "digital/kad54%digital"        !@Y:ok
+   test "digital/kad55%digital"        !@Y:ok
+   test "digital/kad56%digital"        !@Y:ok
+   test "digital/kad57%digital"        !@Y:ok
+   test "digital/kad58%digital"        !@Y:ok
+   test "digital/kad59%digital"        !@Y:ok
+   test "digital/kad61%digital"        !@Y:ok
+   test "digital/kad62%digital"        !@Y:ok
+   test "digital/kad63%digital"        !@Y:ok
+   test "digital/kad64%digital"        !@Y:ok
+   test "digital/kad65%digital"        !@Y:ok
+   test "digital/kad66%digital"        !@Y:ok
+   test "digital/kad67%digital"        !@Y:ok
+   test "digital/kad68%digital"        !@Y:ok
+   test "digital/kad69%digital"        !@Y:ok
+   test "digital/kad71%digital"        !@Y:ok
+   test "digital/kad72%digital"        !@Y:ok
+   test "digital/kad73%digital"        !@Y:ok
+   test "digital/kad74%digital"        !@Y:ok
+   test "digital/kad75%digital"        !@Y:ok
+   test "digital/kad76%digital"        !@Y:ok
+   test "digital/kad77%digital"        !@Y:ok
+   test "digital/kad78%digital"        !@Y:ok
+   test "digital/kad79%digital"        !@Y:ok
+
+   test "digital/kac1%digital"         !@Y:ok
+   test "digital/kac3%digital"         !@Y:ok
+   test "digital/kac5%digital"         !@Y:ok
+   test "digital/kac7%digital"         !@Y:ok
+   test "digital/kac2%digital"         !@Y:ok
+   test "digital/kac4%digital"         !@Y:ok
+   test "digital/kac6%digital"         !@Y:ok
+   test "digital/kag19%digital"        !@Y:ok
+   test "digital/kag20%digital"        !@Y:ok
+   test "digital/kag39%digital"        !@Y:ok
+   test "digital/kag40%digital"        !@Y:ok
+   test "digital/kag59%digital"        !@Y:ok
+   test "digital/kag60%digital"        !@Y:ok
+   test "digital/kap0%digital"         !@Y:ok
+   test "digital/kap1%digital"         !@Y:ok
+   test "digital/kap2%digital"         !@Y:ok
+   test "digital/kap3%digital"         !@Y:ok
+   test "digital/kap4%digital"         !@Y:ok
+   test "digital/kap5%digital"         !@Y:ok
+   test "digital/kap6%digital"         !@Y:ok
+   test "digital/kap7%digital"         !@Y:ok partial test
+   test "digital/kar01%digital"        !@Y:ok
+   test "digital/kar02%digital"        !@Y:ok
+   test "digital/kar03%digital"        !@Y:ok
+   test "digital/kar04%digital"        !@Y:ok
+   test "digital/kar05%digital"        !@Y:ok
+   test "digital/kar06%digital"        !@Y:ok
+   test "digital/kar07%digital"        !@Y:ok
+   test "digital/kar08%digital"        !@Y:ok
+   test "digital/kar09%digital"        !@Y:ok
+   test "digital/kar10%digital"        !@Y:ok
+   test "digital/kar11%digital"        !@Y:ok
+   test "digital/kar12%digital"        !@Y:ok
+   test "digital/kar13%digital"        !@Y:ok
+   test "digital/kar14%digital"        !@Y:ok
+   test "digital/kar15%digital"        !@Y:ok
+   test "digital/kar16%digital"        !@Y:ok
+   test "digital/kar17%digital"        !@Y:ok
+   test "digital/kar18%digital"        !@Y:ok
+   test "digital/kar19%digital"        !@Y:ok
+   test "digital/kar20%digital"        !@Y:ok
+   test "digital/kar21%digital"        !@Y:ok
+   test "digital/kar22%digital"        !@Y:ok
+   test "digital/kar23%digital"        !@Y:ok
+   test "digital/kar24%digital"        !@Y:ok
+   test "digital/kar25%digital"        !@Y:ok
+   test "digital/kar26%digital"        !@Y:ok
+   test "digital/kar27%digital"        !@Y:ok
+   test "digital/kar28%digital"        !@Y:ok
+   test "digital/kar29%digital"        !@Y:ok
+   test "digital/kar30%digital"        !@Y:ok
+   test "digital/kar31%digital"        !@Y:ok
+   test "digital/kar32%digital"        !@Y:ok
+   test "digital/kar33%digital"        !@Y:ok
+   test "digital/kar34%digital"        !@Y:ok
+   test "digital/kar35%digital"        !@Y:ok
+   test "digital/kar36%digital"        !@Y:ok
+   test "digital/kar37%digital"        !@Y:ok
+   test "digital/kar38%digital"        !@Y:ok
+   test "digital/kar39%digital"        !@Y:ok
+   test "digital/kar40%digital"        !@Y:ok
+   test "digital/kar41%digital"        !@Y:ok
+   test "digital/kar42%digital"        !@Y:ok
+   test "digital/kar43%digital"        !@Y:ok
+   test "digital/kar44%digital"        !@Y:ok
+   test "digital/kar45%digital"        !@Y:ok
+   test "digital/kar46%digital"        !@Y:ok
+   test "digital/kar47%digital"        !@Y:ok
+   test "digital/kar48%digital"        !@Y:ok
+   test "digital/kar49%digital"        !@Y:ok
+   test "digital/kar50%digital"        !@Y:ok
+   test "digital/kar51%digital"        !@Y:ok
+   test "digital/kar52%digital"        !@Y:ok
+   test "digital/kar53%digital"        !@Y:ok
+   test "digital/kar54%digital"        !@Y:ok
+   test "digital/kar55%digital"        !@Y:ok
+   test "digital/kar56%digital"        !@Y:ok
+   test "digital/kar57%digital"        !@Y:ok
+   test "digital/kar58%digital"        !@Y:ok
+   test "digital/kar59%digital"        !@Y:ok
+   test "digital/kar60%digital"        !@Y:ok
+   test "digital/kar61%digital"        !@Y:ok
+   test "digital/kar62%digital"        !@Y:ok
+   test "digital/kar63%digital"        !@Y:ok
+   test "digital/kar64%digital"        !@Y:ok
+   test "digital/kar65%digital"        !@Y:ok
+   test "digital/kar66%digital"        !@Y:ok
+   test "digital/kar67%digital"        !@Y:ok
+   test "digital/kar68%digital"        !@Y:ok
+   test "digital/kar69%digital"        !@Y:ok
+   test "digital/kar70%digital"        !@Y:ok
+   test "digital/kar71%digital"        !@Y:ok
+   test "digital/kar72%digital"        !@Y:ok
+   test "digital/kar73%digital"        !@Y:ok
+   test "digital/kar74%digital"        !@Y:ok
+   test "digital/kar75%digital"        !@Y:ok
+   test "digital/kar76%digital"        !@Y:ok
+   test "digital/kar77%digital"        !@Y:ok
+   test "digital/kar78%digital"        !@Y:ok
+   test "digital/kar79%digital"        !@Y:ok
+   test "digital/kas11%digital"        !@Y:ok
+   test "digital/kas17%digital"        !@Y:ok
+   test "digital/kas22%digital"        !@Y:ok
+   test "digital/kas28%digital"        !@Y:ok
+   test "digital/kas31%digital"        !@Y:ok
+   test "digital/kas33%digital"        !@Y:ok
+   test "digital/kas42%digital"        !@Y:ok
+   test "digital/kas44%digital"        !@Y:ok
+   test "digital/kas53%digital"        !@Y:ok
+   test "digital/kas55%digital"        !@Y:ok
+   test "digital/kas64%digital"        !@Y:ok
+   test "digital/kas66%digital"        !@Y:ok
+   test "digital/kas75%digital"        !@Y:ok
+   test "digital/kas77%digital"        !@Y:ok
+   test "digital/kas86%digital"        !@Y:ok
+   test "digital/kas88%digital"        !@Y:ok
+   test "digital/kas90%digital"        !@Y:ok
+   test "digital/kas99%digital"        !@Y:ok
+   test "digital/kax1%digital"         !@Y:ok
+   test "digital/kax09%digital"        !@Y:ok
+   test "digital/kax10%digital"        !@Y:ok
+   test "digital/kax12%digital"        !@Y:ok
+   test "digital/kax19%digital"        !@Y:ok
+   test "digital/kax20%digital"        !@Y:ok
+   test "digital/kax23%digital"        !@Y:ok
+   test "digital/kax29%digital"        !@Y:ok
+   test "digital/kax30%digital"        !@Y:ok
+   test "digital/kax34%digital"        !@Y:ok
+   test "digital/kax39%digital"        !@Y:ok
+   test "digital/kax40%digital"        !@Y:ok
+   test "digital/kax45%digital"        !@Y:ok
+   test "digital/kax49%digital"        !@Y:ok
+   test "digital/kax50%digital"        !@Y:ok
+   test "digital/kax56%digital"        !@Y:ok
+   test "digital/kax59%digital"        !@Y:ok
+   test "digital/kax60%digital"        !@Y:ok
+   test "digital/kax67%digital"        !@Y:ok
+   test "digital/kax69%digital"        !@Y:ok
+   test "digital/kax70%digital"        !@Y:ok
+   test "digital/kax78%digital"        !@Y:ok
+   test "digital/kax79%digital"        !@Y:ok
+   test "digital/kbc2%digital"         !@Y:ok
+   test "digital/kbc4%digital"         !@Y:ok
+   test "digital/kbc6%digital"         !@Y:ok
+   test "digital/kbc1%digital"         !@Y:ok
+   test "digital/kbc3%digital"         !@Y:ok
+   test "digital/kbc5%digital"         !@Y:ok
+   test "digital/kbc7%digital"         !@Y:ok
+   test "digital/kbd00%digital"        !@Y:ok
+   test "digital/kbd01%digital"        !@Y:ok
+   test "digital/kbd02%digital"        !@Y:ok
+   test "digital/kbd03%digital"        !@Y:ok
+   test "digital/kbd04%digital"        !@Y:ok
+   test "digital/kbd5%digital"         !@Y:ok
+   test "digital/kbd06%digital"        !@Y:ok
+   test "digital/kbd07%digital"        !@Y:ok
+   test "digital/kbd08%digital"        !@Y:ok
+   test "digital/kbd09%digital"        !@Y:ok
+   test "digital/kbd10%digital"        !@Y:ok
+   test "digital/kbd11%digital"        !@Y:ok
+   test "digital/kbd12%digital"        !@Y:ok
+   test "digital/kbd13%digital"        !@Y:ok
+   test "digital/kbd14%digital"        !@Y:ok
+   test "digital/kbd15%digital"        !@Y:ok
+   test "digital/kbd16%digital"        !@Y:ok
+   test "digital/kbd17%digital"        !@Y:ok
+   test "digital/kbd18%digital"        !@Y:ok
+   test "digital/kbd19%digital"        !@Y:ok
+   test "digital/kbd20%digital"        !@Y:ok
+   test "digital/kbd21%digital"        !@Y:ok
+   test "digital/kbd22%digital"        !@Y:ok
+   test "digital/kbd23%digital"        !@Y:ok
+   test "digital/kbd24%digital"        !@Y:ok
+   test "digital/kbd25%digital"        !@Y:ok
+   test "digital/kbd26%digital"        !@Y:ok
+   test "digital/kbd27%digital"        !@Y:ok
+   test "digital/kbd28%digital"        !@Y:ok
+   test "digital/kbd29%digital"        !@Y:ok
+   test "digital/kbd30%digital"        !@Y:ok
+   test "digital/kbd31%digital"        !@Y:ok
+   test "digital/kbd32%digital"        !@Y:ok
+   test "digital/kbd33%digital"        !@Y:ok
+   test "digital/kbd34%digital"        !@Y:ok
+   test "digital/kbd35%digital"        !@Y:ok
+   test "digital/kbd36%digital"        !@Y:ok
+   test "digital/kbd37%digital"        !@Y:ok
+   test "digital/kbd38%digital"        !@Y:ok
+   test "digital/kbd39%digital"        !@Y:ok
+   test "digital/kbd40%digital"        !@Y:ok
+   test "digital/kbd41%digital"        !@Y:ok
+   test "digital/kbd42%digital"        !@Y:ok
+   test "digital/kbd43%digital"        !@Y:ok
+   test "digital/kbd44%digital"        !@Y:ok
+   test "digital/kbd45%digital"        !@Y:ok
+   test "digital/kbd46%digital"        !@Y:ok
+   test "digital/kbd47%digital"        !@Y:ok
+   test "digital/kbd48%digital"        !@Y:ok
+   test "digital/kbd49%digital"        !@Y:ok
+   test "digital/kbd50%digital"        !@Y:ok
+   test "digital/kbd51%digital"        !@Y:ok
+   test "digital/kbd52%digital"        !@Y:ok
+   test "digital/kbd53%digital"        !@Y:ok
+   test "digital/kbd54%digital"        !@Y:ok
+   test "digital/kbd55%digital"        !@Y:ok
+   test "digital/kbd56%digital"        !@Y:ok
+   test "digital/kbd57%digital"        !@Y:ok
+   test "digital/kbd58%digital"        !@Y:ok
+   test "digital/kbd59%digital"        !@Y:ok
+   test "digital/kbd60%digital"        !@Y:ok
+   test "digital/kbd61%digital"        !@Y:ok
+   test "digital/kbd62%digital"        !@Y:ok
+   test "digital/kbd63%digital"        !@Y:ok
+   test "digital/kbd64%digital"        !@Y:ok
+   test "digital/kbd65%digital"        !@Y:ok
+   test "digital/kbd66%digital"        !@Y:ok
+   test "digital/kbd67%digital"        !@Y:ok
+   test "digital/kbd68%digital"        !@Y:ok
+   test "digital/kbd69%digital"        !@Y:ok
+   test "digital/kbd70%digital"        !@Y:ok
+   test "digital/kbd71%digital"        !@Y:ok
+   test "digital/kbd72%digital"        !@Y:ok
+   test "digital/kbd73%digital"        !@Y:ok
+   test "digital/kbd74%digital"        !@Y:ok
+   test "digital/kbd75%digital"        !@Y:ok
+   test "digital/kbd76%digital"        !@Y:ok
+   test "digital/kbd77%digital"        !@Y:ok
+   test "digital/kbd78%digital"        !@Y:ok
+   test "digital/kbd79%digital"        !@Y:ok
+
+   test "digital/kbg19%digital"        !@Y:ok
+   test "digital/kbg20%digital"        !@Y:ok
+   test "digital/kbg39%digital"        !@Y:ok
+   test "digital/kbg40%digital"        !@Y:ok
+   test "digital/kbg59%digital"        !@Y:ok
+   test "digital/kbg60%digital"        !@Y:ok
+   test "digital/kbp0%digital"        !@Y:ok
+   test "digital/kbp1%digital"        !@Y:ok
+   test "digital/kbp2%digital"        !@Y:ok
+   test "digital/kbp3%digital"        !@Y:ok
+   test "digital/kbp4%digital"        !@Y:ok
+   test "digital/kbp5%digital"        !@Y:ok
+   test "digital/kbp6%digital"        !@Y:ok
+   test "digital/kbp7%digital"        !@Y:ok
+   test "digital/kbr01%digital"        !@Y:ok
+   test "digital/kbr02%digital"        !@Y:ok
+   test "digital/kbr03%digital"        !@Y:ok
+   test "digital/kbr04%digital"        !@Y:ok
+   test "digital/kbr5%digital"        !@Y:ok
+   test "digital/kbr06%digital"        !@Y:ok
+   test "digital/kbr07%digital"        !@Y:ok
+   test "digital/kbr08%digital"        !@Y:ok
+   test "digital/kbr09%digital"        !@Y:ok
+   test "digital/kbr10%digital"        !@Y:ok
+   test "digital/kbr11%digital"        !@Y:ok
+   test "digital/kbr12%digital"        !@Y:ok
+   test "digital/kbr13%digital"        !@Y:ok
+   test "digital/kbr14%digital"        !@Y:ok
+   test "digital/kbr15%digital"        !@Y:ok
+   test "digital/kbr16%digital"        !@Y:ok
+   test "digital/kbr17%digital"        !@Y:ok
+   test "digital/kbr18%digital"        !@Y:ok
+   test "digital/kbr19%digital"        !@Y:ok
+   test "digital/kbr20%digital"        !@Y:ok
+   test "digital/kbr21%digital"        !@Y:ok
+   test "digital/kbr22%digital"        !@Y:ok
+   test "digital/kbr23%digital"        !@Y:ok
+   test "digital/kbr24%digital"        !@Y:ok
+   test "digital/kbr25%digital"        !@Y:ok
+   test "digital/kbr26%digital"        !@Y:ok
+   test "digital/kbr27%digital"        !@Y:ok
+   test "digital/kbr28%digital"        !@Y:ok
+   test "digital/kbr29%digital"        !@Y:ok
+   test "digital/kbr30%digital"        !@Y:ok
+   test "digital/kbr31%digital"        !@Y:ok
+   test "digital/kbr32%digital"        !@Y:ok
+   test "digital/kbr33%digital"        !@Y:ok
+   test "digital/kbr34%digital"        !@Y:ok
+   test "digital/kbr35%digital"        !@Y:ok
+   test "digital/kbr36%digital"        !@Y:ok
+   test "digital/kbr37%digital"        !@Y:ok
+   test "digital/kbr38%digital"        !@Y:ok
+   test "digital/kbr39%digital"        !@Y:ok
+   test "digital/kbr40%digital"        !@Y:ok
+   test "digital/kbr41%digital"        !@Y:ok
+   test "digital/kbr42%digital"        !@Y:ok
+   test "digital/kbr43%digital"        !@Y:ok
+   test "digital/kbr44%digital"        !@Y:ok
+   test "digital/kbr45%digital"        !@Y:ok
+   test "digital/kbr46%digital"        !@Y:ok
+   test "digital/kbr47%digital"        !@Y:ok
+   test "digital/kbr48%digital"        !@Y:ok
+   test "digital/kbr49%digital"        !@Y:ok
+   test "digital/kbr50%digital"        !@Y:ok
+   test "digital/kbr51%digital"        !@Y:ok
+   test "digital/kbr52%digital"        !@Y:ok
+   test "digital/kbr53%digital"        !@Y:ok
+   test "digital/kbr54%digital"        !@Y:ok
+   test "digital/kbr55%digital"        !@Y:ok
+   test "digital/kbr56%digital"        !@Y:ok
+   test "digital/kbr57%digital"        !@Y:ok
+   test "digital/kbr58%digital"        !@Y:ok
+   test "digital/kbr59%digital"        !@Y:ok
+   test "digital/kbr60%digital"        !@Y:ok
+   test "digital/kbr61%digital"        !@Y:ok
+   test "digital/kbr62%digital"        !@Y:ok
+   test "digital/kbr63%digital"        !@Y:ok
+   test "digital/kbr64%digital"        !@Y:ok
+   test "digital/kbr65%digital"        !@Y:ok
+   test "digital/kbr66%digital"        !@Y:ok
+   test "digital/kbr67%digital"        !@Y:ok
+   test "digital/kbr68%digital"        !@Y:ok
+   test "digital/kbr69%digital"        !@Y:ok
+   test "digital/kbr70%digital"        !@Y:ok
+   test "digital/kbr71%digital"        !@Y:ok
+   test "digital/kbr72%digital"        !@Y:ok
+   test "digital/kbr73%digital"        !@Y:ok
+   test "digital/kbr74%digital"        !@Y:ok
+   test "digital/kbr75%digital"        !@Y:ok
+   test "digital/kbr76%digital"        !@Y:ok
+   test "digital/kbr77%digital"        !@Y:ok
+   test "digital/kbr78%digital"        !@Y:ok
+   test "digital/kbr79%digital"        !@Y:ok
+   test "digital/kbs11%digital"        !@Y:ok
+   test "digital/kbs17%digital"        !@Y:ok
+   test "digital/kbs22%digital"        !@Y:ok
+   test "digital/kbs28%digital"        !@Y:ok
+   test "digital/kbs31%digital"        !@Y:ok
+   test "digital/kbs33%digital"        !@Y:ok
+   test "digital/kbs42%digital"        !@Y:ok
+   test "digital/kbs44%digital"        !@Y:ok
+   test "digital/kbs53%digital"        !@Y:ok
+   test "digital/kbs55%digital"        !@Y:ok
+   test "digital/kbs64%digital"        !@Y:ok
+   test "digital/kbs66%digital"        !@Y:ok
+   test "digital/kbs75%digital"        !@Y:ok
+   test "digital/kbs77%digital"        !@Y:ok
+   test "digital/kbs86%digital"        !@Y:ok
+   test "digital/kbs88%digital"        !@Y:ok
+   test "digital/kbs90%digital"        !@Y:ok
+   test "digital/kbs99%digital"        !@Y:ok
+
+   test "digital/kbv11%digital"        !@Y:ok
+   test "digital/kbv12%digital"        !@Y:ok
+   test "digital/kbv13%digital"        !@Y:ok
+   test "digital/kbv14%digital"        !@Y:ok
+   test "digital/kbv15%digital"        !@Y:ok
+   test "digital/kbv16%digital"        !@Y:ok
+   test "digital/kbv17%digital"        !@Y:ok
+   test "digital/kbv18%digital"        !@Y:ok
+   test "digital/kbv19%digital"        !@Y:ok
+   test "digital/kbv31%digital"        !@Y:ok
+   test "digital/kbv32%digital"        !@Y:ok
+   test "digital/kbv33%digital"        !@Y:ok
+   test "digital/kbv34%digital"        !@Y:ok
+   test "digital/kbv35%digital"        !@Y:ok
+   test "digital/kbv36%digital"        !@Y:ok
+   test "digital/kbv37%digital"        !@Y:ok
+   test "digital/kbv38%digital"        !@Y:ok
+   test "digital/kbv39%digital"        !@Y:ok
+   test "digital/kbv41%digital"        !@Y:ok
+   test "digital/kbv42%digital"        !@Y:ok
+   test "digital/kbv43%digital"        !@Y:ok
+   test "digital/kbv44%digital"        !@Y:ok
+   test "digital/kbv45%digital"        !@Y:ok
+   test "digital/kbv46%digital"        !@Y:ok
+   test "digital/kbv47%digital"        !@Y:ok
+   test "digital/kbv48%digital"        !@Y:ok
+   test "digital/kbv49%digital"        !@Y:ok
+   test "digital/kbv61%digital"        !@Y:ok
+   test "digital/kbv62%digital"        !@Y:ok
+   test "digital/kbv63%digital"        !@Y:ok
+   test "digital/kbv64%digital"        !@Y:ok
+   test "digital/kbv65%digital"        !@Y:ok
+   test "digital/kbv66%digital"        !@Y:ok
+   test "digital/kbv67%digital"        !@Y:ok
+   test "digital/kbv68%digital"        !@Y:ok
+   test "digital/kbv69%digital"        !@Y:ok
+   test "digital/kbx1%digital"         !@Y:ok
+   test "digital/kbx09%digital"        !@Y:ok
+   test "digital/kbx10%digital"        !@Y:ok
+   test "digital/kbx12%digital"        !@Y:ok
+   test "digital/kbx19%digital"        !@Y:ok
+   test "digital/kbx20%digital"        !@Y:ok
+   test "digital/kbx23%digital"        !@Y:ok
+   test "digital/kbx29%digital"        !@Y:ok
+   test "digital/kbx30%digital"        !@Y:ok
+   test "digital/kbx34%digital"        !@Y:ok
+   test "digital/kbx39%digital"        !@Y:ok
+   test "digital/kbx40%digital"        !@Y:ok
+   test "digital/kbx45%digital"        !@Y:ok
+   test "digital/kbx49%digital"        !@Y:ok
+   test "digital/kbx50%digital"        !@Y:ok
+   test "digital/kbx56%digital"        !@Y:ok
+   test "digital/kbx59%digital"        !@Y:ok
+   test "digital/kbx60%digital"        !@Y:ok
+   test "digital/kbx67%digital"        !@Y:ok
+   test "digital/kbx69%digital"        !@Y:ok
+   test "digital/kbx70%digital"        !@Y:ok
+   test "digital/kbx78%digital"        !@Y:ok
+   test "digital/kbx79%digital"        !@Y:ok
+
+   test "digital/kac0%digital"         !@Y:ok
+   test "digital/kar00%digital"        !@Y:ok
+   test "digital/kas00%digital"        !@Y:ok
+   test "digital/kax00%digital"        !@Y:ok
+   test "digital/kbc0%digital"         !@Y:ok
+   test "digital/kbr00%digital"        !@Y:ok
+   test "digital/kbs00%digital"        !@Y:ok
+   test "digital/kbx00%digital"        !@Y:ok
+
+   test "digital/u7004%id"             !@Y:ok XC2C64A
+
+   ! *** OCTAL 3-STATE INVERTING BUFFER *** !
+   test "digital/u128"     !@Y:ok
+   test "digital/u129"     !@Y:ok
+   test "digital/u130"     !@Y:ok
+   test "digital/u131"     !@Y:ok
+   test "digital/u132"     !@Y:ok
+
+   test "digital/u133"     !@Y:ok
+   test "digital/u134"     !@Y:ok
+   test "digital/u135"     !@Y:ok
+
+   test "digital/u187"     !@Y:ok
+   test "digital/u188"     !@Y:ok
+   test "digital/u189"     !@Y:ok
+
+   test "digital/u923"     !@Y:ok
+   test "digital/u924"     !@Y:ok
+   test "digital/u925"     !@Y:ok
+   test "digital/u926"     !@Y:ok
+   test "digital/u927"     !@Y:ok
+   test "digital/u928"     !@Y:ok
+   test "digital/u929"     !@Y:ok
+   test "digital/u930"     !@Y:ok
+
+   ! *** OCTAL 3-STATE BUS TRANSCEIVER *** !
+   test "digital/u63"        !@Y:ok
+   test "digital/u64"        !@Y:ok
+   test "digital/u65"        !@Y:ok
+   test "digital/u66"        !@Y:ok
+   test "digital/u67"        !@Y:ok
+   test "digital/u68"        !@Y:ok
+   test "digital/u72"        !@Y:ok
+   test "digital/u73"        !@Y:ok
+   test "digital/u74"        !@Y:ok
+   test "digital/u136"        !@Y:ok
+   test "digital/u137"        !@Y:ok
+   test "digital/u138"        !@Y:ok
+   test "digital/u139"        !@Y:ok
+   test "digital/u140"        !@Y:ok
+   test "digital/u141"        !@Y:ok
+   test "digital/u142"        !@Y:ok
+   test "digital/u143"        !@Y:ok
+   test "digital/u144"        !@Y:ok
+   test "digital/u145"        !@Y:ok
+   test "digital/u146"        !@Y:ok
+   test "digital/u147"        !@Y:ok
+   test "digital/u148"        !@Y:ok
+   test "digital/u149"        !@Y:ok
+   test "digital/u150"        !@Y:ok
+   test "digital/u151"        !@Y:ok
+   test "digital/u152"        !@Y:ok
+   test "digital/u153"        !@Y:ok
+
+   ! *** SRAM *** !
+   test "digital/u79"      !@Y:ok
+   test "digital/u80"      !@Y:ok
+   test "digital/u81"      !@Y:ok
+   test "digital/u82"      !@Y:ok
+   test "digital/u83"      !@Y:ok
+   test "digital/u84"      !@Y:ok
+   test "digital/u85"      !@Y:ok
+   looptest8 "digital/u86" !@Y:ok
+   test "digital/u87"      !@Y:ok
+   test "digital/u88"      !@Y:ok
+   looptest5 "digital/u89" !@Y:ok
+   looptest5 "digital/u90" !@Y:ok
+
+   !*** OI Device *** !
+   test "digital/u156"     !@Y:ok
+   test "digital/u157"     !@Y:ok
+
+   ! *** TINY TIM *** !
+   test "digital/u158"     !@Y:ok
+   test "digital/u159"     !@Y:ok
+
+   ! *** MARLEY - RELAY DRIVER *** !
+   test "digital/u196"
+   test "digital/u197"
+   test "digital/u198"
+   test "digital/u199"
+   test "digital/u200"
+   test "digital/u201"
+   test "digital/u202"
+   test "digital/u203"
+
+   test "digital/u882"     !@Y:ok
+
+   ! *** EBONEEZER *** !
+!need combo test
+!  test "digital/u192"
+!  test "digital/u193"
+!  test "digital/u194"
+!  test "digital/u195"
+
+   test "digital/u7003"    !Y:ack test only
+
+subend
+
+sub Functional_Tests (Status_Code, Message$)
+global Status
+global Board_Type$    ! EBN
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+
+!  print tab(5);"Verify cycle for U7004"
+   print tab(5);"Program cycle for U7004"
+   Time_c = msec
+!  test "digital/u7004%verify"         !@Y:ok
+   test "digital/u7004%erase"
+   test "digital/u7004%blank"          !@Y:ok
+   test "digital/u7004%program"
+   test "digital/u7004%verify"         !@Y:ok
+   Time_d = msec
+!  print tab(5);"Total verify time for U7004 = "&val$((Time_d - Time_c)/1000)
+   print tab(5);"Total programming time for U7004 = "&val$((Time_d - Time_c)/1000)
+
+!  Program ispGAL22V10 U186 device Pg.25
+!  4.7 seconds for 1st run, 4.1 for subsequent runs
+   safeguard cool
+
+!  if (Board_Type$ = "E400066553") or (Board_Type$ ="E400066560") then
+   print tab(5);"Programming cycle for U186"
+   Time_c = msec
+   test "digital/u186_pgm"
+   test "digital/u186"
+   Time_d = msec
+   print tab(5);"Total program time for U186 = "&val$((Time_d - Time_c)/1000)
+!  end if
+subend
+
+sub Analog_Functional_Tests (Status_Code, Message$)
+global Status
+
+   if Message$ <> "" then  print tab(5);Message$
+   Status = Status_Code
+   safeguard cool
+   test "analog/u117"      !Y:ok 5V
+   test "analog/u118"      !Y:ok
+   test "analog/u119"      !Y:ok
+   test "analog/u120"      !Y:ok
+   test "analog/u174"      !Y:ok +5.2V_RLY_1A
+   test "analog/u175"      !Y:ok +5.2V_RLY_2A
+   test "analog/u170"      !Y:ok +5.2V_RLY_3A
+   test "analog/u176"      !Y:ok +5.2V_RLY_4A
+   test "analog/u171"      !Y:ok +5.2V_RLY_1B
+   test "analog/u177"      !Y:ok +5.2V_RLY_2B
+   test "analog/u172"      !Y:ok +5.2V_RLY_3B
+   test "analog/u173"      !Y:ok +5.2V_RLY_4B
+   test "analog/u877"      !Y:ok -10_quiet -> -6.6v
+   test "analog/u878"      !Y:ok -10_quiet -> -6.6v
+   test "analog/u879"      !Y:ok -10_quiet -> -6.6v
+   test "analog/u880"      !Y:ok -10_quiet -> -6.6v
+   test "analog/u883"      !Y:ok -10V -> -6.6V
+   test "analog/u884"      !Y:ok -10V -> -6.6V
+   test "analog/u885"      !Y:ok -10V -> -6.6V
+   test "analog/u886"      !Y:ok -10V -> -6.6V
+   test "analog/u887"      !Y:ok -10V -> -6.6V
+   test "analog/u888"      !Y:ok -10V -> -6.6V
+   test "analog/u889"      !Y:ok -10V -> -6.6V
+   test "analog/u890"      !Y:ok -10V -> -6.6V
+   test "analog/u891"      !Y:ok +12v -> +8.3v
+   test "analog/u892"      !Y:ok +12v -> +8.3v
+   test "analog/u893"      !Y:ok +12v -> +8.3v
+   test "analog/u894"      !Y:ok +12v -> +8.3v
+   test "analog/u895"      !Y:ok +12v -> +8.3v
+   test "analog/u896"      !Y:ok +12v -> +8.3v
+   test "analog/u897"      !Y:ok +12v -> +8.3v
+   test "analog/u898"      !Y:ok +12v -> +8.3v
+   test "analog/u7001"     !Y:ok +5v -> +3.3v
+   test "analog/u7002"     !Y:ok +3.3v -> +1.8v
+
+   test "digital/reset_board"    !Reset board using U136
+
+   test "mixed/u122"; V5, V_3_5, V0   ! print V5, V_3_5, V0 DAC
+   test "mixed/u123"; V5, V_3_5, V0   ! print V5, V_3_5, V0 DAC
+
+   test "mixed/u190"       !Y:ok
+   test "mixed/u191"       !Y:ok
+   test "mixed/u899"       !Y:ok
+   test "mixed/u900"       !Y:ok
+   test "mixed/u901"       !Y:ok
+   test "mixed/u902"       !Y:ok
+   test "mixed/u903"       !Y:ok
+   test "mixed/u904"       !Y:ok
+   test "mixed/u905"       !Y:ok
+   test "mixed/u906"       !Y:ok
+
+!  safeguard all
+   ! *** EDGE DRIVER/RECEIVER *** !
+   call Change_Power_For_Edge
+   test "digital/reset_board"    !Reset board using U136
+
+   test "mixed/u907"       !Y:ok
+   test "mixed/u908"       !Y:ok
+   test "mixed/u909"       !Y:ok
+   test "mixed/u910"       !Y:ok
+   test "mixed/u911"       !Y:ok RCV_TERM NT; RLY_TIMING 8->8.5V
+   test "mixed/u912"       !Y:ok
+   test "mixed/u913"       !Y:ok
+   test "mixed/u914"       !Y:ok
+   test "mixed/u915"       !Y:ok
+   test "mixed/u916"       !Y:ok
+   test "mixed/u917"       !Y:ok
+   test "mixed/u918"       !Y:ok
+   test "mixed/u919"       !Y:ok
+   test "mixed/u920"       !Y:ok
+   test "mixed/u921"       !Y:ok
+   test "mixed/u922"       !Y:ok
+
+! *** OVERTEMP *** !
+   test "digital/chk_u907_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U907 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u908_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U908 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u909_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U909 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u910_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U910 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u911_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U911 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u912_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U912 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u913_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U913 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u914_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U914 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u915_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U915 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u916_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U916 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u917_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U917 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u918_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U918 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u919_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U919 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u920_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U920 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u921_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U921 PN1821-3381"
+      report "----------------------------------------"
+   end if
+   test "digital/chk_u922_ot"
+   if dutfailed then
+      report "OVERTEMP Error. REPLACE U922 PN1821-3381"
+      report "----------------------------------------"
+   end if
+subend
+
+sub Program_Flash (Device$, Status_Code, Message$)
+global Status
+global Report_level$, Logging
+
+  if Device$ = "" then  subexit
+  if Message$ <> "" then  print tab(5);Message$
+  Status = Status_Code
+
+  ! Verify Manufacturer ID and device ID codes.
+  ! The ID test should be executed in digital for ICT purposes.
+  test "digital/" & Device$ & "%id"
+  if dutfailed then
+    print tab(15); Device$; " : Device ID failed"
+    subexit ! if the wrong device is installed, exit the program subroutine
+  end if
+
+  !remove reporting and logging while verifying device status
+  Report_level$ = rli$
+  report level is none
+  if Logging then
+    log level is none
+  end if
+  print tab(8); "Verifying Status"
+  safeguard none  !flash! This board meets design for On-Board Programming
+                  !       criteria for safeguard none to be safe
+                  !       Programming runs very slowly with safeguard on
+
+  !flash! Comment the appropriate crc test(s) in Digital_Tests subroutine
+  test "digital/" & Device$ & "%crc"
+  if not dutfailed then
+    print tab(15); Device$; " : Device pre-programmed"
+    call Cleanup_Flash
+    subexit  ! the device is already properly programmed, exit subroutine
+  else
+    pass device  ! clears dutfailed, boardfailed if only failure
+    print tab(15); Device$; " : Contains incorrect data"
+  end if
+
+  ! Verify device is blank.
+  !flash! Comment the appropriate blank test(s) in Digital_Tests subroutine
+  test "digital/" & Device$ & "%blank"
+  if dutfailed then
+    pass device  ! clears dutfailed, boardfailed if only failure
+    print tab(15); Device$; " : Not blank"
+    print tab(8); "Erasing"
+    !flash! call Setup_Power_Supplies_Program  ! add any necessary programming
+                                               ! voltages to a new subroutine
+    !flash! Comment the appropriate erase test(s) in Digital_Tests subroutine
+    test "digital/" & Device$ & "%erase"
+    if not dutfailed then
+      print tab(8); "Erase complete"
+    end if
+  end if
+  ! Some older devices may need two erase sequences. If erase fails
+  ! twice on only one board, continue to program all. The final CRC
+  ! check will determine the viability of the erase program sequence
+
+  if dutfailed then
+    pass device  ! clears dutfailed, boardfailed if only failure
+    print tab(15); Device$; " : Needed to be erased twice"
+    test "digital/" & Device$ & "%erase"
+    if dutfailed then
+      call Cleanup_Flash   !flash! move above erase test if full report
+                           !       of failing erase tests is desired
+      print tab(15); Device$; " : Erase Failed"
+      subexit  ! if the device cannot be erased
+    end if          !if dutfailed second erase
+    print tab(8); "Erase complete"
+  end if            !if dutfailed first erase
+  print tab(8); "Programming"
+  A=msec
+  !flash! Comment the appropriate program test(s) in Digital_Tests subroutine
+  test "digital/" & Device$ & "%program"
+  B = (msec-A)/1000
+  if not dutfailed then
+    print tab(15); "Programming complete in"; B;" seconds"
+  else
+    print tab(15); "Programming Failed"
+    pass device
+  end if
+  !flash! call Setup_Power_Supplies (Failed_In_Power_Supplies, PowerMsg$)
+  !flash! if dutfailed then
+  !flash!   print "Power supplies limited"
+  !flash!   call Cleanup_Flash
+  !flash!   subexit
+  !flash! end if
+  call Cleanup_Flash  !flash! move above program test for full reporting
+  print tab(8); "Verifying Data"
+  !flash! Comment the appropriate crc test(s) in Digital_Tests subroutine
+  test "digital/" & Device$ & "%crc"
+  if dutfailed then
+    print tab(15); Device$; " : Contains incorrect data"
+  else
+    print tab(15); Device$; " : Contains correct data"
+  end if
+subend
+
+def fnPinsfailed (Message$)
+
+   if Message$ <> "" then  print tab(5);Message$
+   Pins_failed_flag = 0
+   test "pins"
+   if dutfailed then Pins_failed_flag = 1
+   return Pins_failed_flag
+fnend
+
+sub ScanWorks_Setup
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+   testhead cleanup
+subend
+
+sub ScanWorks_Pretest
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+global Status, Failed_In_SW_Testing
+
+!   Status = Failed_In_SW_Testing
+!   call ScanWorks_Setup
+!   call ScanWorks_Cleanup
+subend
+
+sub ScanWorks_Cleanup
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+   scanworks reset
+subend
+
+sub ScanWorks_Scan_Path_Verify_Tests (Status_Code, Message$)
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+!   call ScanWorks_Setup
+!   call ScanWorks_Cleanup
+subend
+
+sub ScanWorks_Interconnect_Tests (Status_Code, Message$)
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+!   call ScanWorks_Setup
+!   call ScanWorks_Cleanup
+subend
+
+sub ScanWorks_Mem_Interconnect_Tests (Status_Code, Message$)
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+!   call ScanWorks_Setup
+!   call ScanWorks_Cleanup
+subend
+
+sub ScanWorks_Cluster_Tests (Status_Code, Message$)
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+!   call ScanWorks_Setup
+!   call ScanWorks_Cleanup
+subend
+
+sub ScanWorks_Mem_BIST (Status_Code, Message$)
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+!   call ScanWorks_Setup
+!   call ScanWorks_Cleanup
+subend
+
+sub ScanWorks_Device_Programming (Status_Code, Message$)
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+!   call ScanWorks_Setup
+!   call ScanWorks_Cleanup
+subend
+
+sub ScanWorks_Flash_Programming (Status_Code, Message$)
+! CAUTION:  Within this subroutine, do NOT use testhead statements
+! CAUTION:  with the exception of the following statements:
+! CAUTION:  testhead cleanup, test scanworks, scanworks reset.
+! CAUTION:  Failure to follow this guideline can result in damage
+! CAUTION:  to the BSI card.
+global Status
+
+!   if Message$ <> "" then  print tab(5);Message$
+!   Status = Status_Code
+!   call ScanWorks_Setup
+!   call ScanWorks_Cleanup
+subend
+
+! End of Testplan Writer Generated Testplan.
+
+sub Record_SN
+global Serial$, System$, Report_Printer$
+
+ P$ ="C:/Agilent_ICT/boards/result_log/result_heron"
+assign @Result to P$; write, exclusive, append
+output @Result; Serial$, datetime$, System$ ;" Passed"
+assign @Result to *
+
+!rint "Report_Printer$ = ";Report_Printer$
+
+!report is *
+!report is "/dev/com/2"
+report "-------------------------------"
+report "       ICT Station     ";System$
+report "        BOARD PASSED           "
+report
+report " SN: "; Serial$
+report " Datetime: "; datetime$
+report "-------------------------------"
+report ""
+report ""
+report ""
+report ""
+
+subend

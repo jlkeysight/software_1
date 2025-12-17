@@ -1,0 +1,96 @@
+16380 1 2   30.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 697 1209 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 697 1209 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 697 1336 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 697 1336 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 697 1477 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 697 1477 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 770 1209 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 770 1209 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 770 1336 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 770 1336 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 770 1477 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 770 1477 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 852 1209 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 852 1209 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 852 1336 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 852 1336 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 852 1477 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 852 1477 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 941 1209 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 941 1209 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 941 1336 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 941 1336 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   45.0   90.0     DECIBELS 
+'Minimum Signal - Noise ratio 941 1477 hz 0.3 v    '
+ 1.00000E+00  0.00000E+00            0 
+
+16380 1 2   31.0   90.0     DECIBELS 
+'Total Intermodulation Distortion 941 1477 hz .3 v '
+ 1.00000E+00  0.00000E+00            0 
+

@@ -1,0 +1,8 @@
+9470 1 2   5.0000000E+08 infinity         OHMS 
+'DC DETECTOR DETHI INPUT RESISTANCE                '
+ 1.00000E+00  0.00000E+00            0 
+
+9470 1 2   5.0000000E+08 infinity         OHMS 
+'DC DETECTOR DETLO INPUT RESISTANCE                '
+ 1.00000E+00  0.00000E+00            0 
+

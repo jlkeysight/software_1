@@ -1,0 +1,36 @@
+# What String Identification: @(#)4.3	05/02/95 12:36:14 sales.pin
+16200		# Series S/I-bus impedance
+16201		# Series G-bus impedance
+16202		# Series S/I-bus inductance
+16203		# Series G-bus inductance
+16204		# Parallel S/I-bus capacitance
+16205		# Parallel G-bus capacitance
+16206		# Parallel bus impedance
+16207		# Parallel I-bus impedance
+16208		# Parallel G-bus impedance
+16209		# Parallel S-bus impedance
+16216		# Parallel SI/BA to ground resistance
+16217		# Parallel Xn to ground resistance
+16230		# Xn leakage current
+16231		# SI-AB bus leakage current
+16800		# Static Driver output (5.0V)
+16801		# Static Driver output (0.0V)
+16802		# Static Driver output (1.25V)
+16803		# Static Driver output (2.5V)
+16804		# Static Driver output (3.3V)
+#16806		# Driver output slew rate (100v/us)
+16811		# Drive output minimum pulse width
+16820		# Driver edge place accuracy Falling (0ns DELAYS)
+16821		# Driver edge place accuracy Falling (100ns DELAYS)
+16829		# Out of tri-state edge placement accuracy and skew
+16832		# Driver tri-state leakage current 
+16835		# Driver output impedance (sourcing 750ma)
+16836		# Driver output impedance (sinking 750ma)
+16840		# Maximum drive current (sourcing 750ma)
+16841		# Maximum drive current (sinking 750mA)
+16847		# Driver over voltage limit accuracy 
+16860		# Receiver input current sourcing
+16861		# Receiver input current sinking
+16871		# Reciever edge accuracy and skew 
+16904		# Ground difference test
+16999		# Firmware/card revision verification

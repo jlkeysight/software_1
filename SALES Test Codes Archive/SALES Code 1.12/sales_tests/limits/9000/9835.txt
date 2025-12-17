@@ -1,0 +1,4 @@
+9835 8 2  0.7000  1.7200         OHMS 
+'[TWINPIN] DR OUTPUT IMPEDANCE (700mA Sourcing)    '
+ 1.00000E+00  0.00000E+00            0 
+

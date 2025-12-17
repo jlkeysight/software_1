@@ -1,0 +1,33 @@
+   DC SOURCE VOLTAGE HEADROOM TEST
+
+   Purpose:
+
+   These tests measures the ability of the DC source to produce a voltage
+   greater than the specified maximum voltage with no load.
+
+   Tests:    9256 DC SOURCE VOLTAGE HEADROOM TEST
+
+   Theory:
+
+   The test sets up to verify that the DC source will produce a voltage
+   greater than specification at the end of it's range.  The test uses both 
+   negative and positive source voltage.  This test connects the
+   DC Source output to the sales rack DMM via Calib 1 and ground via
+   Calib 2.  The actual voltage is measured at the DMM for each value.
+   Maximum positive voltage is obtained by writing decimal 4095 (0FFF Hex)
+   to the offset DAC of the source.  Decimal 0 (0000 Hex) causes maximum
+   negative offset voltage to be produced.  Results returned represent
+   intermediate values as follows:
+       1st log result:	 >10v actual value  (high current range)
+       2nd log result:	 <-10v actual value  (high current range)
+       3rd log result:	 >10v actual value  (low current range)
+       4th log result:	 <-10v actual value  (low current range)
+
+   Testpath Drawing:  T9255
+  
+   Fixture required:  SALES ANALOG
+
+   Date last updated:  01/24/91
+
+   Test type: Single module single slot
+   Executed: Once per module

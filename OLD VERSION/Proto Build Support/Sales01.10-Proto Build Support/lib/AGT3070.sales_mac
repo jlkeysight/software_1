@@ -1,0 +1,28 @@
+# What String Identification: @(#)4.1	10/17/94 10:14:21 sales.mac
+9003		# Check for the digital fixture
+9006		# Run a multi-module test to assure everything runs in serial
+9008            # Check the threshold of the generator external input
+#9187		# MAC Formatter Test
+9050		# TIC verify - Frequency Mode
+9052            # TIC verify - TI MODE
+9053            # TIC verify - TI MODE
+9055            # USER CLOCK GENERATION RANGE, ACCURACY, & JITTER
+9056            # USER CLOCK GENERATION RANGE, ACCURACY, & JITTER (50MHz)
+9060            # SYNC TO CLOCK RANGE AND JITTER
+9061            # SYNC TO CLOCK RANGE AND JITTER (at 60MHz)
+#9062           # SYNC TO CLOCK RANGE AND JITTER (at 80MHz)
+9065            # SEQUENCER MARGIN TEST
+9070            # USER TIME AT 12.5MHZ  GUARANTEED > 40nS  (may not pass)
+# 9071          # USER TIME AT 12.5MHZ  GUARANTEED > 30nS
+# 9072          # USER TIME AT 12.5MHZ  GUARANTEED > 20nS
+9075            # EVENT TRIGGER VERIFICATION
+9080            # Boundry scan Tap Port (XTP)
+#9081           # Firmware revision of sequencer (XTP)
+9090            # TIC VERIFY THROUGH PIN CARD - FREQUENCY MODE
+# 9091          # TIC VERIFY THROUGH PIN CARD - TI FREQUENCY MODE
+9092            # TIC VERIFY THROUGH PIN CARD - TI MODE
+9095            # USER CLOCK GENERATION RANGE, ACCURACY, & JITTER THROUGH PIN
+9191            # PROBE RECEIVE EDGE ACCURACY AND SKEW
+9195            # PROBE DC VOLTAGE RANGE & ACCURACY AT 5V
+9196            # PROBE DC VOLTAGE RANGE & ACCURACY AT -3.5V
+10999

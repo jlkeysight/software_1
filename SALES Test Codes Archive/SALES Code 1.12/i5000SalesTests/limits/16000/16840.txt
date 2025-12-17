@@ -1,0 +1,7 @@
+16840 72 2  3.999999E-02  5.999999E-01         AMPS 
+'Maximum driver output current - sourcing (A)      '
+ 1.00000E+00  0.00000E+00            0 
+
+16840 72 2  3.999999E-02  5.999999E-01         AMPS 
+'Maximum driver output current - sourcing (B)      '
+ 1.00000E+00  0.00000E+00            0 

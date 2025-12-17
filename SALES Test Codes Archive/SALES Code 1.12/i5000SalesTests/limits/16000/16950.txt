@@ -1,0 +1,7 @@
+16950 1   2  4.8000  5.1990        VOLTS 
+'5v Talon source (side A)                         '
+ 1.00000E+00  0.00000E+00            0 
+
+16950 1   2  4.8000  5.1990        VOLTS 
+'5v Talon source (side B)                         '
+ 1.00000E+00  0.00000E+00            0 

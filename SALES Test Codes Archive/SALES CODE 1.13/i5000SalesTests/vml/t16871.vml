@@ -1,0 +1,309 @@
+/*                                                                            */
+/*   File    :  ~/dgn/src/i5000SalesTests/vml/t16871.vml                      */
+/*   Purpose :                                                                */
+/*       This test is the vmc code file for t16871 {Reciever EDGE PLACEMENT}  */
+/*       using a 100 nS set delay for the drive signals.                      */
+/*       This file sets the fclks per vector pair to 4 (2 fclks per vector),  */
+/*       driver range of 0v to 3v at 0.5A current limit, slew rate to max,    */
+/*       drive on fclks 1 and 3 with a 100nS delay, and set up a 'toggle'     */
+/*       sequence 2 tclks long.                                               */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel loadable file                    */
+/*                                                                            */
+/******************************************************************************/
+
+setup
+
+modules 1
+pin_cards 1
+fclks_per_vector_pair 4
+
+end setup
+
+/*-----------------------------------------------------------------------------
+ * driver <label>
+ * mod            0  // 'vmc -command' will be replaced with 'mod_id'
+ * slot           2  // 'vmc -command' will be replaced with 'slot'
+ * channel        <number>
+ * [default]      0|1|k|t|x|z
+ * fclks          <number>[(+|-)<delay>] <number[(+|-)<delay>]
+ * [data src]     adrv0|adrv1|flip_flop|static0|static1
+ * [3-state src]  adrv0|adrv1|flip_flop|static_en|static_dis
+ *
+ * receiver <label>
+ * mod            0  // 'vmc -command' will be replaced with 'mod_id'
+ * slot           2  // 'vmc -command' will be replaced with 'slot'
+ * channel        <number>
+ * [default]      0|1|k|t|x|z
+ * fclks          <number>[(+|-)<delay>] <number[(+|-)<delay>]
+ * [pull]         pull_up|pull_down
+ * [clamp]        clamp_on|clamp_off
+ *----------------------------------------------------------------------------*/
+
+channel_section
+  receiver_range 2.5 2.5
+  
+  receiver   r001 mod 0 slot 2 channel 001 x fclks 2+20 4+20
+  receiver   r002 mod 0 slot 2 channel 002 x fclks 2+20 4+20
+  receiver   r003 mod 0 slot 2 channel 003 x fclks 2+20 4+20
+  receiver   r004 mod 0 slot 2 channel 004 x fclks 2+20 4+20
+  receiver   r005 mod 0 slot 2 channel 005 x fclks 2+20 4+20
+  receiver   r006 mod 0 slot 2 channel 006 x fclks 2+20 4+20
+  receiver   r007 mod 0 slot 2 channel 007 x fclks 2+20 4+20
+  receiver   r008 mod 0 slot 2 channel 008 x fclks 2+20 4+20
+  receiver   r009 mod 0 slot 2 channel 009 x fclks 2+20 4+20
+  receiver   r010 mod 0 slot 2 channel 010 x fclks 2+20 4+20
+  receiver   r011 mod 0 slot 2 channel 011 x fclks 2+20 4+20
+  receiver   r012 mod 0 slot 2 channel 012 x fclks 2+20 4+20
+  receiver   r013 mod 0 slot 2 channel 013 x fclks 2+20 4+20
+  receiver   r014 mod 0 slot 2 channel 014 x fclks 2+20 4+20
+  receiver   r015 mod 0 slot 2 channel 015 x fclks 2+20 4+20
+  receiver   r016 mod 0 slot 2 channel 016 x fclks 2+20 4+20
+  receiver   r017 mod 0 slot 2 channel 017 x fclks 2+20 4+20
+  receiver   r018 mod 0 slot 2 channel 018 x fclks 2+20 4+20
+  receiver   r021 mod 0 slot 2 channel 021 x fclks 2+20 4+20
+  receiver   r022 mod 0 slot 2 channel 022 x fclks 2+20 4+20
+  receiver   r023 mod 0 slot 2 channel 023 x fclks 2+20 4+20
+  receiver   r024 mod 0 slot 2 channel 024 x fclks 2+20 4+20
+  receiver   r025 mod 0 slot 2 channel 025 x fclks 2+20 4+20
+  receiver   r026 mod 0 slot 2 channel 026 x fclks 2+20 4+20
+  receiver   r027 mod 0 slot 2 channel 027 x fclks 2+20 4+20
+  receiver   r028 mod 0 slot 2 channel 028 x fclks 2+20 4+20
+  receiver   r029 mod 0 slot 2 channel 029 x fclks 2+20 4+20
+  receiver   r030 mod 0 slot 2 channel 030 x fclks 2+20 4+20
+  receiver   r031 mod 0 slot 2 channel 031 x fclks 2+20 4+20
+  receiver   r032 mod 0 slot 2 channel 032 x fclks 2+20 4+20
+  receiver   r033 mod 0 slot 2 channel 033 x fclks 2+20 4+20
+  receiver   r034 mod 0 slot 2 channel 034 x fclks 2+20 4+20
+  receiver   r035 mod 0 slot 2 channel 035 x fclks 2+20 4+20
+  receiver   r036 mod 0 slot 2 channel 036 x fclks 2+20 4+20
+  receiver   r037 mod 0 slot 2 channel 037 x fclks 2+20 4+20
+  receiver   r038 mod 0 slot 2 channel 038 x fclks 2+20 4+20
+  receiver   r041 mod 0 slot 2 channel 041 x fclks 2+20 4+20
+  receiver   r042 mod 0 slot 2 channel 042 x fclks 2+20 4+20
+  receiver   r043 mod 0 slot 2 channel 043 x fclks 2+20 4+20
+  receiver   r044 mod 0 slot 2 channel 044 x fclks 2+20 4+20
+  receiver   r045 mod 0 slot 2 channel 045 x fclks 2+20 4+20
+  receiver   r046 mod 0 slot 2 channel 046 x fclks 2+20 4+20
+  receiver   r047 mod 0 slot 2 channel 047 x fclks 2+20 4+20
+  receiver   r048 mod 0 slot 2 channel 048 x fclks 2+20 4+20
+  receiver   r049 mod 0 slot 2 channel 049 x fclks 2+20 4+20
+  receiver   r050 mod 0 slot 2 channel 050 x fclks 2+20 4+20
+  receiver   r051 mod 0 slot 2 channel 051 x fclks 2+20 4+20
+  receiver   r052 mod 0 slot 2 channel 052 x fclks 2+20 4+20
+  receiver   r053 mod 0 slot 2 channel 053 x fclks 2+20 4+20
+  receiver   r054 mod 0 slot 2 channel 054 x fclks 2+20 4+20
+  receiver   r055 mod 0 slot 2 channel 055 x fclks 2+20 4+20
+  receiver   r056 mod 0 slot 2 channel 056 x fclks 2+20 4+20
+  receiver   r057 mod 0 slot 2 channel 057 x fclks 2+20 4+20
+  receiver   r058 mod 0 slot 2 channel 058 x fclks 2+20 4+20
+  receiver   r061 mod 0 slot 2 channel 061 x fclks 2+20 4+20
+  receiver   r062 mod 0 slot 2 channel 062 x fclks 2+20 4+20
+  receiver   r063 mod 0 slot 2 channel 063 x fclks 2+20 4+20
+  receiver   r064 mod 0 slot 2 channel 064 x fclks 2+20 4+20
+  receiver   r065 mod 0 slot 2 channel 065 x fclks 2+20 4+20
+  receiver   r066 mod 0 slot 2 channel 066 x fclks 2+20 4+20
+  receiver   r067 mod 0 slot 2 channel 067 x fclks 2+20 4+20
+  receiver   r068 mod 0 slot 2 channel 068 x fclks 2+20 4+20
+  receiver   r069 mod 0 slot 2 channel 069 x fclks 2+20 4+20
+  receiver   r070 mod 0 slot 2 channel 070 x fclks 2+20 4+20
+  receiver   r071 mod 0 slot 2 channel 071 x fclks 2+20 4+20
+  receiver   r072 mod 0 slot 2 channel 072 x fclks 2+20 4+20
+  receiver   r073 mod 0 slot 2 channel 073 x fclks 2+20 4+20
+  receiver   r074 mod 0 slot 2 channel 074 x fclks 2+20 4+20
+  receiver   r075 mod 0 slot 2 channel 075 x fclks 2+20 4+20
+  receiver   r076 mod 0 slot 2 channel 076 x fclks 2+20 4+20
+  receiver   r077 mod 0 slot 2 channel 077 x fclks 2+20 4+20
+  receiver   r078 mod 0 slot 2 channel 078 x fclks 2+20 4+20
+  receiver   r101 mod 0 slot 2 channel 101 x fclks 2+20 4+20
+  receiver   r102 mod 0 slot 2 channel 102 x fclks 2+20 4+20
+  receiver   r103 mod 0 slot 2 channel 103 x fclks 2+20 4+20
+  receiver   r104 mod 0 slot 2 channel 104 x fclks 2+20 4+20
+  receiver   r105 mod 0 slot 2 channel 105 x fclks 2+20 4+20
+  receiver   r106 mod 0 slot 2 channel 106 x fclks 2+20 4+20
+  receiver   r107 mod 0 slot 2 channel 107 x fclks 2+20 4+20
+  receiver   r108 mod 0 slot 2 channel 108 x fclks 2+20 4+20
+  receiver   r109 mod 0 slot 2 channel 109 x fclks 2+20 4+20
+  receiver   r110 mod 0 slot 2 channel 110 x fclks 2+20 4+20
+  receiver   r111 mod 0 slot 2 channel 111 x fclks 2+20 4+20
+  receiver   r112 mod 0 slot 2 channel 112 x fclks 2+20 4+20
+  receiver   r113 mod 0 slot 2 channel 113 x fclks 2+20 4+20
+  receiver   r114 mod 0 slot 2 channel 114 x fclks 2+20 4+20
+  receiver   r115 mod 0 slot 2 channel 115 x fclks 2+20 4+20
+  receiver   r116 mod 0 slot 2 channel 116 x fclks 2+20 4+20
+  receiver   r117 mod 0 slot 2 channel 117 x fclks 2+20 4+20
+  receiver   r118 mod 0 slot 2 channel 118 x fclks 2+20 4+20
+  receiver   r121 mod 0 slot 2 channel 121 x fclks 2+20 4+20
+  receiver   r122 mod 0 slot 2 channel 122 x fclks 2+20 4+20
+  receiver   r123 mod 0 slot 2 channel 123 x fclks 2+20 4+20
+  receiver   r124 mod 0 slot 2 channel 124 x fclks 2+20 4+20
+  receiver   r125 mod 0 slot 2 channel 125 x fclks 2+20 4+20
+  receiver   r126 mod 0 slot 2 channel 126 x fclks 2+20 4+20
+  receiver   r127 mod 0 slot 2 channel 127 x fclks 2+20 4+20
+  receiver   r128 mod 0 slot 2 channel 128 x fclks 2+20 4+20
+  receiver   r129 mod 0 slot 2 channel 129 x fclks 2+20 4+20
+  receiver   r130 mod 0 slot 2 channel 130 x fclks 2+20 4+20
+  receiver   r131 mod 0 slot 2 channel 131 x fclks 2+20 4+20
+  receiver   r132 mod 0 slot 2 channel 132 x fclks 2+20 4+20
+  receiver   r133 mod 0 slot 2 channel 133 x fclks 2+20 4+20
+  receiver   r134 mod 0 slot 2 channel 134 x fclks 2+20 4+20
+  receiver   r135 mod 0 slot 2 channel 135 x fclks 2+20 4+20
+  receiver   r136 mod 0 slot 2 channel 136 x fclks 2+20 4+20
+  receiver   r137 mod 0 slot 2 channel 137 x fclks 2+20 4+20
+  receiver   r138 mod 0 slot 2 channel 138 x fclks 2+20 4+20
+  receiver   r141 mod 0 slot 2 channel 141 x fclks 2+20 4+20
+  receiver   r142 mod 0 slot 2 channel 142 x fclks 2+20 4+20
+  receiver   r143 mod 0 slot 2 channel 143 x fclks 2+20 4+20
+  receiver   r144 mod 0 slot 2 channel 144 x fclks 2+20 4+20
+  receiver   r145 mod 0 slot 2 channel 145 x fclks 2+20 4+20
+  receiver   r146 mod 0 slot 2 channel 146 x fclks 2+20 4+20
+  receiver   r147 mod 0 slot 2 channel 147 x fclks 2+20 4+20
+  receiver   r148 mod 0 slot 2 channel 148 x fclks 2+20 4+20
+  receiver   r149 mod 0 slot 2 channel 149 x fclks 2+20 4+20
+  receiver   r150 mod 0 slot 2 channel 150 x fclks 2+20 4+20
+  receiver   r151 mod 0 slot 2 channel 151 x fclks 2+20 4+20
+  receiver   r152 mod 0 slot 2 channel 152 x fclks 2+20 4+20
+  receiver   r153 mod 0 slot 2 channel 153 x fclks 2+20 4+20
+  receiver   r154 mod 0 slot 2 channel 154 x fclks 2+20 4+20
+  receiver   r155 mod 0 slot 2 channel 155 x fclks 2+20 4+20
+  receiver   r156 mod 0 slot 2 channel 156 x fclks 2+20 4+20
+  receiver   r157 mod 0 slot 2 channel 157 x fclks 2+20 4+20
+  receiver   r158 mod 0 slot 2 channel 158 x fclks 2+20 4+20
+  receiver   r161 mod 0 slot 2 channel 161 x fclks 2+20 4+20
+  receiver   r162 mod 0 slot 2 channel 162 x fclks 2+20 4+20
+  receiver   r163 mod 0 slot 2 channel 163 x fclks 2+20 4+20
+  receiver   r164 mod 0 slot 2 channel 164 x fclks 2+20 4+20
+  receiver   r165 mod 0 slot 2 channel 165 x fclks 2+20 4+20
+  receiver   r166 mod 0 slot 2 channel 166 x fclks 2+20 4+20
+  receiver   r167 mod 0 slot 2 channel 167 x fclks 2+20 4+20
+  receiver   r168 mod 0 slot 2 channel 168 x fclks 2+20 4+20
+  receiver   r169 mod 0 slot 2 channel 169 x fclks 2+20 4+20
+  receiver   r170 mod 0 slot 2 channel 170 x fclks 2+20 4+20
+  receiver   r171 mod 0 slot 2 channel 171 x fclks 2+20 4+20
+  receiver   r172 mod 0 slot 2 channel 172 x fclks 2+20 4+20
+  receiver   r173 mod 0 slot 2 channel 173 x fclks 2+20 4+20
+  receiver   r174 mod 0 slot 2 channel 174 x fclks 2+20 4+20
+  receiver   r175 mod 0 slot 2 channel 175 x fclks 2+20 4+20
+  receiver   r176 mod 0 slot 2 channel 176 x fclks 2+20 4+20
+  receiver   r177 mod 0 slot 2 channel 177 x fclks 2+20 4+20
+  receiver   r178 mod 0 slot 2 channel 178 x fclks 2+20 4+20 
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved                        */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush               2     0     1
+   end vector
+
+   /*   begin real vectors at address 10H                                */
+
+   org 16 
+
+  vector rx_any 2 0 1 
+    r001 x   r002 x   r003 x   r004 x   r005 x   r006 x   r007 x   r008 x   r009 x 
+    r010 x   r011 x   r012 x   r013 x   r014 x   r015 x   r016 x   r017 x   r018 x 
+    r021 x   r022 x   r023 x   r024 x   r025 x   r026 x   r027 x   r028 x   r029 x 
+    r030 x   r031 x   r032 x   r033 x   r034 x   r035 x   r036 x   r037 x   r038 x 
+    r041 x   r042 x   r043 x   r044 x   r045 x   r046 x   r047 x   r048 x   r049 x 
+    r050 x   r051 x   r052 x   r053 x   r054 x   r055 x   r056 x   r057 x   r058 x 
+    r061 x   r062 x   r063 x   r064 x   r065 x   r066 x   r067 x   r068 x   r069 x 
+    r070 x   r071 x   r072 x   r073 x   r074 x   r075 x   r076 x   r077 x   r078 x 
+    r101 x   r102 x   r103 x   r104 x   r105 x   r106 x   r107 x   r108 x   r109 x 
+    r110 x   r111 x   r112 x   r113 x   r114 x   r115 x   r116 x   r117 x   r118 x 
+    r121 x   r122 x   r123 x   r124 x   r125 x   r126 x   r127 x   r128 x   r129 x 
+    r130 x   r131 x   r132 x   r133 x   r134 x   r135 x   r136 x   r137 x   r138 x 
+    r141 x   r142 x   r143 x   r144 x   r145 x   r146 x   r147 x   r148 x   r149 x 
+    r150 x   r151 x   r152 x   r153 x   r154 x   r155 x   r156 x   r157 x   r158 x 
+    r161 x   r162 x   r163 x   r164 x   r165 x   r166 x   r167 x   r168 x   r169 x 
+    r170 x   r171 x   r172 x   r173 x   r174 x   r175 x   r176 x   r177 x   r178 x 
+ 
+  end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]                             */
+   
+   /*   sequence ram pointers 0 through F are reserved                   */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+  s_flush_0     v_flush      
+  s_flush_0001 	v_flush
+  s_flush_0002 	v_flush
+  s_flush_0003 	v_flush
+  s_flush_0004 	v_flush
+  s_flush_0005 	v_flush
+  s_flush_0006 	v_flush
+  s_flush_0007 	v_flush
+  s_flush_0008 	v_flush
+  s_flush_0009 	v_flush
+  s_flush_000A 	v_flush
+  s_flush_000B 	v_flush
+  s_flush_000C 	v_flush
+  s_flush_000D 	v_flush
+  s_flush_000E 	v_flush
+  s_flush_000F 	v_flush
+
+   /*   begin real pointers at address 10H                               */
+
+   org 16 
+   
+   s_rx_any		rx_any
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved                  */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+   /*   this section is the startup for the 2 fclk per vector mode   */
+   /*   this section is the startup for the 3 fclk per vector mode   */
+   /*   this section is the startup for the 4 fclk per vector mode   */
+
+   p_startup_0                  apply s_flush_0 with vceoff,nop
+   p_startup_1                  apply s_flush_0 with nop
+   p_startup_2                  apply s_flush_0 with nop
+   p_startup_3 jmp to p_rx_any,	apply s_flush_0 with nop
+
+   /* start real program at address 10H */
+
+   org 16 
+   
+/*   p_rx_any apply s_rx_any with fe, vceon*/
+   p_rx_any jmpq cpu to p_rx_any apply s_rx_any with vceoff
+
+  
+   /* end   real program   */
+  p_off                   apply s_flush_0 with      vceoff
+  p_halt_flush_sls sls 12 apply s_flush_0 with nop, vceoff
+  p_halt_flush            apply s_flush_0 with nop, vceoff
+  p_halt_assert           apply s_flush_0 with nop, vceoff, halt
+  p_halt_dis_vcen sls 2   apply s_flush_0 with nop, vceoff
+
+end program_section

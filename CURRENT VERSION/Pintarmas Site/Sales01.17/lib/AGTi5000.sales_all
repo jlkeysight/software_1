@@ -1,0 +1,91 @@
+# What String Identification: @(#)4.2	12/8/04 sales.aim
+#16000   # GPIB Sales Rack Verification
+16001	# Analog Fixture Present
+16305		
+16306
+16310
+16315
+16316
+16317
+16318
+16320
+16325
+16327
+16330
+16331
+16332
+16333
+16334
+16335
+16336
+16337
+16338
+16340
+16355
+16360
+16367
+16370
+16371
+16380
+16386
+16387
+16391
+16392
+16393
+16394
+16415
+16416
+16420
+16427
+16456
+16465
+16466
+16470
+16471
+16472
+16475
+16476
+16480
+16481
+16482
+
+
+16200		# Series S/I-bus impedance
+16201		# Series G-bus impedance
+16202		# Series S/I-bus inductance
+16203		# Series G-bus inductance
+16204		# Parallel S/I-bus capacitance
+16205		# Parallel G-bus capacitance
+16206		# Parallel bus impedance
+16207		# Parallel I-bus impedance
+16208		# Parallel G-bus impedance
+16209		# Parallel S-bus impedance
+16216		# Parallel SI/BA to ground resistance
+16217		# Parallel Xn to ground resistance
+16230		# Xn leakage current
+16231		# SI-AB bus leakage current
+16800		# Static Driver output (5.0V)
+16801		# Static Driver output (0.0V)
+16802		# Static Driver output (1.25V)
+16803		# Static Driver output (2.5V)
+16804		# Static Driver output (3.3V)
+#16806		# Driver output slew rate (100v/us)
+16811		# Drive output minimum pulse width
+16820		# Driver edge place accuracy Falling (0ns DELAYS)
+16821		# Driver edge place accuracy Falling (100ns DELAYS)
+16829		# Out of tri-state edge placement accuracy and skew
+16832		# Driver tri-state leakage current 
+16835		# Driver output impedance (sourcing 750ma)
+16836		# Driver output impedance (sinking 750ma)
+16840		# Maximum drive current (sourcing 750ma)
+16841		# Maximum drive current (sinking 750mA)
+16847		# Driver over voltage limit accuracy 
+16850		# +1.9v rising edge pulled up (low hystorysis trigger)
+16851		# +1.9v falling edge pulled down (low hystorysis trigger)
+16852		# +3.3v rising edge pulled up (high hystorysis trigger)
+16853		# +3.3v falling edge pulled down (high hystorysis trigger) 
+16860		# Receiver input current sourcing
+16861		# Receiver input current sourcing
+16871		# Reciever edge accuracy and skew 
+16904		# Ground difference test
+16999		# Firmware/card revision verification

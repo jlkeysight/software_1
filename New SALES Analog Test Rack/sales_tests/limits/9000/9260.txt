@@ -1,0 +1,8 @@
+9260 1 2  0.1000  0.9770         OHMS 
+'DC SOURCE OUTPUT RESISTANCE (Sourcing)            '
+ 1.00000E+00  0.00000E+00            0 
+
+9260 1 2  0.1000  0.9770         OHMS 
+'DC SOURCE OUTPUT RESISTANCE (Sinking)             '
+ 1.00000E+00  0.00000E+00            0 
+

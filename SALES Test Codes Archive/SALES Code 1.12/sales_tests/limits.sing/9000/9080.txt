@@ -1,0 +1,296 @@
+9080 1 1 00000001          HEX
+'Tap Port 5V No Back Match                         '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TCK Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TDI Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TMS Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TRST Low                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TCK High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TDI High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TMS High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TRST High                                '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TCK Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TDI Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TMS Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TRST Toggle                              '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000002          HEX
+'Tap Port 5V With Back Match                       '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TCK Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TDI Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TMS Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TRST Low                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TCK High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TDI High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TMS High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TRST High                                '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TCK Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TDI Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TMS Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TRST Toggle                              '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TCK Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TDI Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TMS Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TRST Low                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TCK High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TDI High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TMS High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TRST High                                '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TCK Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TDI Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TMS Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TRST Toggle                              '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TCK Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TDI Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TMS Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TRST Low                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TCK High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TDI High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TMS High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TRST High                                '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TCK Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TDI Toggle                               ' 
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TMS Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TRST Toggle                              '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TCK Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TDI Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TMS Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TRST Low                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TCK High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TDI High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TMS High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TRST High                                '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TCK Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TDI Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TMS Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TRST Toggle                              '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TCK Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TDI Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TMS Low                                  '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000          HEX
+'Tap Port TRST Low                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TCK High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TDI High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TMS High                                 '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000001          HEX
+'Tap Port TRST High                                '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TCK Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TDI Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TMS Toggle                               '
+1.000000E+00  0.000000E+00            0
+
+9080 1 1 00000000000000xx          BINARY
+'Tap Port TRST Toggle                              '
+1.000000E+00  0.000000E+00            0
+

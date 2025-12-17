@@ -1,0 +1,43 @@
+Sales01.14 released 7-5-2019(MM-DD-YYYY)
+Built by: Sri Tharan
+CC Build Machine: SGPBLD10
+
+1  DGN built-date version:
+1.1  Debug built version: //yisnas1.yis.is.keysight.com/v12/VERSIONS/9.00p.2016_04_08 sgpbld10
+
+2  Config Spec:
+
+element * CHECKEDOUT 
+element * /main/nt_dir/LATEST -nocheckout 
+element .../licensing/tst/flexlm/... .../main/LATEST 
+element config_specs/... /main/LATEST 
+
+element * .../pat_09.00p/LATEST 
+mkbranch pat_09.00p
+
+element * 09.00P 
+element .../wind/... .../mtdtornado200/LATEST 
+element .../wind/... TORNADO_2.0.0 
+element .../wind22/... .../mtdtornado22cp1/LATEST 
+element .../wind22/... TORNADO_2.2CP1 
+element * /main/LATEST 
+
+end mkbranch pat_09.00p
+
+
+
+3 Change Summary:
+3.1  XTPB Support- New Sales test description file
+
+
+4 Files updated in CC Build Server
+4.1  \dgn\src\3070salestests\
+	-AGT3070SalesTestDescription
+
+5 Files updated in Test Controller
+5.1  AGT3070SalesTestDescription
+
+
+6 Effective Date - 
+6.1 Pintarmas Site : 
+6.2 VES Site       : 

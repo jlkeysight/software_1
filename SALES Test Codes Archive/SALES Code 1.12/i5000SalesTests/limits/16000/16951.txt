@@ -1,0 +1,24 @@
+16951 1 3  6.000000   6.500000   7.000000          OHMS 
+'Talon load resistor 6.5 ohm measurement (side A)  '
+ 1.00000E+00  0.00000E+00            0 
+
+16951 1 3  45.50000   50.00000   54.50000          OHMS 
+'Talon load resistor 50 ohm measurement (side A)   '
+ 1.00000E+00  0.00000E+00            0 
+
+16951 1 3  950.0000   1000.000   1050.000          OHMS 
+'Talon load resistor 1K ohm measurement (side A)   '
+ 1.00000E+00  0.00000E+00            0 
+
+16951 1 3  6.000000   6.500000   7.000000          OHMS 
+'Talon load resistor 6.5 ohm measurement (side B)  '
+ 1.00000E+00  0.00000E+00            0 
+
+16951 1 3  45.50000   50.00000   54.50000          OHMS 
+'Talon load resistor 50 ohm measurement (side B)   '
+ 1.00000E+00  0.00000E+00            0 
+
+16951 1 3  950.0000   1000.000   1050.000          OHMS 
+'Talon load resistor 1K ohm measurement (side B)   '
+ 1.00000E+00  0.00000E+00            0 
+

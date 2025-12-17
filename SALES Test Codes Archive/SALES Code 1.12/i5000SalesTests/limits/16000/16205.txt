@@ -1,0 +1,16 @@
+16205 1 2   -5.2500000E-11  5.2500000E-11        FARADS 
+'PARALLEL G BUS CAPACITANCE                        '
+ 1.00000E+00  0.00000E+00            0 
+
+16205 1 2   -5.2500000E-11  5.2500000E-11        FARADS 
+'PARALLEL G BUS CAPACITANCE                        '
+ 1.00000E+00  0.00000E+00            0 
+
+16205 1 2   -5.2500000E-11  5.2500000E-11        FARADS 
+'PARALLEL L BUS CAPACITANCE                        '
+ 1.00000E+00  0.00000E+00            0 
+
+16205 1 2   -5.2500000E-11  5.2500000E-11        FARADS 
+'PARALLEL L BUS CAPACITANCE                        '
+ 1.00000E+00  0.00000E+00            0 
+

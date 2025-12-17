@@ -1,0 +1,4 @@
+9183 8 2  -5.500  -4.000        VOLTS 
+'[PINCARD] RX NEG OV LIMIT ACCURACY                '
+ 1.00000E+00  0.00000E+00            0 
+

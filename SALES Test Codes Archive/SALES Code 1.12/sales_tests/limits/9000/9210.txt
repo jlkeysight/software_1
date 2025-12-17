@@ -1,0 +1,4 @@
+9210 8 2   0.0000000E+00   9.9999997E-06      HENRIES 
+'SERIES Xn BUS INDUCTANCE                          '
+ 1.00000E+00  0.00000E+00            0 
+

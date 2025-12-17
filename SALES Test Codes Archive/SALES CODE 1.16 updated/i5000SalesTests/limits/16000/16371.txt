@@ -1,0 +1,95 @@
+16371 1 2   10.0 100.0    DECIBELS 
+'Minimum Signal - Noise Ratio (128Hz 0.1v RMS)     '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   15.0 100.0    DECIBELS 
+'Total Harmonic Distortion (128Hz 0.1v RMS)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   25.0 100.0    DECIBELS 
+'Minimum Signal - Noise Ratio (1024Hz 0.1v RMS)    '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   5.0  100.0    DECIBELS 
+'Total Harmonic Distortion (1024Hz 0.1v RMS)       '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   10.0  100.0   DECIBELS
+'Minimum Signal - Noise Ratio (8192Hz 0.1v RMS)    '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   5.0  100.0    DECIBELS
+'Total Harmonic Distortion (8192Hz 0.1v RMS)       '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   1.0  100.0    DECIBELS
+'Minimum Signal - Noise Ratio (20KHz 0.1v RMS)     '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   10.0   100.0  DECIBELS 
+'Total Harmonic Distortion (20KHz 0.1v RMS)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   15.0  100.0   DECIBELS 
+'Minimum Signal - Noise Ratio (128Hz 1.0v RMS)     '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   15.0  100.0   DECIBELS 
+'Total Harmonic Distortion (128Hz 1.0v RMS)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   20.0  100.0   DECIBELS 
+'Minimum Signal - Noise Ratio (1024Hz 1.0v RMS)    '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   5.0  100.0   DECIBELS 
+'Total Harmonic Distortion (1024Hz 1.0v RMS)       '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   5.0  100.0   DECIBELS
+'Minimum Signal - Noise Ratio (8192Hz 1.0v RMS)    '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   5.0  100.0    DECIBELS
+'Total Harmonic Distortion (8192Hz 1.0v RMS)       '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   5.0  100.0    DECIBELS 
+'Minimum Signal - Noise Ratio (20KHz 1.0v RMS)     '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   5.0  100.0    DECIBELS
+'Total Harmonic Distortion (20KHz 1.0v RMS)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   25.0   100.0  DECIBELS 
+'Minimum Signal - Noise Ratio (128Hz 7.071v RMS)   '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   20.0  100.0   DECIBELS 
+'Total Harmonic Distortion (128Hz 7.071v RMS)      '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   25.0  100.0   DECIBELS 
+'Minimum Signal - Noise Ratio (1024Hz 7.071v RMS)  '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   10.0  100.0  DECIBELS 
+'Total Harmonic Distortion (1024Hz 7.071v RMS)     '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   10.0  100.0  DECIBELS 
+'Minimum Signal - Noise Ratio (8192Hz 7.071v RMS)  '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   15.0  100.0  DECIBELS 
+'Total Harmonic Distortion (8192Hz 7.071v RMS)     '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   1.0   100.0  DECIBELS 
+'Minimum Signal - Noise Ratio (20KHz 7.071v RMS)   '
+ 1.00000E+00  0.00000E+00            0 
+
+16371 1 2   1.0   100.0  DECIBELS 
+'Total Harmonic Distortion (20KHz 7.071v RMS)      '
+ 1.00000E+00  0.00000E+00            0 

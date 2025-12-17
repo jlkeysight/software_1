@@ -1,0 +1,16 @@
+9428 1 2  0.1550  0.2318         AMPS 
+'+MOA OUT SOURCING MAXIMUM I (HIGH)                '
+ 1.00000E+00  0.00000E+00            0 
+
+9428 1 2  0.1550  0.2318         AMPS 
+'+MOA OUT SINKING MAXIMUM I (HIGH)                 '
+ 1.00000E+00  0.00000E+00            0 
+
+9428 1 2  0.1550  0.2318         AMPS 
+'-MOA OUT SOURCING MAXIMUM I (HIGH)                '
+ 1.00000E+00  0.00000E+00            0 
+
+9428 1 2  0.1550  0.2318         AMPS 
+'-MOA OUT SINKING MAXIMUM I (HIGH)                 '
+ 1.00000E+00  0.00000E+00            0 
+

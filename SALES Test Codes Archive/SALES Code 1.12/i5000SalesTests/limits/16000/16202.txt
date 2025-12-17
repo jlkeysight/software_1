@@ -1,0 +1,16 @@
+16202 1 2   1.00000E-03   1.99999E-02      HENRIES 
+'SERIES S-BUS INDUCTANCE (side A)                  '
+ 1.00000E+00  0.00000E+00            0 
+
+16202 1 2   1.00000E-03   1.99999E-02      HENRIES 
+'SERIES I-BUS INDUCTANCE (side A)                  '
+ 1.00000E+00  0.00000E+00            0 
+
+16202 1 2   1.00000E-03   1.99999E-02      HENRIES 
+'SERIES S-BUS INDUCTANCE (side B)                  '
+ 1.00000E+00  0.00000E+00            0 
+
+16202 1 2   1.00000E-03   1.99999E-02      HENRIES 
+'SERIES I-BUS INDUCTANCE (side B)                  '
+ 1.00000E+00  0.00000E+00            0 
+

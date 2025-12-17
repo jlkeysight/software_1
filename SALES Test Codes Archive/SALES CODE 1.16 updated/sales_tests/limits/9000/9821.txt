@@ -1,0 +1,4 @@
+9821 8 3  -2.5990  -2.5000  -2.4010        VOLTS 
+'[CAFE DD] DR OUT VOLTAGE ACCY - DRIVE HIGH -2.5v  '
+ 1.00000E+00  0.00000E+00            0 
+

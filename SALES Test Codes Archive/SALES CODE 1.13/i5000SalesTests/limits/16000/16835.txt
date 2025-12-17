@@ -1,0 +1,3 @@
+16835 144 2  0.0100  3.2000         OHMS 
+'DRIVER OUTPUT IMPEDANCE (750mA Sourcing)          '
+ 1.00000E+00  0.00000E+00            0 

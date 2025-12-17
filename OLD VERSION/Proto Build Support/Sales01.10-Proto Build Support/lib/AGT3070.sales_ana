@@ -1,0 +1,32 @@
+# What String Identification: @(#)4.3	02/28/95 09:06:32 sales.ana
+#9049		# Fixture release for 9207-9/9217
+9006            # Null Multi-module test
+9002		# Analog Fixture Present
+9000		# GPIB Sales Rack verification
+9500		# Borg command module test
+9010            # Sales Rack Offset Capacitance Test
+9011            # Load test for the channel #7 UTILITY CARD
+9012            # Load test for the channel #8 UTILITY CARD
+9034            # Heron P3 Spike Presence Detection Test
+9200            # [PINCARD] Series Xn Bus Resistance
+9201            # [PINCARD] Series XG Bus Resistance
+9207		# [PINCARD] PARALLEL Xn BUS RESISTANCE USING MOA
+9208		# [PINCARD] PARALLEL Xn BUS RESISTANCE USING MOA ASRU & MB ONLY
+9209		# [PINCARD] PARALLEL Xn TO XG BUS RESISTANCE USING MOA
+9210            # [PINCARD] Series Xn Bus Inductance
+9211            # [PINCARD] Series Xn Bus Inductance
+9217		# [PINCARD] MOA Xn to GROUND RESISTANCE
+9220            # [PINCARD] Parallel Xn Bus Capacitance
+9221            # [PINCARD] Parallel XG Bus Capacitance
+9230            # [PINCARD] Xn Bus Leakage Current
+9900            # [TWINPIN] Series Xn Bus Resistance
+9901            # [TWINPIN] Series XG Bus Resistance
+9907            # [TWINPIN] PARALLEL Xn BUS RESISTANCE USING MOA
+9909            # [TWINPIN] PARALLEL Xn TO XG BUS RESISTANCE USING MOA
+9910            # [TWINPIN] Series Xn Bus Inductance
+9911            # [TWINPIN] Series Xn Bus Inductance
+9917            # [TWINPIN] MOA Xn to GROUND RESISTANCE
+9920            # [TWINPIN] Parallel Xn Bus Capacitance
+9921            # [TWINPIN] Parallel XG Bus Capacitance
+9930            # [TWINPIN] Xn Bus Leakage Current
+9999

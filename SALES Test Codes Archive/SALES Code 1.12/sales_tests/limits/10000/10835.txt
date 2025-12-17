@@ -1,0 +1,4 @@
+10835 16 2  0.9500  1.7200         OHMS 
+'[CARIBOU] DR OUTPUT IMPEDANCE (700mA Sourcing)    '
+ 1.00000E+00  0.00000E+00            0 
+

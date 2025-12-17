@@ -1,0 +1,4 @@
+9996 8 2   4.4999999E-01   5.5599999E-01         AMPS 
+'Prototype test - new algorithm HI LEV I LIM SOURC '
+ 1.00000E+00  0.00000E+00            0 
+

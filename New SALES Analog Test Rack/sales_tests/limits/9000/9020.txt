@@ -1,0 +1,12 @@
+9020 8 2  4.000  7.000         OHMS 
+'AIM LOAD PATH RESISTANCE CAL (5ohms)              '
+ 1.00000E+00  0.00000E+00            0 
+
+9020 8 2  0.500  2.000      DECIMAL 
+'DMM TO SCOPE RATIO FOR AIM 5 OHM LOAD             '
+ 1.00000E+00  0.00000E+00            0 
+
+9020 8 2  0.500  2.000      DECIMAL 
+'DMM TO SCOPE NO LOAD RATIO                        '
+ 1.00000E+00  0.00000E+00            0 
+

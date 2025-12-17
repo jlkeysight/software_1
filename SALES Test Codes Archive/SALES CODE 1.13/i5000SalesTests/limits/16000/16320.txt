@@ -1,0 +1,4 @@
+16320 2 2  -1.0000   1.0000        VOLTS 
+'AUX SOURCE TRI-STATE SPIKE TEST                   '
+ 1.00000E+00  0.00000E+00            0 
+

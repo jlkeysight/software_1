@@ -1,0 +1,8 @@
+9705 8 3   9.00000  10.00000  15.00000         OHMS 
+'PARALLEL Xn TO Xall_others BUS RESISTANCE (log)   '
+ 1.00000E+00  0.00000E+00            0 
+
+9705 8 2  -4.9999999E-10   4.9999999E-10         AMPS 
+'Xn BUS LEAKAGE CURRENT                            '
+ 1.00000E+00  0.00000E+00            0 
+

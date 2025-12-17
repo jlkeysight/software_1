@@ -1,0 +1,32 @@
+# What String Identification: @(#)4.5	05/02/95 11:00:44 sales.dig
+16000		# GPIB Sales Rack Verification
+16002		# DIGITAL - Read fixture enable and fixture ID
+16800		# Static Driver output (5.0V)
+16801		# Static Driver output (0.0V)
+16802		# Static Driver output (1.25V)
+16803		# Static Driver output (2.5V)
+16804		# Static Driver output (3.3V)
+#16806		# Driver output slew rate (100v/us)
+16811		# Drive output minimum pulse width
+16820		# Driver edge place accuracy Falling (0ns DELAYS)
+16821		# Driver edge place accuracy Falling (100ns DELAYS)
+#16825		# Inter-modular driver edge placement accuracy and skew
+16829		# Out of tri-state edge placement accuracy and skew
+#16830		# Tri-state low edge placement accuracy and skew
+16832		# Driver tri-state leakage current 
+16835		# Driver output impedance (sourcing 750ma)
+16836		# Driver output impedance (sinking 750ma)
+16840		# Maximum drive current (sourcing 750ma)
+16841		# Maximum drive current (sinking 750mA)
+16847		# Driver over voltage limit accuracy
+16850		# +1.9v rising edge pulled up (low hystorysis trigger)
+16851		# +1.9v falling edge pulled down (low hystorysis trigger)
+#16852		# +3.3v rising edge pulled up (high hystorysis trigger)
+#16853		# +3.3v falling edge pulled down (high hystorysis trigger) 
+16860		# Receiver input current sourcing
+16861		# Receiver input current sinking
+###16871		# Reciever edge accuracy (rising) # DISABLED IN 1.09A
+###16872		# Reciever edge accuracy (falling)# DISABLED IN 1.09A
+16900		# ADC verification
+16904		# Ground difference test
+16999		# Firmware/card revision verification

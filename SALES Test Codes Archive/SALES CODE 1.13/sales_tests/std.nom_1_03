@@ -1,0 +1,92 @@
+9240   # Test Number of data below
+1.169830E-01	0	# Fxt1 Mod0/3     0.1 ohm         4-Wire
+1.039928E+00	1	# Fxt1 Mod0/3     1 ohm           4-Wire
+1.003597E+01	2	# Fxt1 Mod0/3     10 ohm          4-Wire
+1.003597E+01	3	# Fxt1 Mod0/3     10 ohm          4-Wire
+1.000872E+02	4	# Fxt1 Mod0/3     100 ohm         4-Wire
+1.000872E+02	5	# Fxt1 Mod0/3     100 ohm         4-Wire
+1.001352E+02	6	# Fxt1 Mod0/3     100 ohm         2-Wire
+9.998480E+02	7	# Fxt1 Mod0/3     1K ohm          4-Wire
+1.000168E+03	8	# Fxt1 Mod0/3     1K ohm          2-Wire
+9.998480E+02	9	# Fxt1 Mod0/3     1K ohm          4-Wire
+1.000168E+03   10	# Fxt1 Mod0/3     1K ohm          2-Wire
+9.998980E+03   11	# Fxt1 Mod0/3     10K ohm         4-Wire
+9.999040E+03   12	# Fxt1 Mod0/3     10K ohm         2-Wire
+9.999040E+03   13	# Fxt1 Mod0/3     10K ohm         2-Wire
+9.999040E+03   14	# Fxt1 Mod0/3     10K ohm         2-Wire
+9.999600E+04   15	# Fxt1 Mod0/3     100K ohm        2-Wire
+9.999600E+04   16	# Fxt1 Mod0/3     100K ohm        2-Wire
+9.999600E+04   17	# Fxt1 Mod0/3     100K ohm        2-Wire
+9.999600E+04   18	# Fxt1 Mod0/3     100K ohm        2-Wire
+1.000273E+06   19	# Fxt1 Mod0/3     1M ohm          2-Wire
+1.000273E+06   20	# Fxt1 Mod0/3     1M ohm          2-Wire
+1.001457E+07   21	# Fxt1 Mod0/3     10M ohm         2-Wire
+9241   # Test Number of data below
+147.7000E-06    0	# Fxt1 Mod0/3     150uF           4W-128
+15.03400E-06    1    ## 128Hz Value Not Available, use 1024Hz ##       4W-128
+148.2200E-06    2	# Fxt1 Mod0/3     150uF           4W-1024
+15.03400E-06    3	# Fxt1 Mod0/3     15uF            4W-1024
+1.544400E-06    4	# Fxt1 Mod0/3     1.5uF           4W-1024
+1.544400E-06    5	# Fxt1 Mod0/3     1.5uF           4W-1024
+1.544400E-06    6	# Fxt1 Mod0/3     1.5uF           2W-1024
+150.9830E-09    7	# Fxt1 Mod0/3     150nF           4W-1024
+150.9830E-09    8	# Fxt1 Mod0/3     150nF           2W-1024
+150.9830E-09    9	# Fxt1 Mod0/3     150nF           4W-1024
+150.9830E-09   10	# Fxt1 Mod0/3     150nF           2W-1024
+15.11300E-09   11	# Fxt1 Mod0/3     15nF            2W-1024
+15.11300E-09   12	# Fxt1 Mod0/3     15nF            2W-1024
+1.495950E-09   13	# Fxt1 Mod0/3     1.5nF           2W-1024
+1.495950E-09   14	# Fxt1 Mod0/3     1.5nF           2W-1024
+146.7000E-12   15	# Fxt1 Mod0/3     150pF           2W-1024
+146.7000E-12   16	# Fxt1 Mod0/3     150pF           2W-1024
+14.43960E-12   17	# Fxt1 Mod0/3     15pF            2W-1024
+146.6810E-12   18	# Fxt1 Mod0/3     150pF           2W-8192
+14.44310E-12   19	# Fxt1 Mod0/3     15pF            2W-8192
+10.08760E-12   20	# Fxt1 Mod0/3     10pF            2W-8192
+9242   # Test Number of data below
+2.080000E-06    0	# Fxt1 Mod0/3     2uH             4W-8192    
+18.96200E-06    1	# Fxt1 Mod0/3     20uH            4W-8192    
+151.6020E-06    2	# Fxt1 Mod0/3     154uH           4W-1024    
+1.564050E-03    3	# Fxt1 Mod0/3     1.54mH          4W-1024    
+15.71560E-03    4	# Fxt1 Mod0/3     15.4mH          4W-1024    
+153.7200E-03    5	# Fxt1 Mod0/3     154mH           2W-1024    
+153.9800E-03    6	# Fxt1 Mod0/3     154mH           2W-1024    
+1.566800E+00    7	# Fxt1 Mod0/3     1.54H           2W-1024    
+1.566800E+00    8	# Fxt1 Mod0/3     1.54H           2W-1024    
+1.549000E+00    9	# Fxt1 Mod0/3     1.54H           2W-128     
+15.28600E+00   10	# Fxt1 Mod0/3     15.4H           2W-128    
+100.9400E+00   11	# Fxt1 Mod0/3     100H            2W-128    
+100.9400E+00   12	# Fxt1 Mod0/3     100H            2W-128    
+9243   # Test Number of data below
+9.996090E+03	0	# Fxt1 Mod0/3     10K ohm DELTA   6-Wire
+9.999800E+04	1	# Fxt1 Mod0/3     100K ohm DELTA  6-Wire
+9244   # Test Number of data below
+1.004840E-09    0	# Fxt1 Mod1/2     1nF DELTA       6-Wire
+9245   # Test Number of data below
+10.19130E-03    0	# Fxt1 Mod1/2 10mH DELTA 6-Wire ; use start pin 11
+9246   # Test Number of data below
+150.9830E-09    0	# Fxt1 Mod0/3     150nF           2W-1024
+15.11300E-09    1	# Fxt1 Mod0/3     15nF            2W-1024
+15.11300E-09    2	# Fxt1 Mod0/3     15nF            2W-1024
+1.495950E-09    3	# Fxt1 Mod0/3     1.5nF           2W-1024
+1.495950E-09    4	# Fxt1 Mod0/3     1.5nF           2W-1024
+146.7000E-12    5	# Fxt1 Mod0/3     150pF           2W-1024
+146.7000E-12    6	# Fxt1 Mod0/3     150pF           2W-1024
+14.45200E-12    7	# Fxt1 Mod0/3     15pF            2W-1024
+146.6810E-12    8	# Fxt1 Mod0/3     150pF           2W-8192
+14.45000E-12    9	# Fxt1 Mod0/3     15pF            2W-8192
+10.08760E-12   10	# Fxt1 Mod0/3     10pF            2W-8192
+9247   # Test Number of data below
+10.00600E-03    0	# Fxt1 Mod0/3     10mF            4W-128 
+1.0003000E-03    1	# Fxt1 Mod0/3     1mF             4W-128 
+10.000000E-05    2	# Fxt1 Mod0/3     100uF           4W-128 
+
+Other old junk follows:
+Deleted because of real math errors on compensation subtests 0 and 1 t9246
+1.544400E-06    0	# Fxt1 Mod0/3     1.5uF           2W-1024
+150.9830E-09    1	# Fxt1 Mod0/3     150nF           2W-1024
+The last two subtests were deleted because fixture cal restrictions t9247
+1.033000E-03    3	# Fxt1 Mod0/3     1mF             4W-1024
+1.008000E-04    4	# Fxt1 Mod0/3     100uF           4W-1024
+value     	     uncertainty ratio (percent = * 100) 
+# What String Identification: @(#)3.2	04/05/94 17:19:46 std.nom_1_03

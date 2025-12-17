@@ -1,0 +1,8 @@
+9420 1 2  0.1500  0.9670         OHMS 
+'MOA DC OUTPUT RESISTANCE SOURCING                 '
+ 1.00000E+00  0.00000E+00            0 
+
+9420 1 2  0.1500  0.9670         OHMS 
+'MOA DC OUTPUT RESISTANCE SINKING                  '
+ 1.00000E+00  0.00000E+00            0 
+

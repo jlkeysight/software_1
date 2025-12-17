@@ -1,0 +1,142 @@
+/*                                                                            */
+/*   File    :  /users/redig/sisld/sssales/t9605_vml                          */
+/*   Purpose :                                                                */
+/*       This is the vmc code file for t9605 {Silversword Driver Slew Rate}   */
+/*       Written 7/05/89  Mike Redig                                          */
+/*       This file sets the fclks per vector pair to 2 (1 fclk per vector),  */
+/*       sets the Tclk rate to 10MHz and defines all 24 drivers to have the */
+/*       toggle condition as their default.                                 */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel loadable file                    */
+/*                                                                            */
+
+/******************************************************************************/
+
+setup
+
+modules 1
+drive_tclk_from_dutclk(1.0e7,1.0e7)
+fclks_per_vector_pair 2
+
+end setup
+
+/******************************************************************************/
+
+   /*   driver/receiver <label>                                      */
+   /*   mod             <number>                                     */
+   /*   slot            <number>                                     */
+   /*   channel         <number>                                     */
+   /*   { default }     <0,1,k,t>[z]                                 */
+   /*   fclks           <number [+/- delay]>   <number [+/- delay]>  */
+   /*   { data src }    <adrv0, adrv1, flip-flop>                    */
+   /*   { 3-state src } <adrv0, adrv1, flip-flop>                    */
+ 
+channel_section
+
+
+  driver   d0     mod 0   slot 2   channel 0   t  fclks 1+0  2+0 
+  driver   d1     mod 0   slot 2   channel 1   t  fclks 1+0  2+0 
+  driver   d2     mod 0   slot 2   channel 2   t  fclks 1+0  2+0 
+  driver   d3     mod 0   slot 2   channel 3   t  fclks 1+0  2+0 
+  driver   d4     mod 0   slot 2   channel 4   t  fclks 1+0  2+0 
+  driver   d5     mod 0   slot 2   channel 5   t  fclks 1+0  2+0 
+  driver   d6     mod 0   slot 2   channel 6   t  fclks 1+0  2+0 
+  driver   d7     mod 0   slot 2   channel 7   t  fclks 1+0  2+0 
+  driver   d8     mod 0   slot 2   channel 8   t  fclks 1+0  2+0 
+  driver   d9     mod 0   slot 2   channel 9   t  fclks 1+0  2+0 
+  driver   d10    mod 0   slot 2   channel 10  t  fclks 1+0  2+0 
+  driver   d11    mod 0   slot 2   channel 11  t  fclks 1+0  2+0 
+  driver   d12    mod 0   slot 2   channel 12  t  fclks 1+0  2+0 
+  driver   d13    mod 0   slot 2   channel 13  t  fclks 1+0  2+0 
+  driver   d14    mod 0   slot 2   channel 14  t  fclks 1+0  2+0 
+  driver   d15    mod 0   slot 2   channel 15  t  fclks 1+0  2+0 
+  driver   d16    mod 0   slot 2   channel 16  t  fclks 1+0  2+0 
+  driver   d17    mod 0   slot 2   channel 17  t  fclks 1+0  2+0 
+  driver   d18    mod 0   slot 2   channel 18  t  fclks 1+0  2+0 
+  driver   d19    mod 0   slot 2   channel 19  t  fclks 1+0  2+0 
+  driver   d20    mod 0   slot 2   channel 20  t  fclks 1+0  2+0 
+  driver   d21    mod 0   slot 2   channel 21  t  fclks 1+0  2+0 
+  driver   d22    mod 0   slot 2   channel 22  t  fclks 1+0  2+0 
+  driver   d23    mod 0   slot 2   channel 23  t  fclks 1+0  2+0 
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved     */
+   /*   for seq, sys clk gen, and formatter startup   */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush               1     0   256
+   end vector
+
+   /*   begin real vectors at address 10H   */
+   /*   because all drivers are declared with t as their default    */
+   /*   no drivers are named in the following vector.               */
+
+   org 16 
+
+   vector   toggle              1   0   256
+   end vector
+
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]   */
+   
+   /*   sequence ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup      */
+
+   org 0
+
+   s_flush_0      v_flush      
+   s_flush_1      v_flush
+
+   /*   begin real pointers at address 10H   */
+
+   org 16 
+   
+   s_toggle        toggle             
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup       */
+
+   org 0
+
+   p_startup_0                      apply s_flush_0 with vceoff, nop
+   p_startup_1                      apply s_flush_0 with nop
+   p_startup_2                      apply s_flush_0 with nop
+   p_startup_3 jmp to p_toggle      apply s_flush_1 with nop
+
+   /* start real program at address 10H */
+
+   org 16 
+   
+   p_toggle  jmp to p_toggle  apply s_toggle with vceon
+
+  
+   /* end   real program   */
+  
+end program_section

@@ -1,0 +1,4 @@
+9082 1 1 xxxxxxxxxxxxx0xx          BINARY
+'RAM BIST (above 4M: user memory)                  '
+1.000000E+00  0.000000E+00            0
+

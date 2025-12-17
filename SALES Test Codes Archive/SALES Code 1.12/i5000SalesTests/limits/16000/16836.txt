@@ -1,0 +1,4 @@
+16836 144 2  0.3000  3.7200         OHMS 
+'DRIVER OUTPUT IMPEDANCE (SINKING 750mA)           '
+ 1.00000E+00  0.00000E+00            0 
+

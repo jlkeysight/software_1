@@ -1,0 +1,4 @@
+9104 1 3  -0.010000   0.000000   0.010000        VOLTS 
+'[PINCARD] GND DIFF TEST - TO AIM SWDGND           '
+ 1.00000E+00  0.00000E+00            0 
+

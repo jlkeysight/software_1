@@ -1,0 +1,4 @@
+9143 8 2   4.1910000E-02   1.1971000E-01         AMPS 
+'LOW LEVEL CURRENT LIMIT SINKING                   '
+ 1.00000E+00  0.00000E+00            0 
+

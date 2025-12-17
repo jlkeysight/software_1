@@ -1,0 +1,16 @@
+16200 1 2   0.0000000E+00   1.7500000E+00         OHMS 
+'SERIES X1:X2 BUS RESISTANCE                       '
+ 1.00000E+00  0.00000E+00            0 
+
+16200 1 2   0.0000000E+00   1.7500000E+00         OHMS 
+'SERIES X3:X4 BUS RESISTANCE                       '
+ 1.00000E+00  0.00000E+00            0 
+
+16200 1 2   0.0000000E+00   1.7500000E+00         OHMS 
+'SERIES X5:X6 BUS RESISTANCE                       '
+ 1.00000E+00  0.00000E+00            0 
+
+16200 1 2   0.0000000E+00   1.7500000E+00         OHMS 
+'SERIES X7:X8 BUS RESISTANCE                       '
+ 1.00000E+00  0.00000E+00            0 
+

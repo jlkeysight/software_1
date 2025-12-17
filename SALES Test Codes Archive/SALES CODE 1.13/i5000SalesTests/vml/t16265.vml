@@ -1,0 +1,205 @@
+/*                                                                            */
+/*   File    :  ~/i5000SalesTests/vml/t16265.vml                              */
+/*   Purpose :  sequencer margin test vml code                                */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel loadable file                    */
+/*                                                                            */
+/******************************************************************************/
+
+setup
+
+modules 1
+fclks_per_vector_pair 2
+
+end setup
+
+/******************************************************************************/
+
+   /*   driver/receiver <label>                                      */
+   /*   mod             <number>                                     */
+   /*   slot            <number>                                     */
+   /*   channel         <number>                                     */
+   /*   { default }     <0,1,k,t>[z]                                 */
+   /*   fclks           <number [+/- delay]>   <number [+/- delay]>  */
+   /*   { data src }    <adrv0, adrv1, flip-flop>                    */
+   /*   { 3-state src } <adrv0, adrv1, flip-flop>                    */
+ 
+channel_section
+  driver   da     mod 0   slot 2   channel 0   1z   fclks 1+0  2+0 
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved     */
+   /*   for seq, sys clk gen, and formatter startup   */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush_1             1     0   256
+   end vector
+
+   vector   v_flush_2             1     0   256
+   end vector
+
+   /*   begin real vectors at address 10H   */
+
+   org 16 
+
+   vector   v1                  1   0   1
+   end vector
+
+   vector   v2                255   0   1
+   end vector
+
+   vector   v3                  1   0   1
+   end vector
+
+   vector   v4                  1   0   1
+   end vector
+
+   vector   v5                  1   0   1
+   end vector
+
+   vector   v6                  1   0   1
+   end vector
+
+   vector   v7                  1   0   1
+   end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]   */
+   
+   /*   sequence ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup      */
+
+   org 0
+
+   s_flush_0      v_flush_1
+   s_flush_1      v_flush_2
+   s_flush_2      v_flush_1
+   s_flush_3      v_flush_2
+   s_flush_4      v_flush_1
+   s_flush_5      v_flush_2
+   s_flush_6      v_flush_1
+   s_flush_7      v_flush_2
+   s_flush_8      v_flush_1
+   s_flush_9      v_flush_2
+   s_flush_A      v_flush_1
+   s_flush_B      v_flush_2
+   s_flush_C      v_flush_1
+   s_flush_D      v_flush_2
+   s_flush_E      v_flush_1
+   s_flush_F      v_flush_2
+
+   /*   begin real pointers at address 10H   */
+
+   org 05555H
+   
+   s1   v1
+   s2   v5
+   s3   v1
+   s4   v5
+   s5   v1
+    
+   org 0AAAAH
+   
+   s6   v2
+   s7   v5
+   s8   v1
+   s9   v3
+   s10  v4
+   s11  v7
+   s12  v6
+   s13  v1
+      
+   org 0CCCCH
+
+   s14  v3
+   s15  v3
+
+   org 03333H
+
+   s16  v4
+
+   org 06666H
+  
+   s17  v5
+   s18  v6
+
+   org 09999H
+
+   s19  v6
+   s20  v5
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup       */
+
+   org 0
+
+   p_startup_0                            apply s_flush_0 with vceoff, nop
+   p_startup_1                            apply s_flush_1 with nop
+   p_startup_2                            apply s_flush_0 with nop
+   p_startup_3 jmp to p1                  apply s_flush_1 with nop
+
+   /* start real program at address 10H */
+
+   org 0AAAH
+   
+   p1                apply s10   with vceon
+   p2     sls 5      apply s1    with sce
+   p3     jmp to p4  apply s16   with       fe
+
+   org 0555H
+
+   p_skip            apply s1    with  sce, fe 
+   p4     jmp to p5  apply s19   with  sce, fe
+   p5     sls 7      apply s6   
+   p6     jmp to p7  apply s14   with  sce,     nop
+
+   org 0333H
+
+   p7                apply s16   with  sce
+   p8     jmp to p9  apply s20   with       fe
+   p9                apply s18   with  sce, fe
+   p10               apply s17   with           nop
+   p11    jmp to p12 apply s1    with  sce,     nop
+
+   org 0CCCH
+
+   p12               apply s13  
+   p13    sls 1      apply s6    with  sce
+   p14    sls 4      apply s2    with  sce, fe
+   p15               apply s2    with  sce, fe,     halt
+   pE     jmp to pE  apply s1    with  fe, sce
+   
+   /* end   real program   */
+  
+   p_halt_flush_sls   sls 13           apply s_flush_0   with nop
+   p_halt_assert                       apply s_flush_D   with vceoff, nop, halt
+   p_halt_dis_vcen                     apply s_flush_E   with nop
+   p_halt_flush                        apply s_flush_F   with nop
+
+end program_section

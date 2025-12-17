@@ -1,0 +1,8 @@
+9167 8 2  0.400  1.400        VOLTS 
+'RECEIVER PULL-UP VOLTAGE CLAMP at 0V              '
+ 1.00000E+00  0.00000E+00            0 
+
+9167 8 2  -1.700  -0.700        VOLTS 
+'RECEIVER PULL-DOWN VOLTAGE CLAMP at 0V            '
+ 1.00000E+00  0.00000E+00            0 
+

@@ -1,0 +1,1046 @@
+test 16000
+  testtype  nmns
+  usage once_only
+endtest
+
+test 16001
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa
+endtest
+
+test 16002
+  testtype  smss
+  usage once_per_slot
+  cardtype controlxtp ctrlxtpa
+endtest
+
+test 16003
+  testtype  nmns
+  usage once_only
+endtest
+
+test 16004
+  testtype  nmns
+  usage once_only
+endtest
+
+test 16005
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16001
+endtest
+
+test 16006
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16010
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+##################
+### SUB Card Tests
+##################
+test 16011
+  testtype smss
+  usage once_per_slot
+  cardtype utility
+  restrictions
+16001
+endtest
+
+test 16012
+  testtype smss
+  usage once_per_slot
+  cardtype utility
+  restrictions
+16001
+endtest
+
+##################
+
+
+
+test 16032
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16188
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16189
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16200
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16001
+endtest
+
+test 16201
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16001
+endtest
+
+test 16202
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16001
+endtest
+
+test 16203
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16001
+endtest
+
+test 16204
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16001
+endtest
+
+test 16205
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16001 16010
+endtest
+
+test 16206
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16207
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16208
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16209
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16216
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16217
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16230
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16231
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest
+
+test 16248
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16001
+endtest
+
+test 16249
+  testtype  smss
+  usage once_per_module
+  cardtype tdd10
+  restrictions
+16001
+endtest
+
+test 16250	
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa
+  restrictions
+16002
+endtest
+
+test 16252
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa
+  restrictions
+16002
+endtest
+
+test 16256
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa
+  restrictions
+16002
+endtest
+
+test 16260
+  testtype  smss
+  usage once_per_module
+  cardtype control control6
+  restrictions
+16002
+endtest
+
+test 16261
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa
+  restrictions
+16002
+endtest
+
+test 16265
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa
+  restrictions
+16002
+endtest
+
+test 16275
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa
+  restrictions
+16002
+endtest
+
+test 16297
+  testtype  nmns
+  usage once_only
+  restrictions
+16002
+endtest
+
+test 16298
+  testtype  nmns
+  usage once_only
+  restrictions
+16002
+endtest
+
+test 16299
+  testtype  nmns
+  usage once_only
+  restrictions
+16002
+endtest
+
+test 16305
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16306
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16310
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16315
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16316
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16317
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16318
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16320
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16325
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16327
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16330
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16331
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16332
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16333
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16334
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16335
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16336
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16337
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16338
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16340
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16355
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16360
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16367
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16370
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16371
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16380
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16386
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16387
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16391
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16392
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16393
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16394
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16415
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16416
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16420
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16427
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16456
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16465
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16466
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16470
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16471
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+endtest
+
+test 16472
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+endtest
+
+test 16475
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+endtest
+
+test 16476
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+endtest
+
+test 16480
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16481
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16482
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16001
+endtest
+
+test 16500
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa
+endtest
+
+#####################std. comp classic ############
+test 16540
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16500
+endtest
+
+test 16541
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16500
+endtest
+
+test 16542
+  testtype  smss
+  usage once_per_module
+  cardtype aimc
+  restrictions
+16500
+endtest
+
+test 16543
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16500
+endtest
+
+test 16544
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16500
+endtest
+
+test 16545
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16500
+endtest
+
+test 16546
+  testtype  smss
+  usage once_per_module
+  cardtype aimc
+  restrictions
+16500
+endtest
+
+test 16547
+  testtype  smss
+  usage once_per_module
+  cardtype aimc nasru
+  restrictions
+16500
+endtest
+
+test 16548
+  testtype  smss
+  usage once_per_module
+  cardtype aimc
+  restrictions
+16500
+endtest
+
+##########################################
+
+#####################std. comp MCU for NASRU only ############
+test 16550
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16551
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16552
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16553
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16556
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16557
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16558
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16559
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16560
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16561
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16562
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+test 16563
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+16500
+endtest
+
+
+##########################################
+
+
+test 16800
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16801
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16802
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16803
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16804
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16806
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16811
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16820
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16821
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16829
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16832
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16835
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16836
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16840
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002 
+endtest
+
+test 16841
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002 
+endtest
+
+test 16847
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16850
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16851
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16852
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16853
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16860
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16861
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16871
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16872
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16900
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16904
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+  restrictions
+16002
+endtest
+
+test 16999
+  testtype  smss
+  usage once_per_slot
+  cardtype tdd10
+endtest

@@ -1,0 +1,4 @@
+10883 16 3  -15.60  -14.42  -12.10        VOLTS 
+'[CARIBOU] RX NEG OV LIMIT ACCURACY                '
+ 1.00000E+00  0.00000E+00            0 
+

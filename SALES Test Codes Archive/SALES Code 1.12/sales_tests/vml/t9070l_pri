@@ -1,0 +1,193 @@
+/*                                                                            */
+/*   File    :  /users/jim/dgn/vml_routines/t9070l_pri                        */
+/*   Purpose :  This is one of four vmc code files for test t70.              */
+/*       The 'l' suffix refers to the expected receive level.                 */
+/*       The 'pri' suffix on this test means that the receive should come     */
+/*       prior to the drive edge by 10nS.  The sister file for this test      */
+/*       is suffixed with 'pos' for post - meaning the receive strobe should  */
+/*       come 10nS after the drive edge.  The fclks per vector pair is set    */
+/*       to 2 for this test.  The tclk frequency is set at 12.5MHz.  The      */
+/*       drive and receive levels are set to standard TTL levels.  Each       */
+/*       vector is set to trigger on tclks 0 and 256 (basically it never gets */
+/*       a second tclk) and both drivers and receivers are tied to fclks      */
+/*       1 and 2.  The timing is set up strictly by delays entered from the   */
+/*       fclk edges.  This test sets the drive edge for 0nS and the receive   */
+/*       edge for 70nS.  This translates to the receive edge happening 10nS   */
+/*       before the drive edge since the vector cycle time is 80nS (12.5MHz). */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel loadable file                    */
+/*                                                                            */
+
+/******************************************************************************/
+
+setup
+
+modules 1
+pin_cards 1
+fclks_per_vector_pair 2
+
+end setup
+
+/******************************************************************************/
+
+   /*   driver/receiver <label>                                      */
+   /*   mod             <number>                                     */
+   /*   slot            <number>                                     */
+   /*   channel         <number>                                     */
+   /*   { default }     <0,1,k,t>[z]                                 */
+   /*   fclks           <number [+/- delay]>   <number [+/- delay]>  */
+   /*   { data src }    <adrv0, adrv1, flip-flop>                    */
+   /*   { 3-state src } <adrv0, adrv1, flip-flop>                    */
+ 
+channel_section
+  driver_range 0.2 3.5
+  receiver_range 0.8 2.0
+  slew_rate 275 
+
+  driver   da     mod 0   slot 2   channel 0   1z   fclks 1+0  2+0 
+  driver   db     mod 0   slot 2   channel 1   1z   fclks 1+0  2+0 
+  driver   dc     mod 0   slot 2   channel 2   1z   fclks 1+0  2+0 
+  driver   dd     mod 0   slot 2   channel 3   1z   fclks 1+0  2+0 
+  driver   de     mod 0   slot 2   channel 4   1z   fclks 1+0  2+0 
+  driver   df     mod 0   slot 2   channel 5   1z   fclks 1+0  2+0 
+  driver   dg     mod 0   slot 2   channel 6   1z   fclks 1+0  2+0 
+  driver   dh     mod 0   slot 2   channel 7   1z   fclks 1+0  2+0 
+  receiver ra     mod 0   slot 2   channel 0   1z   fclks 1+70 2+70 
+  receiver rb     mod 0   slot 2   channel 1   1z   fclks 1+70 2+70 
+  receiver rc     mod 0   slot 2   channel 2   1z   fclks 1+70 2+70 
+  receiver rd     mod 0   slot 2   channel 3   1z   fclks 1+70 2+70 
+  receiver re     mod 0   slot 2   channel 4   1z   fclks 1+70 2+70 
+  receiver rf     mod 0   slot 2   channel 5   1z   fclks 1+70 2+70 
+  receiver rg     mod 0   slot 2   channel 6   1z   fclks 1+70 2+70 
+  receiver rh     mod 0   slot 2   channel 7   1z   fclks 1+70 2+70 
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved     */
+   /*   for seq, sys clk gen, and formatter startup   */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush_1             1     0   256
+   end vector
+
+   vector   v_flush_2             1     0   256
+   end vector
+
+   /*   begin real vectors at address 10H   */
+
+   org 16 
+
+   vector   drive_hi   1   0   256
+   da 1
+   db 1
+   dc 1
+   dd 1
+   de 1
+   df 1
+   dg 1
+   dh 1
+   end vector
+
+   vector   drive_lo   1   0   256
+   da 0
+   db 0
+   dc 0
+   dd 0
+   de 0
+   df 0
+   dg 0
+   dh 0
+   ra 0
+   rb 0
+   rc 0
+   rd 0
+   re 0
+   rf 0
+   rg 0 
+   rh 0
+   end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]   */
+   
+   /*   sequence ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup      */
+
+   org 0
+
+   s_flush_0      v_flush_1    
+   s_flush_1      v_flush_2
+   s_flush_2      v_flush_1
+   s_flush_3      v_flush_2
+   s_flush_4      v_flush_1
+   s_flush_5      v_flush_2
+   s_flush_6      v_flush_1
+   s_flush_7      v_flush_2
+   s_flush_8      v_flush_1
+   s_flush_9      v_flush_2
+   s_flush_A      v_flush_1
+   s_flush_B      v_flush_2
+   s_flush_C      v_flush_1
+   s_flush_D      v_flush_2
+   s_flush_E      v_flush_1
+   s_flush_F      v_flush_2
+
+   /*   begin real pointers at address 10H   */
+
+   org 16 
+   
+   s_drive_hi   drive_hi                   
+   s_drive_lo   drive_lo
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup       */
+
+   org 0
+
+   p_startup_0                      apply s_flush_0 with vceoff, nop
+   p_startup_1                      apply s_flush_1 with nop
+   p_startup_2                      apply s_flush_0 with nop
+   p_startup_3   jmp to p_drive_hi, apply s_flush_1 with nop
+
+   /* start real program at address 10H */
+
+   org 16 
+   
+   p_drive_hi  apply s_drive_hi with vceon
+   p_drive_lo  apply s_drive_lo 
+   p_drive_hi2 apply s_drive_hi
+  
+   /* end   real program   */
+  
+   /* changed sls from 13 to 7 to capture the next to the last vector */
+   p_halt_flush_sls    sls 7           apply s_flush_0   with nop    
+   p_halt_assert                       apply s_flush_D   with vceoff, nop, halt
+   p_halt_dis_vcen                     apply s_flush_E   with nop
+   p_halt_flush                        apply s_flush_F   with nop
+
+end program_section

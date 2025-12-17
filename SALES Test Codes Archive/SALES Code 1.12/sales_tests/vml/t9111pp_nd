@@ -1,0 +1,177 @@
+/*                                                                            */
+/*   File    :  /users/jim/dgn/vml_routines/t9111pp_nd                        */
+/*   Purpose :                                                                */
+/*       This is a vmc code file for DRIVER PULSE WIDTH MINIMUM               */
+/*       This file sets up for a positive minimum pulse with no delay.        */
+/*       Written 11/13/87  Jim Myers                                          */
+/*       This file sets the fclks per vector pair to 4 (2 fclks per vector)   */
+/*       sets up the driver to drive from -1.5 to +1.5v at 275v/uS slew rate, */
+/*       creates an initial drive low vector,                                 */
+/*       and then commands the driver to toggle.  With the driver set to      */
+/*       trigger on the first and second fclks, and the vector set such that  */
+/*       the two fclks are one tclk apart, the driver should pulse low for    */
+/*       50nS - which is the minimum pulse width.                             */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel loadable file                    */
+/*                                                                            */
+
+/******************************************************************************/
+
+setup
+
+modules 1
+pin_cards 1
+fclks_per_vector_pair 4
+
+end setup
+
+/******************************************************************************/
+
+   /*   driver/receiver <label>                                      */
+   /*   mod             <number>                                     */
+   /*   slot            <number>                                     */
+   /*   channel         <number>                                     */
+   /*   { default }     <0,1,k,t>[z]                                 */
+   /*   fclks           <number [+/- delay]>   <number [+/- delay]>  */
+   /*   { data src }    <adrv0, adrv1, flip-flop>                    */
+   /*   { 3-state src } <adrv0, adrv1, flip-flop>                    */
+ 
+channel_section
+  driver_range  0.2 3.5
+  slew_rate 225
+
+  driver   da     mod 0   slot 2   channel 0   1z   fclks 1+0  2+0
+  driver   db     mod 0   slot 2   channel 1   1z   fclks 1+0  2+0
+  driver   dc     mod 0   slot 2   channel 2   1z   fclks 1+0  2+0
+  driver   dd     mod 0   slot 2   channel 3   1z   fclks 1+0  2+0
+  driver   de     mod 0   slot 2   channel 4   1z   fclks 1+0  2+0
+  driver   df     mod 0   slot 2   channel 5   1z   fclks 1+0  2+0
+  driver   dg     mod 0   slot 2   channel 6   1z   fclks 1+0  2+0
+  driver   dh     mod 0   slot 2   channel 7   1z   fclks 1+0  2+0
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved     */
+   /*   for seq, sys clk gen, and formatter startup   */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush               2     0     1
+   end vector
+
+   /*   begin real vectors at address 10H   */
+
+   org 16 
+
+  vector dr_low  2 0 1
+    da 0
+    db 0
+    dc 0
+    dd 0
+    de 0
+    df 0
+    dg 0
+    dh 0
+  end vector
+
+  vector toggle 2 0 1
+    da t
+    db t
+    dc t
+    dd t
+    de t
+    df t
+    dg t
+    dh t
+  end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]   */
+   
+   /*   sequence ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup      */
+
+   org 0
+
+   s_flush_0      v_flush
+   s_flush_1      v_flush
+   s_flush_2      v_flush
+   s_flush_3      v_flush
+   s_flush_4      v_flush
+   s_flush_5      v_flush
+   s_flush_6      v_flush
+   s_flush_7      v_flush
+   s_flush_8      v_flush
+   s_flush_9      v_flush
+   s_flush_A      v_flush
+   s_flush_B      v_flush
+   s_flush_C      v_flush
+   s_flush_D      v_flush
+   s_flush_E      v_flush
+   s_flush_F      v_flush
+
+   /*   begin real pointers at address 10H   */
+
+   org 16 
+   
+  sequence_dr_low dr_low  
+  sequence_toggle toggle
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup       */
+
+   org 0
+
+   /*   this section is the startup for the 2 fclk per vector mode   */
+
+   /*   this section is the startup for the 3 fclk per vector mode   */
+
+   /*   this section is the startup for the 4 fclk per vector mode   */
+
+   p_startup_0                            apply s_flush_0 with vceoff, nop
+   p_startup_1                            apply s_flush_0 with nop
+   p_startup_2                            apply s_flush_0 with nop
+   p_startup_3 jmp to program_dr_low_00 , apply s_flush_0 with nop
+
+   /* start real program at address 10H */
+
+   org 16 
+   
+   program_dr_low_00                           apply sequence_dr_low  with vceon
+   program_dr_low_01                           apply sequence_dr_low  
+   program_toggle_00                           apply sequence_toggle
+   program_toggle_01 jmp to program_toggle_00, apply sequence_toggle
+
+  
+   /* end   real program   */
+  
+   p_halt_flush_sls   sls 13           apply s_flush_0   with nop
+   p_halt_assert                       apply s_flush_0   with vceoff, nop, halt
+   p_halt_dis_vcen                     apply s_flush_0   with nop
+   p_halt_flush                        apply s_flush_0   with nop
+
+end program_section

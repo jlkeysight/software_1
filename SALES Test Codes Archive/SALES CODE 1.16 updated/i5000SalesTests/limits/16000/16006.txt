@@ -1,0 +1,40 @@
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (A-SRC -> AF2)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (SRC -> KAS05)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (SRC -> KAS25)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (SRC -> KAS45)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (SRC -> KAS65)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (B-SRC -> AF2)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (SRC -> KBS05)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (SRC -> KBS25)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (SRC -> KBS45)        '
+ 1.00000E+00  0.00000E+00            0 
+
+16006 1 2  4.5000  5.1000        VOLTS 
+'Digital fixture validation (SRC -> KBS65)        '
+ 1.00000E+00  0.00000E+00            0 
+

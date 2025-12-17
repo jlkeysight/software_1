@@ -1,0 +1,336 @@
+/*                                                                            */
+/*   File    :  ~/dgn/src/i5000SalesTests/vml/t16830.vml                      */
+/*   Purpose :                                                                */
+/*       This test is the vmc code file for t16830 {TRI_STATE EDGE PLACEMENT} */
+/*       going from low into tri-state and from tri-state to low using a      */
+/*       delay of 0nS.                                                        */
+/*       This file sets the fclks per vector pair to 4 (2 fclks per vector),  */
+/*       driver range of 0v to 3v.  This file sets the tristate time for      */
+/*       2 tclks and the drive low time for 48 tclks (4% duty cycle). This    */
+/*       allows the vectors to execute at the current tclk frequency without  */
+/*       causing a power limit.                                               */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel loadable file                    */
+/*                                                                            */
+
+/******************************************************************************/
+
+setup
+
+modules 1
+pin_cards 1
+fclks_per_vector_pair 4
+
+end setup
+
+/*-----------------------------------------------------------------------------
+ * driver <label>
+ * mod            0  // 'vmc -command' will be replaced with 'mod_id'
+ * slot           2  // 'vmc -command' will be replaced with 'slot'
+ * channel        <number>
+ * [default]      0|1|k|t|x|z
+ * fclks          <number>[(+|-)<delay>] <number[(+|-)<delay>]
+ * [data src]     adrv0|adrv1|flip_flop|static0|static1
+ * [3-state src]  adrv0|adrv1|flip_flop|static_en|static_dis
+ *
+ * receiver <label>
+ * mod            0  // 'vmc -command' will be replaced with 'mod_id'
+ * slot           2  // 'vmc -command' will be replaced with 'slot'
+ * channel        <number>
+ * [default]      0|1|k|t|x|z
+ * fclks          <number>[(+|-)<delay>] <number[(+|-)<delay>]
+ * [pull]         pull_up|pull_down
+ * [clamp]        clamp_on|clamp_off
+ * [rterm]        rterm_on|rterm_off
+ *----------------------------------------------------------------------------*/
+
+ 
+channel_section
+
+  driver_range 0.2 3.5
+  slew_rate 225
+
+  driver   d001 mod 0 slot 2 channel 001 z fclks 1+100  3+100
+  driver   d002 mod 0 slot 2 channel 002 z fclks 1+100  3+100
+  driver   d003 mod 0 slot 2 channel 003 z fclks 1+100  3+100
+  driver   d004 mod 0 slot 2 channel 004 z fclks 1+100  3+100
+  driver   d005 mod 0 slot 2 channel 005 z fclks 1+100  3+100
+  driver   d006 mod 0 slot 2 channel 006 z fclks 1+100  3+100
+  driver   d007 mod 0 slot 2 channel 007 z fclks 1+100  3+100
+  driver   d008 mod 0 slot 2 channel 008 z fclks 1+100  3+100
+  driver   d009 mod 0 slot 2 channel 009 z fclks 1+100  3+100
+  driver   d010 mod 0 slot 2 channel 010 z fclks 1+100  3+100
+  driver   d011 mod 0 slot 2 channel 011 z fclks 1+100  3+100
+  driver   d012 mod 0 slot 2 channel 012 z fclks 1+100  3+100
+  driver   d013 mod 0 slot 2 channel 013 z fclks 1+100  3+100
+  driver   d014 mod 0 slot 2 channel 014 z fclks 1+100  3+100
+  driver   d015 mod 0 slot 2 channel 015 z fclks 1+100  3+100
+  driver   d016 mod 0 slot 2 channel 016 z fclks 1+100  3+100
+  driver   d017 mod 0 slot 2 channel 017 z fclks 1+100  3+100
+  driver   d018 mod 0 slot 2 channel 018 z fclks 1+100  3+100
+  driver   d021 mod 0 slot 2 channel 021 z fclks 1+100  3+100
+  driver   d022 mod 0 slot 2 channel 022 z fclks 1+100  3+100
+  driver   d023 mod 0 slot 2 channel 023 z fclks 1+100  3+100
+  driver   d024 mod 0 slot 2 channel 024 z fclks 1+100  3+100
+  driver   d025 mod 0 slot 2 channel 025 z fclks 1+100  3+100
+  driver   d026 mod 0 slot 2 channel 026 z fclks 1+100  3+100
+  driver   d027 mod 0 slot 2 channel 027 z fclks 1+100  3+100
+  driver   d028 mod 0 slot 2 channel 028 z fclks 1+100  3+100
+  driver   d029 mod 0 slot 2 channel 029 z fclks 1+100  3+100
+  driver   d030 mod 0 slot 2 channel 030 z fclks 1+100  3+100
+  driver   d031 mod 0 slot 2 channel 031 z fclks 1+100  3+100
+  driver   d032 mod 0 slot 2 channel 032 z fclks 1+100  3+100
+  driver   d033 mod 0 slot 2 channel 033 z fclks 1+100  3+100
+  driver   d034 mod 0 slot 2 channel 034 z fclks 1+100  3+100
+  driver   d035 mod 0 slot 2 channel 035 z fclks 1+100  3+100
+  driver   d036 mod 0 slot 2 channel 036 z fclks 1+100  3+100
+  driver   d037 mod 0 slot 2 channel 037 z fclks 1+100  3+100
+  driver   d038 mod 0 slot 2 channel 038 z fclks 1+100  3+100
+  driver   d041 mod 0 slot 2 channel 041 z fclks 1+100  3+100
+  driver   d042 mod 0 slot 2 channel 042 z fclks 1+100  3+100
+  driver   d043 mod 0 slot 2 channel 043 z fclks 1+100  3+100
+  driver   d044 mod 0 slot 2 channel 044 z fclks 1+100  3+100
+  driver   d045 mod 0 slot 2 channel 045 z fclks 1+100  3+100
+  driver   d046 mod 0 slot 2 channel 046 z fclks 1+100  3+100
+  driver   d047 mod 0 slot 2 channel 047 z fclks 1+100  3+100
+  driver   d048 mod 0 slot 2 channel 048 z fclks 1+100  3+100
+  driver   d049 mod 0 slot 2 channel 049 z fclks 1+100  3+100
+  driver   d050 mod 0 slot 2 channel 050 z fclks 1+100  3+100
+  driver   d051 mod 0 slot 2 channel 051 z fclks 1+100  3+100
+  driver   d052 mod 0 slot 2 channel 052 z fclks 1+100  3+100
+  driver   d053 mod 0 slot 2 channel 053 z fclks 1+100  3+100
+  driver   d054 mod 0 slot 2 channel 054 z fclks 1+100  3+100
+  driver   d055 mod 0 slot 2 channel 055 z fclks 1+100  3+100
+  driver   d056 mod 0 slot 2 channel 056 z fclks 1+100  3+100
+  driver   d057 mod 0 slot 2 channel 057 z fclks 1+100  3+100
+  driver   d058 mod 0 slot 2 channel 058 z fclks 1+100  3+100
+  driver   d061 mod 0 slot 2 channel 061 z fclks 1+100  3+100
+  driver   d062 mod 0 slot 2 channel 062 z fclks 1+100  3+100
+  driver   d063 mod 0 slot 2 channel 063 z fclks 1+100  3+100
+  driver   d064 mod 0 slot 2 channel 064 z fclks 1+100  3+100
+  driver   d065 mod 0 slot 2 channel 065 z fclks 1+100  3+100
+  driver   d066 mod 0 slot 2 channel 066 z fclks 1+100  3+100
+  driver   d067 mod 0 slot 2 channel 067 z fclks 1+100  3+100
+  driver   d068 mod 0 slot 2 channel 068 z fclks 1+100  3+100
+  driver   d069 mod 0 slot 2 channel 069 z fclks 1+100  3+100
+  driver   d070 mod 0 slot 2 channel 070 z fclks 1+100  3+100
+  driver   d071 mod 0 slot 2 channel 071 z fclks 1+100  3+100
+  driver   d072 mod 0 slot 2 channel 072 z fclks 1+100  3+100
+  driver   d073 mod 0 slot 2 channel 073 z fclks 1+100  3+100
+  driver   d074 mod 0 slot 2 channel 074 z fclks 1+100  3+100
+  driver   d075 mod 0 slot 2 channel 075 z fclks 1+100  3+100
+  driver   d076 mod 0 slot 2 channel 076 z fclks 1+100  3+100
+  driver   d077 mod 0 slot 2 channel 077 z fclks 1+100  3+100
+  driver   d078 mod 0 slot 2 channel 078 z fclks 1+100  3+100
+  driver   d101 mod 0 slot 2 channel 101 z fclks 1+100  3+100
+  driver   d102 mod 0 slot 2 channel 102 z fclks 1+100  3+100
+  driver   d103 mod 0 slot 2 channel 103 z fclks 1+100  3+100
+  driver   d104 mod 0 slot 2 channel 104 z fclks 1+100  3+100
+  driver   d105 mod 0 slot 2 channel 105 z fclks 1+100  3+100
+  driver   d106 mod 0 slot 2 channel 106 z fclks 1+100  3+100
+  driver   d107 mod 0 slot 2 channel 107 z fclks 1+100  3+100
+  driver   d108 mod 0 slot 2 channel 108 z fclks 1+100  3+100
+  driver   d109 mod 0 slot 2 channel 109 z fclks 1+100  3+100
+  driver   d110 mod 0 slot 2 channel 110 z fclks 1+100  3+100
+  driver   d111 mod 0 slot 2 channel 111 z fclks 1+100  3+100
+  driver   d112 mod 0 slot 2 channel 112 z fclks 1+100  3+100
+  driver   d113 mod 0 slot 2 channel 113 z fclks 1+100  3+100
+  driver   d114 mod 0 slot 2 channel 114 z fclks 1+100  3+100
+  driver   d115 mod 0 slot 2 channel 115 z fclks 1+100  3+100
+  driver   d116 mod 0 slot 2 channel 116 z fclks 1+100  3+100
+  driver   d117 mod 0 slot 2 channel 117 z fclks 1+100  3+100
+  driver   d118 mod 0 slot 2 channel 118 z fclks 1+100  3+100
+  driver   d121 mod 0 slot 2 channel 121 z fclks 1+100  3+100
+  driver   d122 mod 0 slot 2 channel 122 z fclks 1+100  3+100
+  driver   d123 mod 0 slot 2 channel 123 z fclks 1+100  3+100
+  driver   d124 mod 0 slot 2 channel 124 z fclks 1+100  3+100
+  driver   d125 mod 0 slot 2 channel 125 z fclks 1+100  3+100
+  driver   d126 mod 0 slot 2 channel 126 z fclks 1+100  3+100
+  driver   d127 mod 0 slot 2 channel 127 z fclks 1+100  3+100
+  driver   d128 mod 0 slot 2 channel 128 z fclks 1+100  3+100
+  driver   d129 mod 0 slot 2 channel 129 z fclks 1+100  3+100
+  driver   d130 mod 0 slot 2 channel 130 z fclks 1+100  3+100
+  driver   d131 mod 0 slot 2 channel 131 z fclks 1+100  3+100
+  driver   d132 mod 0 slot 2 channel 132 z fclks 1+100  3+100
+  driver   d133 mod 0 slot 2 channel 133 z fclks 1+100  3+100
+  driver   d134 mod 0 slot 2 channel 134 z fclks 1+100  3+100
+  driver   d135 mod 0 slot 2 channel 135 z fclks 1+100  3+100
+  driver   d136 mod 0 slot 2 channel 136 z fclks 1+100  3+100
+  driver   d137 mod 0 slot 2 channel 137 z fclks 1+100  3+100
+  driver   d138 mod 0 slot 2 channel 138 z fclks 1+100  3+100
+  driver   d141 mod 0 slot 2 channel 141 z fclks 1+100  3+100
+  driver   d142 mod 0 slot 2 channel 142 z fclks 1+100  3+100
+  driver   d143 mod 0 slot 2 channel 143 z fclks 1+100  3+100
+  driver   d144 mod 0 slot 2 channel 144 z fclks 1+100  3+100
+  driver   d145 mod 0 slot 2 channel 145 z fclks 1+100  3+100
+  driver   d146 mod 0 slot 2 channel 146 z fclks 1+100  3+100
+  driver   d147 mod 0 slot 2 channel 147 z fclks 1+100  3+100
+  driver   d148 mod 0 slot 2 channel 148 z fclks 1+100  3+100
+  driver   d149 mod 0 slot 2 channel 149 z fclks 1+100  3+100
+  driver   d150 mod 0 slot 2 channel 150 z fclks 1+100  3+100
+  driver   d151 mod 0 slot 2 channel 151 z fclks 1+100  3+100
+  driver   d152 mod 0 slot 2 channel 152 z fclks 1+100  3+100
+  driver   d153 mod 0 slot 2 channel 153 z fclks 1+100  3+100
+  driver   d154 mod 0 slot 2 channel 154 z fclks 1+100  3+100
+  driver   d155 mod 0 slot 2 channel 155 z fclks 1+100  3+100
+  driver   d156 mod 0 slot 2 channel 156 z fclks 1+100  3+100
+  driver   d157 mod 0 slot 2 channel 157 z fclks 1+100  3+100
+  driver   d158 mod 0 slot 2 channel 158 z fclks 1+100  3+100
+  driver   d161 mod 0 slot 2 channel 161 z fclks 1+100  3+100
+  driver   d162 mod 0 slot 2 channel 162 z fclks 1+100  3+100
+  driver   d163 mod 0 slot 2 channel 163 z fclks 1+100  3+100
+  driver   d164 mod 0 slot 2 channel 164 z fclks 1+100  3+100
+  driver   d165 mod 0 slot 2 channel 165 z fclks 1+100  3+100
+  driver   d166 mod 0 slot 2 channel 166 z fclks 1+100  3+100
+  driver   d167 mod 0 slot 2 channel 167 z fclks 1+100  3+100
+  driver   d168 mod 0 slot 2 channel 168 z fclks 1+100  3+100
+  driver   d169 mod 0 slot 2 channel 169 z fclks 1+100  3+100
+  driver   d170 mod 0 slot 2 channel 170 z fclks 1+100  3+100
+  driver   d171 mod 0 slot 2 channel 171 z fclks 1+100  3+100
+  driver   d172 mod 0 slot 2 channel 172 z fclks 1+100  3+100
+  driver   d173 mod 0 slot 2 channel 173 z fclks 1+100  3+100
+  driver   d174 mod 0 slot 2 channel 174 z fclks 1+100  3+100
+  driver   d175 mod 0 slot 2 channel 175 z fclks 1+100  3+100
+  driver   d176 mod 0 slot 2 channel 176 z fclks 1+100  3+100
+  driver   d177 mod 0 slot 2 channel 177 z fclks 1+100  3+100
+  driver   d178 mod 0 slot 2 channel 178 z fclks 1+100  3+100 
+  end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved     */
+   /*   for seq, sys clk gen, and formatter startup   */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush               2     0     1
+   end vector
+
+   /*   begin real vectors at address 10H   */
+
+   org 16 
+
+   vector   drive_low           25   0   1
+    d001 0  d002 0  d003 0  d004 0  d005 0  d006 0  d007 0  d008 0  d009 0
+    d010 0  d011 0  d012 0  d013 0  d014 0  d015 0  d016 0  d017 0  d018 0
+    d021 0  d022 0  d023 0  d024 0  d025 0  d026 0  d027 0  d028 0  d029 0
+    d030 0  d031 0  d032 0  d033 0  d034 0  d035 0  d036 0  d037 0  d038 0
+    d041 0  d042 0  d043 0  d044 0  d045 0  d046 0  d047 0  d048 0  d049 0
+    d050 0  d051 0  d052 0  d053 0  d054 0  d055 0  d056 0  d057 0  d058 0
+    d061 0  d062 0  d063 0  d064 0  d065 0  d066 0  d067 0  d068 0  d069 0
+    d070 0  d071 0  d072 0  d073 0  d074 0  d075 0  d076 0  d077 0  d078 0
+    d101 0  d102 0  d103 0  d104 0  d105 0  d106 0  d107 0  d108 0  d109 0
+    d110 0  d111 0  d112 0  d113 0  d114 0  d115 0  d116 0  d117 0  d118 0
+    d121 0  d122 0  d123 0  d124 0  d125 0  d126 0  d127 0  d128 0  d129 0
+    d130 0  d131 0  d132 0  d133 0  d134 0  d135 0  d136 0  d137 0  d138 0
+    d141 0  d142 0  d143 0  d144 0  d145 0  d146 0  d147 0  d148 0  d149 0
+    d150 0  d151 0  d152 0  d153 0  d154 0  d155 0  d156 0  d157 0  d158 0
+    d161 0  d162 0  d163 0  d164 0  d165 0  d166 0  d167 0  d168 0  d169 0
+    d170 0  d171 0  d172 0  d173 0  d174 0  d175 0  d176 0  d177 0  d178 0
+    end vector
+
+   vector   tri_state          250   0   1
+    d001 1z d002 1z d003 1z d004 1z d005 1z d006 1z d007 1z d008 1z d009 1z
+    d010 1z d011 1z d012 1z d013 1z d014 1z d015 1z d016 1z d017 1z d018 1z
+    d021 1z d022 1z d023 1z d024 1z d025 1z d026 1z d027 1z d028 1z d029 1z
+    d030 1z d031 1z d032 1z d033 1z d034 1z d035 1z d036 1z d037 1z d038 1z
+    d041 1z d042 1z d043 1z d044 1z d045 1z d046 1z d047 1z d048 1z d049 1z
+    d050 1z d051 1z d052 1z d053 1z d054 1z d055 1z d056 1z d057 1z d058 1z
+    d061 1z d062 1z d063 1z d064 1z d065 1z d066 1z d067 1z d068 1z d069 1z
+    d070 1z d071 1z d072 1z d073 1z d074 1z d075 1z d076 1z d077 1z d078 1z
+    d101 1z d102 1z d103 1z d104 1z d105 1z d106 1z d107 1z d108 1z d109 1z
+    d110 1z d111 1z d112 1z d113 1z d114 1z d115 1z d116 1z d117 1z d118 1z
+    d121 1z d122 1z d123 1z d124 1z d125 1z d126 1z d127 1z d128 1z d129 1z
+    d130 1z d131 1z d132 1z d133 1z d134 1z d135 1z d136 1z d137 1z d138 1z
+    d141 1z d142 1z d143 1z d144 1z d145 1z d146 1z d147 1z d148 1z d149 1z
+    d150 1z d151 1z d152 1z d153 1z d154 1z d155 1z d156 1z d157 1z d158 1z
+    d161 1z d162 1z d163 1z d164 1z d165 1z d166 1z d167 1z d168 1z d169 1z
+    d170 1z d171 1z d172 1z d173 1z d174 1z d175 1z d176 1z d177 1z d178 1z
+   end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]   */
+   
+   /*   sequence ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup      */
+
+   org 0
+
+  s_flush_0     v_flush      
+  s_flush_0001 	v_flush
+  s_flush_0002 	v_flush
+  s_flush_0003 	v_flush
+  s_flush_0004 	v_flush
+  s_flush_0005 	v_flush
+  s_flush_0006 	v_flush
+  s_flush_0007 	v_flush
+  s_flush_0008 	v_flush
+  s_flush_0009 	v_flush
+  s_flush_000A 	v_flush
+  s_flush_000B 	v_flush
+  s_flush_000C 	v_flush
+  s_flush_000D 	v_flush
+  s_flush_000E 	v_flush
+  s_flush_000F 	v_flush
+
+   /*   begin real pointers at address 10H   */
+
+   org 16 
+   
+   s_drive_low     drive_low          
+   s_tri_state     tri_state
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup       */
+
+   org 0
+
+   /*   this section is the startup for the 2 fclk per vector mode   */
+   /*   this section is the startup for the 3 fclk per vector mode   */
+   /*   this section is the startup for the 4 fclk per vector mode   */
+
+   p_startup_0                     apply s_flush_0 with vceoff, nop
+   p_startup_1                     apply s_flush_0 with nop
+   p_startup_2                     apply s_flush_0 with nop
+   p_startup_3 jmp to p_drive_low, apply s_flush_0 with nop
+
+   /* start real program at address 10H */
+
+   org 16 
+   
+   p_drive_low                       apply s_drive_low  with vceon
+   p_tri_state_00                    apply s_tri_state
+   p_tri_state_01                    apply s_tri_state
+   p_tri_state_02 jmp to p_drive_low apply s_tri_state
+  
+   /* end   real program   */
+  
+   p_halt_flush_sls   sls 13           apply s_flush_0   with nop    
+   p_halt_assert                       apply s_flush_0   with vceoff, nop, halt
+   p_halt_dis_vcen                     apply s_flush_0   with nop
+   p_halt_flush                        apply s_flush_0   with nop
+
+end program_section

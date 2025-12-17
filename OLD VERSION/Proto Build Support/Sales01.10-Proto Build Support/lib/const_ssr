@@ -1,0 +1,28 @@
+5.47E-9	     # channel  0
+4.74E-9	     # channel  1
+4.80E-9	     # channel  2
+4.86E-9	     # channel  3
+4.19E-9	     # channel  4
+3.80E-9	     # channel  5
+3.25E-9	     # channel  6
+3.52E-9	     # channel  7
+5.62E-9	     # channel  8
+4.70E-9	     # channel  9
+4.39E-9	     # channel 10
+4.41E-9	     # channel 11
+4.24E-9	     # channel 12
+3.91E-9	     # channel 13
+3.48E-9	     # channel 14
+2.53E-9	     # channel 15
+4.50E-9	     # channel 16
+4.49E-9	     # channel 17
+3.70E-9	     # channel 18
+2.92E-9	     # channel 19
+3.99E-9	     # channel 20
+3.51E-9	     # channel 21
+3.15E-9	     # channel 22
+2.37E-9	     # channel 23
+1.00e-9      # falling data correction factor
+These constants were generated 19Mar91 on Arizona. Still has the old
+mom bd.
+# What String Identification: @(#)3.1	03/23/93 14:05:42 const_ssr

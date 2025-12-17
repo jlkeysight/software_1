@@ -1,0 +1,25 @@
+# What String Identification: @(#)4.3	02/28/95 09:06:32 sales.ana
+16000		# GPIB Sales Rack verification
+16001		# Analog Fixture Present
+16005		# Analog Fixture Validaion
+16010       # Sales Rack Offset Capacitance Test
+#16188		# Full Talon Buzz Test in DGN without using analyzebuzz
+16011           # Channel 7 Load Power Supply UTILITY  
+16012           # Channel 8 Load Power Supply UTILITY 
+16205		# Parallel G-bus capacitance
+16206		# Parallel X-bus impedance
+16207		# Parallel I-bus impedance
+16208		# Parallel G-bus impedance
+16209		# Parallel S-bus impedance
+16216		# Parallel SI/BA to ground resistance
+16217		# Parallel Xn to ground resistance
+16200		# Series S/I-bus impedance
+16201		# Series G-bus impedance
+16202		# Series S/I-bus inductance
+16203		# Series G-bus inductance
+16204		# Parallel S/I-bus capacitance
+16230		# Xn leakage current
+16231		# SI-AB bus leakage current
+16248		# 5 Volt source and fuse
+16249		# Talon load verification
+16004		# Fixture unlock

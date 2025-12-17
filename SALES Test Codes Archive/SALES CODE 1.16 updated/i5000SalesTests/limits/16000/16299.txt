@@ -1,0 +1,24 @@
+16299 1 3  -3.6500  -3.5000  -3.3500        VOLTS 
+'PROBE RECEIVER GTH FALLING                        '
+ 1.00000E+00  0.00000E+00            0 
+
+16299 1 3  -3.6500  -3.5000  -3.3500        VOLTS 
+'PROBE RECEIVER GTL FALLING                        '
+ 1.00000E+00  0.00000E+00            0 
+
+16299 1 3  -3.6500  -3.5000  -3.3500        VOLTS 
+'PROBE RECEIVER GTH RISING                         '
+ 1.00000E+00  0.00000E+00            0 
+
+16299 1 3  -3.6500  -3.5000  -3.3500        VOLTS 
+'PROBE RECEIVER GTL RISING                         '
+ 1.00000E+00  0.00000E+00            0 
+
+16299 1 3  -0.2500   0.0000   0.2500        VOLTS 
+'PROBE RECEIVER GTH HYSTERESIS                     '
+ 1.00000E+00  0.00000E+00            0 
+
+16299 1 3  -0.2500   0.0000   0.2500        VOLTS 
+'PROBE RECEIVER GTL HYSTERESIS                     '
+ 1.00000E+00  0.00000E+00            0 
+

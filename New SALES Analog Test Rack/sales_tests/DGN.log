@@ -1,0 +1,829 @@
+
+                     Pin Verification Fixture location
+                      -------------------------------
+                      |2             |0             |
+                      |              |              |
+                      |              |              |
+                      -------------------------------
+                      |3             |1             |
+                      |              |              |
+                      |       *      |              |
+                      -------------------------------
+                             * = fixture found
+
+
+
+ Test 2039, Subtest 1, Module 3, Slot 1  FAILED.
+ Format Tri-State 0 from ADRV0 low                 
+  Low Limit       :  4.9888520E+00
+  Result Received :  5.1345851E+00  Volts
+  High Limit      :  5.0111520E+00
+
+ Test 2039, Subtest 3, Module 3, Slot 1  FAILED.
+ Format Tri-State 0 from ADRV1 low                 
+  Low Limit       :  4.9888520E+00
+  Result Received :  5.1345851E+00  Volts
+  High Limit      :  5.0111520E+00
+
+ Test 2039, Subtest 5, Module 3, Slot 1  FAILED.
+ Format tri-State 0 from F/F low                   
+  Low Limit       :  4.9888520E+00
+  Result Received :  5.1347599E+00  Volts
+  High Limit      :  5.0111520E+00
+
+ Test 2060, Subtest 1, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  1.9149290E-02
+  Result expected :  1.9531250E-02
+  High Limit      :  1.9913360E-02
+  Result Received :  2.0032770E-02  Volts
+
+ Test 2060, Subtest 2, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  3.8598530E-02
+  Result expected :  3.9062500E-02
+  High Limit      :  3.9526660E-02
+  Result Received :  4.0049947E-02  Volts
+
+ Test 2060, Subtest 3, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  7.7497000E-02
+  Result expected :  7.8125000E-02
+  High Limit      :  7.8753250E-02
+  Result Received :  8.0078966E-02  Volts
+
+ Test 2060, Subtest 4, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  1.5529390E-01
+  Result expected :  1.5625000E-01
+  High Limit      :  1.5720640E-01
+  Result Received :  1.6015063E-01  Volts
+
+ Test 2060, Subtest 5, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  3.1088780E-01
+  Result expected :  3.1250000E-01
+  High Limit      :  3.1411280E-01
+  Result Received :  3.2027778E-01  Volts
+
+ Test 2060, Subtest 6, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  6.2207560E-01
+  Result expected :  6.2500000E-01
+  High Limit      :  6.2792560E-01
+  Result Received :  6.4061316E-01  Volts
+
+ Test 2060, Subtest 7, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  1.2444510E+00
+  Result expected :  1.2500000E+00
+  High Limit      :  1.2555510E+00
+  Result Received :  1.2809946E+00  Volts
+
+ Test 2060, Subtest 8, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  2.4892020E+00
+  Result expected :  2.5000000E+00
+  High Limit      :  2.5108020E+00
+  Result Received :  2.5617965E+00  Volts
+
+ Test 2060, Subtest 9, Module 3, Slot 1  FAILED.
+ DET half-scale +dcv to +input short               
+  Low Limit       :  4.9787040E+00
+  Result expected :  5.0000000E+00
+  High Limit      :  5.0213040E+00
+  Result Received :  5.1243039E+00  Volts
+
+ Test 2060, Subtest 10, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  1.9149290E-02
+  Result expected :  1.9531250E-02
+  High Limit      :  1.9913360E-02
+  Result Received :  1.9953536E-02  Volts
+
+ Test 2060, Subtest 11, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  3.8598530E-02
+  Result expected :  3.9062500E-02
+  High Limit      :  3.9526660E-02
+  Result Received :  3.9967996E-02  Volts
+
+ Test 2060, Subtest 12, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  7.7497000E-02
+  Result expected :  7.8125000E-02
+  High Limit      :  7.8753250E-02
+  Result Received :  7.9997020E-02  Volts
+
+ Test 2060, Subtest 13, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  1.5529390E-01
+  Result expected :  1.5625000E-01
+  High Limit      :  1.5720640E-01
+  Result Received :  1.6006322E-01  Volts
+
+ Test 2060, Subtest 14, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  3.1088780E-01
+  Result expected :  3.1250000E-01
+  High Limit      :  3.1411280E-01
+  Result Received :  3.2021222E-01  Volts
+
+ Test 2060, Subtest 15, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  6.2207560E-01
+  Result expected :  6.2500000E-01
+  High Limit      :  6.2792560E-01
+  Result Received :  6.4048204E-01  Volts
+
+ Test 2060, Subtest 16, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  1.2444510E+00
+  Result expected :  1.2500000E+00
+  High Limit      :  1.2555510E+00
+  Result Received :  1.2809946E+00  Volts
+
+ Test 2060, Subtest 17, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  2.4892020E+00
+  Result expected :  2.5000000E+00
+  High Limit      :  2.5108020E+00
+  Result Received :  2.5624957E+00  Volts
+
+ Test 2060, Subtest 18, Module 3, Slot 1  FAILED.
+ DET half-scale -dcv to -input short               
+  Low Limit       :  4.9787040E+00
+  Result expected :  5.0000000E+00
+  High Limit      :  5.0213040E+00
+  Result Received :  5.1239543E+00  Volts
+
+ Test 2060, Subtest 19, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -3.95266600E-02
+  Result expected : -3.90625000E-02
+  High Limit      : -3.85985300E-02
+  Result Received : -4.01343834E-02  Volts
+
+ Test 2060, Subtest 20, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -7.87532500E-02
+  Result expected : -7.81250000E-02
+  High Limit      : -7.74970000E-02
+  Result Received : -8.01972401E-02  Volts
+
+ Test 2060, Subtest 21, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -1.57206400E-01
+  Result expected : -1.56250000E-01
+  High Limit      : -1.55293900E-01
+  Result Received : -1.60312103E-01  Volts
+
+ Test 2060, Subtest 22, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -3.14112800E-01
+  Result expected : -3.12500000E-01
+  High Limit      : -3.10887800E-01
+  Result Received : -3.20562810E-01  Volts
+
+ Test 2060, Subtest 23, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -6.27925600E-01
+  Result expected : -6.25000000E-01
+  High Limit      : -6.22075600E-01
+  Result Received : -6.41071261E-01  Volts
+
+ Test 2060, Subtest 24, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -1.25555100E+00
+  Result expected : -1.25000000E+00
+  High Limit      : -1.24445100E+00
+  Result Received : -1.28206304E+00  Volts
+
+ Test 2060, Subtest 25, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -2.51080200E+00
+  Result expected : -2.50000000E+00
+  High Limit      : -2.48920200E+00
+  Result Received : -2.56344741E+00  Volts
+
+ Test 2060, Subtest 26, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -5.02130400E+00
+  Result expected : -5.00000000E+00
+  High Limit      : -4.97870400E+00
+  Result Received : -5.12709394E+00  Volts
+
+ Test 2060, Subtest 27, Module 3, Slot 1  FAILED.
+ DET full-scale +dcv to -input long                
+  Low Limit       : -1.00423100E+01
+  Result expected : -1.00000000E+01
+  High Limit      : -9.95770700E+00
+  Result Received : -1.02535217E+01  Volts
+
+ Test 2060, Subtest 28, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -3.95266600E-02
+  Result expected : -3.90625000E-02
+  High Limit      : -3.85985300E-02
+  Result Received : -4.00539201E-02  Volts
+
+ Test 2060, Subtest 29, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -7.87532500E-02
+  Result expected : -7.81250000E-02
+  High Limit      : -7.74970000E-02
+  Result Received : -8.01167915E-02  Volts
+
+ Test 2060, Subtest 30, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -1.57206400E-01
+  Result expected : -1.56250000E-01
+  High Limit      : -1.55293900E-01
+  Result Received : -1.60238360E-01  Volts
+
+ Test 2060, Subtest 31, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -3.14112800E-01
+  Result expected : -3.12500000E-01
+  High Limit      : -3.10887800E-01
+  Result Received : -3.20495772E-01  Volts
+
+ Test 2060, Subtest 32, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -6.27925600E-01
+  Result expected : -6.25000000E-01
+  High Limit      : -6.22075600E-01
+  Result Received : -6.41017631E-01  Volts
+
+ Test 2060, Subtest 33, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -1.25555100E+00
+  Result expected : -1.25000000E+00
+  High Limit      : -1.24445100E+00
+  Result Received : -1.28211667E+00  Volts
+
+ Test 2060, Subtest 34, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -2.51080200E+00
+  Result expected : -2.50000000E+00
+  High Limit      : -2.48920200E+00
+  Result Received : -2.56387642E+00  Volts
+
+ Test 2060, Subtest 35, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -5.02130400E+00
+  Result expected : -5.00000000E+00
+  High Limit      : -4.97870400E+00
+  Result Received : -5.12752295E+00  Volts
+
+ Test 2060, Subtest 36, Module 3, Slot 1  FAILED.
+ DET full-scale -dcv to +input long                
+  Low Limit       : -1.00423100E+01
+  Result expected : -1.00000000E+01
+  High Limit      : -9.95770700E+00
+  Result Received : -1.02543797E+01  Volts
+
+ Test 2065, Subtest 0, Module 3, Slot 1  FAILED.
+ DET positive side attenuator                      
+  Low Limit       :  6.2106210E-01
+  Result Received :  6.4079018E-01  Volts
+  High Limit      :  6.2894330E-01
+
+ Test 2065, Subtest 1, Module 3, Slot 1  FAILED.
+ DET negative side attenuator                      
+  Low Limit       :  6.2106210E-01
+  Result Received :  6.4073655E-01  Volts
+  High Limit      :  6.2894330E-01
+
+ Test 2091, Subtest 0, Module 3, Slot 1  FAILED.
+ SRC dc accuracy low current mode unloaded(-10 V) 
+  Low Limit       : -1.00171500E+01
+  Result expected : -1.00000000E+01
+  High Limit      : -9.97285300E+00
+  Result Received : -1.02712094E+01  Volts
+
+ Test 2091, Subtest 1, Module 3, Slot 1  FAILED.
+ SRC dc accuracy low current mode unloaded(-5 V)  
+  Low Limit       : -5.01115200E+00
+  Result expected : -5.00000000E+00
+  High Limit      : -4.97885200E+00
+  Result Received : -5.13489369E+00  Volts
+
+ Test 2091, Subtest 2, Module 3, Slot 1  FAILED.
+ SRC dc accuracy low current mode unloaded(-0.1 V)
+  Low Limit       : -1.00570100E-01
+  Result expected : -1.00000000E-01
+  High Limit      : -9.94301100E-02
+  Result Received : -1.02558374E-01  Volts
+
+ Test 2091, Subtest 4, Module 3, Slot 1  FAILED.
+ SRC dc accuracy low current mode unloaded(0.1 V) 
+  Low Limit       :  9.9430110E-02
+  Result expected :  1.0000000E-01
+  High Limit      :  1.0057010E-01
+  Result Received :  1.0294756E-01  Volts
+
+ Test 2091, Subtest 5, Module 3, Slot 1  FAILED.
+ SRC dc accuracy low current mode unloaded(5 V)   
+  Low Limit       :  4.9888520E+00
+  Result expected :  5.0000000E+00
+  High Limit      :  5.0111520E+00
+  Result Received :  5.1347599E+00  Volts
+
+ Test 2091, Subtest 6, Module 3, Slot 1  FAILED.
+ SRC dc accuracy low current mode unloaded(10 V)  
+  Low Limit       :  9.9828530E+00
+  Result expected :  1.0000000E+01
+  High Limit      :  1.0017150E+01
+  Result Received :  1.0270243E+01  Volts
+
+ Test 2091, Subtest 7, Module 3, Slot 1  FAILED.
+ SRC dc accuracy hi current mode unloaded(-10 V)  
+  Low Limit       : -1.00171500E+01
+  Result expected : -1.00000000E+01
+  High Limit      : -9.97285300E+00
+  Result Received : -1.02708598E+01  Volts
+
+ Test 2091, Subtest 8, Module 3, Slot 1  FAILED.
+ SRC dc accuracy hi current mode unloaded(-5 V)   
+  Low Limit       : -5.01115200E+00
+  Result expected : -5.00000000E+00
+  High Limit      : -4.98085200E+00
+  Result Received : -5.13489369E+00  Volts
+
+ Test 2091, Subtest 9, Module 3, Slot 1  FAILED.
+ SRC dc accuracy hi current mode unloaded(-0.1 V) 
+  Low Limit       : -1.00570100E-01
+  Result expected : -1.00000000E-01
+  High Limit      : -9.94301100E-02
+  Result Received : -1.02541985E-01  Volts
+
+ Test 2091, Subtest 11, Module 3, Slot 1  FAILED.
+ SRC dc accuracy hi current mode unloaded(0.1 V)  
+  Low Limit       :  9.9430110E-02
+  Result expected :  1.0000000E-01
+  High Limit      :  1.0057010E-01
+  Result Received :  1.0294756E-01  Volts
+
+ Test 2091, Subtest 12, Module 3, Slot 1  FAILED.
+ SRC dc accuracy hi current mode unloaded(5 V)    
+  Low Limit       :  4.9888520E+00
+  Result expected :  5.0000000E+00
+  High Limit      :  5.0111520E+00
+  Result Received :  5.1345851E+00  Volts
+
+ Test 2091, Subtest 13, Module 3, Slot 1  FAILED.
+ SRC dc accuracy hi current mode unloaded(10 V)   
+  Low Limit       :  9.9828530E+00
+  Result expected :  1.0000000E+01
+  High Limit      :  1.0017150E+01
+  Result Received :  1.0270243E+01  Volts
+
+ Test 2091, Subtest 14, Module 3, Slot 1  FAILED.
+ SRC dc accuracy hi current loaded(-7.05V,150mA)   
+  Low Limit       : -7.0636129E+00
+  Result expected : -7.0400000E+00
+  High Limit      : -7.0213952E+00
+  Result Received : -7.2362278E+00  Volts
+
+ Test 2091, Subtest 15, Module 3, Slot 1  FAILED.
+ SRC dc accuracy hi current loaded(7.05V,150mA)    
+  Low Limit       :  7.021395E+00
+  Result expected :  7.040000E+00
+  High Limit      :  7.063613E+00
+  Result Received :  7.230716E+00  Volts
+
+ Test 2091, Subtest 16, Module 3, Slot 1  FAILED.
+ SRC dc accuracy low current loaded(10V,20mA)      
+  Low Limit       :  9.9478600E+00
+  Result expected :  1.0000000E+01
+  High Limit      :  1.0052160E+01
+  Result Received :  1.0269194E+01  Volts
+
+ Test 2091, Subtest 17, Module 3, Slot 1  FAILED.
+ SRC dc accuracy low current loaded(-10V,20mA)     
+  Low Limit       : -1.00521600E+01
+  Result expected : -1.00000000E+01
+  High Limit      : -9.94786000E+00
+  Result Received : -1.02698110E+01  Volts
+
+ Test 2101, Subtest 5, Module 3, Slot 1  FAILED.
+ Quad. Rej. 128Hz R1250                            
+  Low Limit       : -infinity
+  Result Received : -4.25976456399298371E+01  Decibels
+  High Limit      : -5.00000000000000000E+01
+
+ Test 2101, Subtest 6, Module 3, Slot 1  FAILED.
+ Quad. Rej. 128Hz R2500                            
+  Low Limit       : -infinity
+  Result Received : -4.21847994146067506E+01  Decibels
+  High Limit      : -5.00000000000000000E+01
+
+ Test 2101, Subtest 7, Module 3, Slot 1  FAILED.
+ Quad. Rej. 128Hz R5000                            
+  Low Limit       : -infinity
+  Result Received : -4.23548443256969307E+01  Decibels
+  High Limit      : -5.00000000000000000E+01
+
+ Test 2101, Subtest 8, Module 3, Slot 1  FAILED.
+ Quad. Rej. 128Hz R10000                           
+  Low Limit       : -infinity
+  Result Received : -4.21181085946798532E+01  Decibels
+  High Limit      : -5.00000000000000000E+01
+
+ Test 2101, Subtest 9, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R39                             
+  Low Limit       : -infinity
+  Result Received : -3.22404955186600120E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 10, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R78                             
+  Low Limit       : -infinity
+  Result Received : -3.20181805994868540E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 11, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R156                            
+  Low Limit       : -infinity
+  Result Received : -3.19573552803046930E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 12, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R312                            
+  Low Limit       : -infinity
+  Result Received : -3.20650996108310906E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 13, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R625                            
+  Low Limit       : -infinity
+  Result Received : -3.20843921714527198E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 14, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R1250                           
+  Low Limit       : -infinity
+  Result Received : -3.20935845710950858E+01  Decibels
+  High Limit      : -5.00000000000000000E+01
+
+ Test 2101, Subtest 15, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R2500                           
+  Low Limit       : -infinity
+  Result Received : -3.20151188536843350E+01  Decibels
+  High Limit      : -5.00000000000000000E+01
+
+ Test 2101, Subtest 16, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R5000                           
+  Low Limit       : -infinity
+  Result Received : -3.20150058434192601E+01  Decibels
+  High Limit      : -5.00000000000000000E+01
+
+ Test 2101, Subtest 17, Module 3, Slot 1  FAILED.
+ Quad. Rej. 1024Hz R10000                          
+  Low Limit       : -infinity
+  Result Received : -3.21046898109712515E+01  Decibels
+  High Limit      : -5.00000000000000000E+01
+
+ Test 2101, Subtest 18, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R39                             
+  Low Limit       : -infinity
+  Result Received : -3.10843690887720285E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 19, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R78                             
+  Low Limit       : -infinity
+  Result Received : -3.13389541873230577E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 20, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R156                            
+  Low Limit       : -infinity
+  Result Received : -3.08470108396792320E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 21, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R312                            
+  Low Limit       : -infinity
+  Result Received : -3.16388080399466709E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 22, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R625                            
+  Low Limit       : -infinity
+  Result Received : -3.19921894644891402E+01  Decibels
+  High Limit      : -4.00000000000000000E+01
+
+ Test 2101, Subtest 23, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R1250                           
+  Low Limit       : -infinity
+  Result Received : -3.21287755972917495E+01  Decibels
+  High Limit      : -4.40000000000000000E+01
+
+ Test 2101, Subtest 24, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R2500                           
+  Low Limit       : -infinity
+  Result Received : -3.15931666331907657E+01  Decibels
+  High Limit      : -4.40000000000000000E+01
+
+ Test 2101, Subtest 25, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R5000                           
+  Low Limit       : -infinity
+  Result Received : -3.15933783573583327E+01  Decibels
+  High Limit      : -4.40000000000000000E+01
+
+ Test 2101, Subtest 26, Module 3, Slot 1  FAILED.
+ Quad. Rej. 8192Hz R10000                          
+  Low Limit       : -infinity
+  Result Received : -3.25763482411478194E+01  Decibels
+  High Limit      : -4.40000000000000000E+01
+
+ Test 2251, Subtest 0, Module 3, Slot 1  FAILED.
+ AUX voltage accuracy(1 V)                         
+  Low Limit       :  9.9120170E-01
+  Result expected :  1.0000000E+00
+  High Limit      :  1.0088020E+00
+  Result Received :  1.0250566E+00  Volts
+
+ Test 2251, Subtest 1, Module 3, Slot 1  FAILED.
+ AUX voltage accuracy(4 V)                         
+  Low Limit       :  3.9876020E+00
+  Result expected :  4.0000000E+00
+  High Limit      :  4.0124030E+00
+  Result Received :  4.1016589E+00  Volts
+
+ Test 2251, Subtest 2, Module 3, Slot 1  FAILED.
+ AUX voltage accuracy(10 V)                        
+  Low Limit       :  9.9804040E+00
+  Result expected :  1.0000000E+01
+  High Limit      :  1.0019600E+01
+  Result Received :  1.0262901E+01  Volts
+
+ Test 2251, Subtest 3, Module 3, Slot 1  FAILED.
+ AUX voltage accuracy(-1 V)                        
+  Low Limit       : -1.00880200E+00
+  Result expected : -1.00000000E+00
+  High Limit      : -9.91201700E-01
+  Result Received : -1.02705658E+00  Volts
+
+ Test 2251, Subtest 4, Module 3, Slot 1  FAILED.
+ AUX voltage accuracy(-4 V)                        
+  Low Limit       : -4.01240300E+00
+  Result expected : -4.00000000E+00
+  High Limit      : -3.98760200E+00
+  Result Received : -4.10493915E+00  Volts
+
+ Test 2251, Subtest 5, Module 3, Slot 1  FAILED.
+ AUX voltage accuracy(-10 V)                       
+  Low Limit       : -1.00196000E+01
+  Result expected : -1.00000000E+01
+  High Limit      : -9.97040400E+00
+  Result Received : -1.02596722E+01  Volts
+
+ Test 2312, Subtest 1, Module 3, Slot 1  FAILED.
+ K748 open relay test                              
+  Low Limit       :  4.9837010E+00
+  Result Received :  5.1309466E+00  Volts
+  High Limit      :  5.0163010E+00
+
+ Test 2312, Subtest 2, Module 3, Slot 1  FAILED.
+ K761 open relay test                              
+  Low Limit       :  4.9837010E+00
+  Result Received :  5.1305970E+00  Volts
+  High Limit      :  5.0163010E+00
+
+ Test 2345, Subtest 2, Module 3, Slot 1  FAILED.
+ SRC resistor R805 & feedback resistor R823 test   
+  Low Limit       :  6.5885280E-01
+  Result Received :  6.8431978E-01  Volts
+  High Limit      :  6.7449720E-01
+
+ Test 2345, Subtest 3, Module 3, Slot 1  FAILED.
+ SRC resistor R805 & feedback resistor R824 test   
+  Low Limit       :  9.4222250E-01
+  Result Received :  9.7772231E-01  Volts
+  High Limit      :  9.6254590E-01
+
+ Test 2345, Subtest 4, Module 3, Slot 1  FAILED.
+ SRC resistor R805 & feedback resistor R825 test   
+  Low Limit       :  9.8456170E-01
+  Result Received :  1.0215600E+00  Volts
+  High Limit      :  1.0054920E+00
+
+ Test 2349, Subtest 0, Module 3, Slot 1  FAILED.
+ CAL CKT +10VR                                     
+  Low Limit       :  9.9879520E+00
+  Result expected :  1.0000000E+01
+  High Limit      :  1.0042050E+01
+  Result Received :  1.0255559E+01  Volts
+
+ Test 2349, Subtest 1, Module 3, Slot 1  FAILED.
+ CAL CKT -10VR                                     
+  Low Limit       : -1.00120500E+01
+  Result expected : -1.00000000E+01
+  High Limit      : -9.98095200E+00
+  Result Received : -1.02565257E+01  Volts
+
+ Test 2351, Subtest 0, Module 3, Slot 1  FAILED.
+ SRC volts trapped charge relay open               
+  Low Limit       :  9.8955210E-01
+  Result Received :  1.0266300E+00  Volts
+  High Limit      :  1.0104520E+00
+
+ Test 2351, Subtest 1, Module 3, Slot 1  FAILED.
+ Trapped charge relay closed, 1.5k ohm load        
+  Low Limit       :  5.9103250E-01
+  Result Received :  6.1622487E-01  Volts
+  High Limit      :  6.0899230E-01
+
+ Test 2351, Subtest 2, Module 3, Slot 1  FAILED.
+ Trapped charge relay closed, 24.5 ohm load        
+  Low Limit       :  6.9709430E-01
+  Result Received :  7.2029033E-01  Volts
+  High Limit      :  7.1652020E-01
+
+ Test 2702, Subtest 0, Module 3, Slot 1  FAILED.
+ K2302+K2306 close relay test                      
+  Low Limit       :  9.8641080E+00
+  Result Received :  1.0163261E+01  Volts
+  High Limit      :  9.9807460E+00
+
+ Test 2702, Subtest 2, Module 3, Slot 1  FAILED.
+ K2306 open relay test                             
+  Low Limit       :  6.0104610E-01
+  Result Received :  6.3563566E-01  Volts
+  High Limit      :  6.2838660E-01
+
+ Test 2702, Subtest 3, Module 3, Slot 1  FAILED.
+ K2310+K2316 close relay test                      
+  Low Limit       :  6.0104610E-01
+  Result Received :  6.3563566E-01  Volts
+  High Limit      :  6.2838660E-01
+
+ Test 2702, Subtest 7, Module 3, Slot 1  FAILED.
+ K2304 open relay test                             
+  Low Limit       :  6.0104610E-01
+  Result Received :  6.3563566E-01  Volts
+  High Limit      :  6.2838660E-01
+
+ Test 2703, Subtest 0, Module 3, Slot 1  FAILED.
+ K2301+K2305 close relay test                      
+  Low Limit       : -9.98074600E+00
+  Result Received : -1.01642282E+01  Volts
+  High Limit      : -9.86410800E+00
+
+ Test 2706, Subtest 1, Module 3, Slot 1  FAILED.
+ K2605 open relay test                             
+  Low Limit       : -1.00923000E+01
+  Result Received : -1.02747055E+01  Volts
+  High Limit      : -9.90814600E+00
+
+ Test 2710, Subtest 0, Module 3, Slot 1  FAILED.
+ K806+K808 close relay test                        
+  Low Limit       :  4.9489100E+00
+  Result Received :  5.1302473E+00  Volts
+  High Limit      :  5.0511100E+00
+
+ Test 2710, Subtest 3, Module 3, Slot 1  FAILED.
+ K826+K828 close relay test                        
+  Low Limit       :  4.9489100E+00
+  Result Received :  5.1309466E+00  Volts
+  High Limit      :  5.0511100E+00
+
+ Test 2710, Subtest 6, Module 3, Slot 1  FAILED.
+ K818+K820 close relay test                        
+  Low Limit       : -5.05111000E+00
+  Result Received : -5.13855588E+00  Volts
+  High Limit      : -4.94891000E+00
+
+ Test 2710, Subtest 9, Module 3, Slot 1  FAILED.
+ K822+K823 close relay test                        
+  Low Limit       :  4.9489100E+00
+  Result Received :  5.1250032E+00  Volts
+  High Limit      :  5.0511100E+00
+
+ Test 2710, Subtest 12, Module 3, Slot 1  FAILED.
+ K813+K837 close relay test                        
+  Low Limit       : -4.94795500E+00
+  Result Received : -5.03367228E+00  Volts
+  High Limit      : -4.84798100E+00
+
+ Test 2712, Subtest 0, Module 3, Slot 1  FAILED.
+ K856 close relay test                             
+  Low Limit       : -5.05136000E+00
+  Result Received : -5.13890549E+00  Volts
+  High Limit      : -4.94866000E+00
+
+ Test 2712, Subtest 2, Module 3, Slot 1  FAILED.
+ K816 close relay test                             
+  Low Limit       :  4.9484100E+00
+  Result Received :  5.1302473E+00  Volts
+  High Limit      :  5.0516100E+00
+
+ Test 2281, Subtest 2, Module 3, Slot 1  FAILED.
+ GTH rising first trip                             
+  Low Limit       : 0
+  Result Received : -1  Decimal
+  High Limit      : 127
+
+ Test 2281, Subtest 3, Module 3, Slot 1  FAILED.
+ GTL rising first trip                             
+  Low Limit       : 0
+  Result Received : -1  Decimal
+  High Limit      : 127
+
+ Test 2281, Subtest 6, Module 3, Slot 1  FAILED.
+ GTH rising trip voltage                          
+  Low Limit       :  2.9E+00
+  Result Received : -5.0E+08  Volts
+  High Limit      :  3.1E+00
+
+ Test 2281, Subtest -1, Module 3, Slot 1:  Exception Received
+  "Illegal module id specified"
+
+ Test 2283, Subtest 0, Module 3, Slot 1  FAILED.
+ Probe tip resistor & K2202 check                  
+  Low Limit       :  3.0000000E-01
+  Result expected :  3.3300000E-01
+  High Limit      :  3.6600000E-01
+  Result Received : -8.2517353E-04  Volts
+
+ Test 2283, Subtest 2, Module 3, Slot 1  FAILED.
+ Probe tip resistor & K2202 check                  
+  Low Limit       :  3.0000000E-01
+  Result expected :  3.3300000E-01
+  High Limit      :  3.6600000E-01
+  Result Received : -7.8146691E-04  Volts
+
+ Test 2283, Subtest 4, Module 3, Slot 1  FAILED.
+ Probe tip resistor & K2202 check                  
+  Low Limit       :  3.0000000E-01
+  Result expected :  3.3300000E-01
+  High Limit      :  3.6600000E-01
+  Result Received : -7.8146691E-04  Volts
+
+ Test 2310, Subtest 0, Module 3, Slot 1  FAILED.
+ K852 + K853 close relay test                      
+  Low Limit       :  9.7784030E+00
+  Result Received :  1.0040897E+01  Volts
+  High Limit      :  9.8254530E+00
+
+ Test 2311, Subtest 1, Module 3, Slot 1  FAILED.
+ K854 open relay test                              
+  Low Limit       :  4.9837010E+00
+  Result Received :  5.1302473E+00  Volts
+  High Limit      :  5.0163010E+00
+
+ Test 2311, Subtest 2, Module 3, Slot 1  FAILED.
+ K855 open relay test                              
+  Low Limit       :  4.9837010E+00
+  Result Received :  5.1305970E+00  Volts
+  High Limit      :  5.0163010E+00
+
+ Test 2814, Subtest 0, Module 3, Slot 1  FAILED.
+ K922 close relay test                             
+  Low Limit       :  4.9000000E+00
+  Result Received :  5.1236047E+00  Volts
+  High Limit      :  5.1000000E+00
+
+ Test 2814, Subtest 2, Module 3, Slot 1  FAILED.
+ K919 close relay test                             
+  Low Limit       :  4.9000000E+00
+  Result Received :  5.1243039E+00  Volts
+  High Limit      :  5.1000000E+00
+
+ Test 2814, Subtest 4, Module 3, Slot 1  FAILED.
+ K916+K917 close relay test                        
+  Low Limit       :  4.9000000E+00
+  Result Received :  5.1250032E+00  Volts
+  High Limit      :  5.1000000E+00
+
+ Test 2814, Subtest 8, Module 3, Slot 1  FAILED.
+ K923 open relay test                              
+  Low Limit       :  4.9000000E+00
+  Result Received :  5.1260520E+00  Volts
+  High Limit      :  5.1000000E+00
+
+ Test 2814, Subtest 10, Module 3, Slot 1  FAILED.
+ K925 open relay test                              
+  Low Limit       :  4.9000000E+00
+  Result Received :  5.1264016E+00  Volts
+  High Limit      :  5.1000000E+00
+
+ Test 2814, Subtest 12, Module 3, Slot 1  FAILED.
+ K926 open relay test                              
+  Low Limit       :  4.9000000E+00
+  Result Received :  5.1260520E+00  Volts
+  High Limit      :  5.1000000E+00
+
+ Test 2814, Subtest 13, Module 3, Slot 1  FAILED.
+ K915+K913 close relay test                        
+  Low Limit       :  4.9000000E+00
+  Result Received :  5.1201086E+00  Volts
+  High Limit      :  5.1000000E+00
+
+
+Warning: Some test(s) may be skipped due to failed-tests. Please fix
+them first and run same test suite (Full DGN/Confirmation etc) again.
+

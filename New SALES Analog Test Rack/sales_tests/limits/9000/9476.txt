@@ -1,0 +1,144 @@
+9476 1 3  -100.0   -75.0   -60.0     DECIBELS 
+'Src High Range No load, Det R156 Quad Rej 128Hz   '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -60.0     DECIBELS 
+'Src Low Range No Load, Det R156 Quad. Rej. 128Hz  '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -80.0   -60.0     DECIBELS 
+'Src Low Range No Load, Det R312 Quad. Rej. 128Hz  '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -80.0   -60.0     DECIBELS 
+'Src High Range No load, Det R312 Quad. Rej. 128Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -50.0     DECIBELS 
+'Src High Rng Lo Current, Det R156 Quad Rej 128Hz  '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -50.0     DECIBELS 
+'Src Low Rng Lo Current, Det R156 Quad. Rej. 128Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -50.0     DECIBELS 
+'Src Low Rng Lo Current, Det R312 Quad. Rej. 128Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -50.0     DECIBELS 
+'Src High Rng Lo Current, Det R312 Quad. Rej. 128Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -50.0     DECIBELS 
+'Src High Rng Hi  Current, Det R156 Quad Rej 128Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -50.0     DECIBELS 
+'Src Low Rng Hi  Current, Det R156 Quad. Rej. 128Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -50.0     DECIBELS 
+'Src Low Rng Hi  Current, Det R312 Quad. Rej. 128Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -75.0   -50.0     DECIBELS 
+'Src High Rng Hi  Current, Det R312 Quad. Rej 128Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -65.0   -50.0     DECIBELS 
+'Src High Range No load,Det R156 Quad Rej 1024Hz   '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -85.0   -60.0     DECIBELS 
+'Src Low Range No load, Det R156 Quad Rej 1024Hz   '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -65.0   -50.0     DECIBELS 
+'Src Low Range No Load,Det R312 Quad. Rej. 1024Hz  '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -85.0   -60.0     DECIBELS 
+'Src High Range No load,Det R312 Quad. Rej. 1024Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -60.0   -40.0     DECIBELS 
+'Src High Rng Lo Current,Det R156 Quad Rej 1024Hz  '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -55.0   -40.0     DECIBELS 
+'Src Low Rng Lo Current,Det R156 Quad. Rej. 1024Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -55.0   -40.0     DECIBELS 
+'Src Low Rng Lo Current,Det R312 Quad. Rej. 1024Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -55.0   -40.0     DECIBELS 
+'Src High Rng Lo Current,Det R312 Quad. Rej. 1024Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -60.0   -40.0     DECIBELS 
+'Src High Rng Hi Current, Det R156 Quad Rej 1024Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -55.0   -40.0     DECIBELS 
+'Src Low Rng Hi Current, Det R156 Quad. Rej. 1024Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -55.0   -40.0     DECIBELS 
+'Src Low Rng Hi Current, Det R312 Quad. Rej. 1024Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -55.0   -40.0     DECIBELS 
+'Src High Rng Hi Current, Det R312 Quad. Rej 1024Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -50.0   -35.0     DECIBELS 
+'Src High Range No load,Det R156 Quad Rej 8192Hz   '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -55.0   -40.0     DECIBELS 
+'Src Low Range No Load,Det R156 Quad. Rej. 8192Hz  '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -50.0   -35.0     DECIBELS 
+'Src Low Range No Load,Det R312 Quad. Rej. 8192Hz  '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -65.0   -40.0     DECIBELS 
+'Src High Range No load,Det R312 Quad. Rej. 8192Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -40.0   -30.0     DECIBELS 
+'Src High Rng Lo Current,Det R156 Quad Rej 8192Hz  '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -40.0   -30.0     DECIBELS 
+'Src Low Rng Lo Current,Det R156 Quad. Rej. 8192Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -40.0   -30.0     DECIBELS 
+'Src Low Rng Lo Current,Det R312 Quad. Rej. 8192Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -40.0   -30.0     DECIBELS 
+'Src High Rng Lo Current,Det R312 Quad. Rej. 8192Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -40.0   -30.0     DECIBELS 
+'Src High Rng Hi Current, Det R156 Quad Rej 8192Hz '
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -40.0   -30.0     DECIBELS 
+'Src Low Rng Hi Current, Det R156 Quad. Rej. 8192Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -35.0   -30.0     DECIBELS 
+'Src Low Rng Hi Current, Det R312 Quad. Rej. 8192Hz'
+ 1.00000E+00  0.00000E+00            0 
+
+9476 1 3  -100.0   -40.0   -30.0     DECIBELS 
+'Src High Rng Hi Current, Det R312 Quad. Rej 8192Hz'
+ 1.00000E+00  0.00000E+00            0 
+

@@ -1,0 +1,16 @@
+9040 1 3  -1.0000000E-10   0.0000000E+00   1.0000000E-10      SECONDS 
+'Time Interval Measurement Verification  Rising CH1'
+ 1.00000E+00  0.00000E+00            0 
+
+9040 1 3  -1.0000000E-10   0.0000000E+00   1.0000000E-10      SECONDS 
+'Time Interval Measurement Verification  Rising CH2'
+ 1.00000E+00  0.00000E+00            0 
+
+9040 1 3  -1.0000000E-10   0.0000000E+00   1.0000000E-10      SECONDS 
+'Time Interval Measurement Verification Falling CH1'
+ 1.00000E+00  0.00000E+00            0 
+
+9040 1 3  -1.0000000E-10   0.0000000E+00   1.0000000E-10      SECONDS 
+'Time Interval Measurement Verification Falling CH2'
+ 1.00000E+00  0.00000E+00            0 
+

@@ -1,0 +1,15 @@
+16999   1 1 xxxxxxxxxxxxxxxx                    BINARY
+'mask fail all 0 (Kestrel Revision Code)          '
+ 1.000000E+00  0.000000E+00            0
+
+16999   1 1 xxxxxxxxxxxxxxxx                    BINARY
+'mask fail all 0 (Peregrine Revision Code)        '
+ 1.000000E+00  0.000000E+00            0
+
+16999  12 1 xxxxxxxxxxxxxxxx                    BINARY
+'mask fail all 0 (Merlin Revision Code)           '
+ 1.000000E+00  0.000000E+00            0
+
+16999  1 1 1xxxxxxx10110000                     BINARY
+'pre sub-mux rly tst (Card ID/Status)             '
+ 1.000000E+00  0.000000E+00            0

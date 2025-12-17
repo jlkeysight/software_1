@@ -1,0 +1,4 @@
+9135 8 2  0.2500  1.2000         OHMS 
+'[PINCARD] DR OUTPUT IMPEDANCE (700mA Sourcing)    '
+ 1.00000E+00  0.00000E+00            0 
+

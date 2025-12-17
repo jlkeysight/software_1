@@ -1,0 +1,40 @@
+16383 1 3   42.0   60.0  100.0     DECIBELS 
+'Minimum Signal - Noise ratio 10 Hz 7.071 Vrms     '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   45.0   60.0  100.0     DECIBELS 
+'Total Harmonic Distortion 10 Hz 7.071 Vrms        '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   42.0   69.0  100.0     DECIBELS 
+'Minimum Signal - Noise ratio 100 Hz 7.071 Vrms    '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   42.0   63.0  100.0     DECIBELS 
+'Total Harmonic Distortion 100 Hz 7.071 Vrms       '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   42.0   62.0  100.0     DECIBELS 
+'Minimum Signal - Noise ratio 1K Hz 7.071 Vrms     '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   42.0   64.0  100.0     DECIBELS 
+'Total Harmonic Distortion 1K Hz 7.071 Vrms        '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   43.0   54.0  100.0     DECIBELS 
+'Minimum Signal - Noise ratio 10K Hz 7.071 Vrms    '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   45.0   54.0  100.0     DECIBELS 
+'Total Harmonic Distortion 10K Hz 7.071 Vrms       '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   40.0   45.0  100.0     DECIBELS 
+'Minimum Signal - Noise ratio 20K Hz 7.071 Vrms    '
+ 1.00000E+00  0.00000E+00            0 
+
+16383 1 3   40.0   43.0  100.0     DECIBELS 
+'Total Harmonic Distortion 20K Hz 7.071 Vrms       '
+ 1.00000E+00  0.00000E+00            0 
+

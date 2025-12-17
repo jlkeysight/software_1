@@ -1,0 +1,1759 @@
+16188 1 2  0.0000  0.0150         OHMS 
+'KLA close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KSA close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KGLA close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS01 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG01 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KIA close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI01 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS02 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG02 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI02 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS03 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG03 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI03 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS04 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG04 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI04 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS05 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG05 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI05 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS06 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG06 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI06 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS07 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG07 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI07 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS08 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG08 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI08 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS09 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG09 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI09 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS10 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG10 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI10 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS11 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG11 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI11 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS12 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG12 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI12 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS13 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG13 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI13 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS14 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG14 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI14 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS15 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG15 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI15 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS16 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG16 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI16 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS17 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG17 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI17 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS18 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG18 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI18 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS21 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG21 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI21 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS22 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG22 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI22 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS23 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG23 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI23 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS24 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG24 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI24 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS25 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG25 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI25 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS26 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG26 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI26 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS27 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG27 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI27 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS28 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG28 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI28 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS29 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG29 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI29 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS30 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG30 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI30 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS31 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG31 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI31 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS32 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG32 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI32 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS33 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG33 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI33 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS34 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG34 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI34 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS35 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG35 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI35 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS36 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG36 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI36 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS37 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG37 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI37 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS38 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG38 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI38 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS41 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG41 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI41 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS42 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG42 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI42 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS43 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG43 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI43 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS44 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG44 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI44 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS45 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG45 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI45 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS46 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG46 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI46 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS47 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG47 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI47 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS48 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG48 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI48 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS49 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG49 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI49 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS50 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG50 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI50 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS51 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG51 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI51 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS52 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG52 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI52 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS53 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG53 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI53 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS54 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG54 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI54 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS55 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG55 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI55 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS56 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG56 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI56 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS57 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG57 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI57 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS58 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG58 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI58 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS61 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG61 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI61 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS62 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG62 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI62 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS63 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG63 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI63 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS64 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG64 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI64 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS65 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG65 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI65 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS66 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG66 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI66 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS67 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG67 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI67 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS68 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG68 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI68 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS69 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG69 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI69 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS70 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG70 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI70 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS71 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG71 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI71 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS72 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG72 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI72 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS73 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG73 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI73 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS74 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG74 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI74 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS75 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG75 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI75 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS76 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG76 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI76 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS77 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG77 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI77 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAS78 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAG78 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KAI78 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KLA close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KSA close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KGLA close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS01 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG01 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KIA close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI01 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS02 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG02 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI02 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS03 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG03 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI03 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS04 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG04 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI04 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS05 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG05 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI05 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS06 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG06 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI06 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS07 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG07 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI07 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS08 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG08 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI08 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS09 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG09 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI09 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS10 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG10 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI10 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS11 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG11 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI11 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS12 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG12 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI12 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS13 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG13 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI13 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS14 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG14 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI14 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS15 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG15 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI15 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS16 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG16 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI16 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS17 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG17 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI17 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS18 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG18 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI18 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS21 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG21 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI21 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS22 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG22 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI22 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS23 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG23 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI23 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS24 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG24 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI24 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS25 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG25 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI25 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS26 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG26 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI26 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS27 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG27 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI27 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS28 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG28 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI28 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS29 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG29 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI29 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS30 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG30 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI30 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS31 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG31 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI31 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS32 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG32 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI32 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS33 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG33 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI33 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS34 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG34 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI34 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS35 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG35 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI35 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS36 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG36 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI36 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS37 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG37 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI37 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS38 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG38 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI38 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS41 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG41 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI41 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS42 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG42 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI42 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS43 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG43 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI43 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS44 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG44 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI44 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS45 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG45 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI45 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS46 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG46 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI46 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS47 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG47 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI47 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS48 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG48 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI48 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS49 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG49 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI49 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS50 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG50 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI50 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS51 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG51 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI51 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS52 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG52 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI52 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS53 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG53 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI53 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS54 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG54 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI54 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS55 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG55 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI55 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS56 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG56 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI56 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS57 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG57 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI57 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS58 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG58 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI58 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS61 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG61 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI61 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS62 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG62 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI62 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS63 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG63 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI63 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS64 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG64 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI64 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS65 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG65 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI65 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS66 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG66 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI66 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS67 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG67 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI67 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS68 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG68 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI68 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS69 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG69 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI69 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS70 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG70 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI70 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS71 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG71 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI71 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS72 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG72 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI72 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS73 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG73 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI73 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS74 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG74 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI74 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS75 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG75 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI75 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS76 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG76 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI76 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS77 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG77 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI77 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBS78 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBG78 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 
+
+16188 1 2  0.0000  0.0150         OHMS 
+'KBI78 close relay buzz test                    '
+ 1.00000E+00  0.00000E+00            0 

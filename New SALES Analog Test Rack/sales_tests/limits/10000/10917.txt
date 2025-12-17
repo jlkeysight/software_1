@@ -1,0 +1,4 @@
+10917 8 2   9.0000  13.0000         OHMS 
+'Xn Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+

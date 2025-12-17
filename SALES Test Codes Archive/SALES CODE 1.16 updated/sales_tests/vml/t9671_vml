@@ -1,0 +1,161 @@
+/*                                                                            */
+/*   File    :  /users/jim/dgn/vml_routines/t9170_vml                         */
+/*   Purpose :                                                                */
+/*       This is a vmc code file for t9170 { Receiver Edge Accuracy & Skew }  */
+/*       Written 12/18/87  Jim Myers                                          */
+/*       This file sets the fclks per vector pair to 4 (2 fclks per vector)   */
+/*       sets up the receiver to receive at 0.8v and 2.0v                     */
+/*       and then commands the receiver to receive at a known delay           */
+/*       equal to the program variable rx_range   (currently 15nS)            */
+/*       with receive set to don't care.  Trigger on the second and forth     */
+/*       fclks and halt the sequencer after flushing the pipe.                */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel executable file                  */
+
+/******************************************************************************/
+
+setup
+
+modules 1
+pin_cards 1
+fclks_per_vector_pair 4
+
+end setup
+
+/******************************************************************************/
+
+   /*   driver/receiver <label>                                      */
+   /*   mod             <number>                                     */
+   /*   slot            <number>                                     */
+   /*   channel         <number>                                     */
+   /*   { default }     <0,1,k,t>[z]                                 */
+   /*   fclks           <number [+/- delay]>   <number [+/- delay]>  */
+   /*   { data src }    <adrv0, adrv1, flip-flop>                    */
+   /*   { 3-state src } <adrv0, adrv1, flip-flop>                    */
+ 
+channel_section
+
+  receiver r0  mod 0 slot 2 channel  0 1x fclks 2+20 4+20 
+  receiver r1  mod 0 slot 2 channel  1 1x fclks 2+20 4+20 
+  receiver r2  mod 0 slot 2 channel  2 1x fclks 2+20 4+20 
+  receiver r3  mod 0 slot 2 channel  3 1x fclks 2+20 4+20 
+  receiver r4  mod 0 slot 2 channel  4 1x fclks 2+20 4+20 
+  receiver r5  mod 0 slot 2 channel  5 1x fclks 2+20 4+20 
+  receiver r6  mod 0 slot 2 channel  6 1x fclks 2+20 4+20 
+  receiver r7  mod 0 slot 2 channel  7 1x fclks 2+20 4+20 
+  receiver r8  mod 0 slot 2 channel  8 1x fclks 2+20 4+20 
+  receiver r9  mod 0 slot 2 channel  9 1x fclks 2+20 4+20 
+  receiver r10 mod 0 slot 2 channel 10 1x fclks 2+20 4+20 
+  receiver r11 mod 0 slot 2 channel 11 1x fclks 2+20 4+20 
+  receiver r12 mod 0 slot 2 channel 12 1x fclks 2+20 4+20 
+  receiver r13 mod 0 slot 2 channel 13 1x fclks 2+20 4+20 
+  receiver r14 mod 0 slot 2 channel 14 1x fclks 2+20 4+20 
+  receiver r15 mod 0 slot 2 channel 15 1x fclks 2+20 4+20 
+  receiver r16 mod 0 slot 2 channel 16 1x fclks 2+20 4+20 
+  receiver r17 mod 0 slot 2 channel 17 1x fclks 2+20 4+20 
+  receiver r18 mod 0 slot 2 channel 18 1x fclks 2+20 4+20 
+  receiver r19 mod 0 slot 2 channel 19 1x fclks 2+20 4+20 
+  receiver r20 mod 0 slot 2 channel 20 1x fclks 2+20 4+20 
+  receiver r21 mod 0 slot 2 channel 21 1x fclks 2+20 4+20 
+  receiver r22 mod 0 slot 2 channel 22 1x fclks 2+20 4+20 
+  receiver r23 mod 0 slot 2 channel 23 1x fclks 2+20 4+20 
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved                        */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush               2     0     1
+   end vector
+
+   /*   begin real vectors at address 10H                                */
+
+   org 16 
+
+  vector rx_any 2 0 1 
+  end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]                             */
+   
+   /*   sequence ram pointers 0 through F are reserved                   */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+   s_flush_0      v_flush
+   s_flush_1      v_flush
+   s_flush_2      v_flush
+   s_flush_3      v_flush
+   s_flush_4      v_flush
+   s_flush_5      v_flush
+   s_flush_6      v_flush
+   s_flush_7      v_flush
+   s_flush_8      v_flush
+   s_flush_9      v_flush
+   s_flush_A      v_flush
+   s_flush_B      v_flush
+   s_flush_C      v_flush
+   s_flush_D      v_flush
+   s_flush_E      v_flush
+   s_flush_F      v_flush
+
+   /*   begin real pointers at address 10H                               */
+
+   org 16 
+   
+   seq_rx_any rx_any
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved                  */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+   /*   this section is the startup for the 4 fclk per vector mode   */
+
+   p_startup_0                        apply s_flush_0 with vceoff,nop
+   p_startup_1                        apply s_flush_0 with nop
+   p_startup_2                        apply s_flush_0 with nop
+   p_startup_3 jmp to p_rx_any, apply s_flush_0 with nop
+
+   /* start real program at address 10H */
+
+   org 16 
+   
+   p_rx_any                  apply seq_rx_any with vceon
+
+  
+   /* end   real program   */
+  
+   p_halt_flush_sls   sls 8            apply s_flush_0   with nop
+   p_halt_assert                       apply s_flush_0   with vceoff, nop, halt
+   p_halt_dis_vcen                     apply s_flush_0   with nop
+   p_halt_flush                        apply s_flush_0   with nop
+
+end program_section

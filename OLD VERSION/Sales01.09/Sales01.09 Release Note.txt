@@ -1,0 +1,51 @@
+Sales01.09 released 11-06-2015(MM-DD-YYYY)
+Built by: Sri Tharan
+CC Build Machine: SGPBLD7
+
+1  DGN built-date version:
+1.1  Debug built version: //yisnas1.yis.is.keysight.com/v12/\Versions\8.30p.2014_09_12
+
+2  Config Spec:
+# DESC: Patch branch for 8.40p.
+element * CHECKEDOUT 
+# Static branch elements 
+element * /main/nt_dir/LATEST -nocheckout 
+element .../licensing/tst/flexlm/... .../main/LATEST 
+element config_specs/... /main/LATEST 
+# Development Patch Branch 
+element * .../pat_SalesTest_08.10P/LATEST
+
+# Development Base 
+mkbranch pat_SalesTest_08.10P 
+
+element * .../pat_08.40p/LATEST
+element * 08.40P 
+element .../wind/... .../mtdtornado200/LATEST 
+element .../wind/... TORNADO_2.0.0 
+element .../wind22/... .../mtdtornado22cp1/LATEST 
+element .../wind22/... TORNADO_2.2CP1 
+element * /main/LATEST 
+end mkbranch pat_SalesTest_08.10P
+
+
+3 Changes Summary:
+3.1  Fixed T16208 test failure : Turn on KASXX first then turn on  KAGXX & KAIXX.
+3.2  Fixed bugs in test list file AGTi5000.sales_ana, AGTi5000.sales_dig due to Clear Case Version File miss-match issue. 
+
+
+4 Files updated in CC Build Server
+4.1  \dgn\src\i5000SalesTests\mt16000.cpp
+4.2  AGTi5000.sales_ana 
+4.3  AGTi5000.sales_dig
+
+
+5 Files updated in Test Controller
+5.1  agi5000SalesTests.dll
+5.2  AGTi5000.sales_ana 
+5.3  AGTi5000.sales_dig
+
+
+
+6 Effective Date - Manufacturing Site
+6.1 Pintarmas Site : 11/06/2015(MM/DD/YYYY)
+6.2 VES Site       : 11/06/2015(MM/DD/YYYY)

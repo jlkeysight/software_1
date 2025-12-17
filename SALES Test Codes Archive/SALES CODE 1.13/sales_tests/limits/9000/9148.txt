@@ -1,0 +1,4 @@
+9148 8 2  -7.000  -4.100        VOLTS 
+'[PINCARD] DR NEGATIVE OV LIMIT ACCURACY           '
+ 1.00000E+00  0.00000E+00            0 
+

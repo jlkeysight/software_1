@@ -1,0 +1,156 @@
+/*                                                                            */
+/*   File    :  ~/i5000SalesTests/vml/t16265_clr.vml                          */
+/*   Purpose :  sequencer margin test vml code for resetting log ram          */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel loadable file                    */
+/*                                                                            */
+
+/******************************************************************************/
+
+setup
+
+modules 1
+fclks_per_vector_pair 2
+
+end setup
+
+/******************************************************************************/
+
+   /*   driver/receiver <label>                                      */
+   /*   mod             <number>                                     */
+   /*   slot            <number>                                     */
+   /*   channel         <number>                                     */
+   /*   { default }     <0,1,k,t>[z]                                 */
+   /*   fclks           <number [+/- delay]>   <number [+/- delay]>  */
+   /*   { data src }    <adrv0, adrv1, flip-flop>                    */
+   /*   { 3-state src } <adrv0, adrv1, flip-flop>                    */
+ 
+channel_section
+  driver   da     mod 0   slot 2   channel 0   1z   fclks 1+0  2+0 
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved     */
+   /*   for seq, sys clk gen, and formatter startup   */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush_1             1     0   256
+   end vector
+
+   vector   v_flush_2             1     0   256
+   end vector
+
+   /*   begin real vectors at address 10H   */
+
+   org 16 
+
+   vector   v1                  2   0   1
+   end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]   */
+   
+   /*   sequence ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup      */
+
+   org 0
+
+   s_flush_0      v_flush_1
+   s_flush_1      v_flush_2
+   s_flush_2      v_flush_1
+   s_flush_3      v_flush_2
+   s_flush_4      v_flush_1
+   s_flush_5      v_flush_2
+   s_flush_6      v_flush_1
+   s_flush_7      v_flush_2
+   s_flush_8      v_flush_1
+   s_flush_9      v_flush_2
+   s_flush_A      v_flush_1
+   s_flush_B      v_flush_2
+   s_flush_C      v_flush_1
+   s_flush_D      v_flush_2
+   s_flush_E      v_flush_1
+   s_flush_F      v_flush_2
+
+   /*   begin real pointers at address 10H   */
+
+   org 16
+
+   sA   v1
+   sB   v1
+   sC   v1
+   sD   v1
+   sE   v1
+   sF   v1
+   sG   v1
+   sH   v1
+   sI   v1
+   sJ   v1
+   sK   v1
+   sL   v1
+   sM   v1
+   sN   v1
+   sO   v1
+   sP   v1
+   sQ   v1
+   sR   v1
+   sS   v1
+   sT   v1
+   sU   v1
+   sV   v1
+   sW   v1
+   sX   v1
+   sY   v1
+   sZ   v1
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup       */
+
+   org 0
+
+   p_startup_0                            apply s_flush_0 with vceoff, nop
+   p_startup_1                            apply s_flush_1 with nop
+   p_startup_2                            apply s_flush_0 with nop
+   p_startup_3 jmp to p1                  apply s_flush_1 with nop
+
+   /* start real program at address 10H */
+
+   org 16
+  
+   p1     sls 19     apply sA    with vceon, nop 
+   p2                apply sA    with fe, sce
+   p3     sls 8      apply sA    with nop     
+   
+   /* end   real program   */
+  
+   p_halt_flush_sls   sls 13           apply s_flush_0   with nop
+   p_halt_assert                       apply s_flush_D   with vceoff, nop, halt
+   p_halt_dis_vcen                     apply s_flush_E   with nop
+   p_halt_flush                        apply s_flush_F   with nop
+
+end program_section

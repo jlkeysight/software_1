@@ -1,0 +1,48 @@
+16275 1 3   8.4000000E-08   1.0000000E-07   1.1600000E-07      SECONDS 
+'First Event Trigger Rising at +100ns              '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3   8.4000000E-08   1.0000000E-07   1.1600000E-07      SECONDS 
+'Last Event Trigger Rising at +100ns               '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3   0.0000000E+00   5.0000000E-09   9.9999999E-09      SECONDS 
+'Event Trigger Rising Jitter at +100ns             '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3  -4.6000000E-08  -2.9999999E-08  -1.4000000E-08      SECONDS 
+'First Event Trigger Rising at -30ns               '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3  -4.6000000E-08  -2.9999999E-08  -1.4000000E-08      SECONDS 
+'Last Event Trigger Rising at -30ns                '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3   0.0000000E+00   5.0000000E-09   9.9999999E-09      SECONDS 
+'Event Trigger Rising Jitter at -30ns              '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3   8.4000000E-08   1.0000000E-07   1.1600000E-07      SECONDS 
+'First Event Trigger Falling at +100ns             '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3   8.4000000E-08   1.0000000E-07   1.1600000E-07      SECONDS 
+'Last Event Trigger Falling at +100ns              '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3   0.0000000E+00   5.0000000E-09   9.9999999E-09      SECONDS 
+'Event Trigger Falling Jitter at +100ns            '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3  -4.6000000E-08  -2.9999999E-08  -1.4000000E-08      SECONDS 
+'First Event Trigger Falling at -30ns              '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3  -4.6000000E-08  -2.9999999E-08  -1.4000000E-08      SECONDS 
+'Last Event Trigger Falling at -30ns               '
+ 1.00000E+00  0.00000E+00            0 
+
+16275 1 3   0.0000000E+00   5.0000000E-09   9.9999999E-09      SECONDS 
+'Event Trigger Falling Jitter at -30ns             '
+ 1.00000E+00  0.00000E+00            0 
+

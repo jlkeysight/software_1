@@ -1,0 +1,4 @@
+16005 6 2  4.5000  5.1000        VOLTS 
+'Analog fixture Validation				          '
+ 1.00000E+00  0.00000E+00            0 
+

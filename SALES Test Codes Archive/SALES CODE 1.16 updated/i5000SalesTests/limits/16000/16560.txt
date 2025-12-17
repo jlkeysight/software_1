@@ -1,0 +1,8 @@
+16560 1 3  55      56   68       VOLTS 
+'None spec Zener Diode VZ=56V '
+ 1.00000E+00  0.00000E+00            0 
+
+16560 1 3  55      56   68       VOLTS 
+'None spec Zener Diode VZ=56V'
+ 1.00000E+00  0.00000E+00            0 
+

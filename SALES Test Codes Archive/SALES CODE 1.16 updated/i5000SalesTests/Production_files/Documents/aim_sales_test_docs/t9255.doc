@@ -1,0 +1,57 @@
+   DC SOURCE VOLTAGE ACCURACY
+
+   Purpose:
+
+   These tests measures the absolute accuracy of the DC source voltage
+   circuitry with no load.
+
+   Tests:    9255 DC SOURCE VOLTAGE TEST
+
+   Theory:
+
+   The test sets up to verify that the DC source will produce a voltage
+   within specification over it's entire range.  The test uses both 
+   negative and positive source voltage and checks both the low range
+   (up to 0.1v) and the high range (up to 10v).  This test connects the
+   DC Source output to the sales rack DMM via Calib 1 and ground via
+   Calib 2.  The actual voltage is measured at the DMM for each value.
+   Results returned represent intermediate values as follows:
+       1st log result:	-10v actual value  (high range)
+       1st nolog result:	-10v source range bit 
+       2nd log result:	- 5v actual value  (high range)
+       2nd nolog result:	- 5v source range bit 
+       3rd log result:	-.2v actual value  (high range)
+       3rd nolog result:	-.2v source range bit 
+       4th log result:	-.1v actual value  (low range)
+       4th nolog result:	-.1v source range bit 
+       5th log result:	  0v actual value  (low range)
+       5th nolog result:	  0v source range bit 
+       6th log result:	 .1v actual value  (low range)
+       6th nolog result:	 .1v source range bit 
+       7th log result:	 .2v actual value  (high range)
+       7th nolog result:	 .2v source range bit 
+       8th log result:	  5v actual value  (high range)
+       8th nolog result:	  5v source range bit 
+       9th log result:	 10v actual value  (high range)
+       9th nolog result:	 10v source range bit 
+       10th logged value:        -10v source range bit
+       11th logged value:        - 5v source range bit
+       12th logged value:        -.2v source range bit
+       13th logged value:        -.1v source range bit
+       14th logged value:          0v source range bit
+       15th logged value:         .1v source range bit
+       16th logged value:         .2v source range bit
+       17th logged value:          5v source range bit
+       18th logged value:         10v source range bit
+   Specs for this test are logged against the 0.1% +/- 5mV (for high range)
+   and 0.1% +/- 300uV (for low range).  These limits more than compensate
+   for measurement uncertainty of the dmm (3458A) and the cabling losses.
+
+   Testpath Drawing:  T9255
+  
+   Fixture required:  SALES ANALOG
+
+   Date last updated:  01/09/91
+
+   Test type: Single module single slot
+   Executed: Once per module

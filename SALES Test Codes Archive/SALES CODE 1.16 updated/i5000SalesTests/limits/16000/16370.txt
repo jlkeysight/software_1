@@ -1,0 +1,12 @@
+16370 1 2  0.1000  0.9800         OHMS 
+'AC SOURCE OUTPUT RESISTANCE (128Hz)               '
+ 1.00000E+00  0.00000E+00            0 
+
+16370 1 2  0.1000  0.9790         OHMS 
+'AC SOURCE OUTPUT RESISTANCE (1024Hz)              '
+ 1.00000E+00  0.00000E+00            0 
+
+16370 1 2  0.1000  0.9770         OHMS 
+'AC SOURCE OUTPUT RESISTANCE (8192Hz)              '
+ 1.00000E+00  0.00000E+00            0 
+

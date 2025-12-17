@@ -1,0 +1,16 @@
+9500 1 1 0      DECIMAL
+'VXI command module id                             '
+ 1.000000E+00  0.000000E+00            0
+
+9500 1 1 0      DECIMAL
+'E1406A selftest                                   '
+ 1.000000E+00  0.000000E+00            0
+
+9500 1 1 0      DECIMAL
+'Setting date on E1406A                            '
+ 1.000000E+00  0.000000E+00            0
+
+9500 1 1 0      DECIMAL
+'Setting time on E1406A                            '
+ 1.000000E+00  0.000000E+00            0
+

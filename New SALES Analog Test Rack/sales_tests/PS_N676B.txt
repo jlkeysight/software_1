@@ -1,0 +1,66 @@
+void setup_ps_detector_test(int mod_id, double volts, double amps)
+
+{  /*setup_ps_voltage*/
+
+  char setup_string[81];
+
+  int current_position;
+
+  int next_position;
+
+
+  if (fabs(volts) > MAX_VOLTS_WITH_PS_LOADED)
+
+  {
+    //vth_mhpib_wr(mod_id, 7, "OUT OFF");//
+    vth_mhpib_wr(mod_id, 7, "OUT 0");  //old_ps
+    aconnect_ps_20_ohm_load(mod_id, false);
+  }
+
+    //vth_mhpib_wr(mod_id, 7, "DLY 0S");//
+    vth_mhpib_wr(mod_id, 7, "DLY 0.08");  //old_ps
+ 
+    *setup_string = '\0';
+ 
+    strcat(setup_string, "VSET");  //old_ps
+    current_position = mtd_strlen(setup_string) + 1;
+    sprintf(setup_string + current_position - 1, "%1.3f", fabs(volts)); //old_pS
+ 
+    next_position = mtd_strlen(setup_string) + 1;
+    //strcat(setup_string, "V");//sri
+
+    vth_mhpib_wr(mod_id, 7, setup_string);
+
+
+  *setup_string = '\0';
+
+  strcat(setup_string, "ISET"); //old_ps
+ 
+  current_position = mtd_strlen(setup_string) + 1;
+
+  sprintf(setup_string + current_position - 1, "%1.2f", amps);  //old_ps
+ 
+  next_position = mtd_strlen(setup_string) + 1;
+
+  //strcat(setup_string, "A");//sri
+  vth_mhpib_wr(mod_id, 7, setup_string);
+ 
+
+
+  ////added for 99V NASRU test*
+
+  vth_mhpib_wr(mod_id, 7, "OCP 1"); //old_ps
+ 
+
+
+  ///////////////////////////////////////
+
+
+
+ // vth_mhpib_wr(mod_id, 7, "OUT ON");//sri
+
+  vth_mhpib_wr(mod_id, 7, "OUT 1");  //old_ps
+ 
+
+
+}  /*setup_ps_voltage*/

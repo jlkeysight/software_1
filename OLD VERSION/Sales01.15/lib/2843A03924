@@ -1,0 +1,17 @@
+-3.84000E-09  0.0  0.0   0.0  1 # module 0 ; CLKRB to counter START measured
+-4.08000E-09  0.0  0.0   0.0  1 # module 1 ; CLKRB to counter START measured
+-3.49000E-09  0.0  0.0   0.0  1 # module 2 ; CLKRB to counter START measured
+-3.46000E-09  0.0  0.0   0.0  1 # module 3 ; CLKRB to counter START measured
+ 2.36800E-08  0.0  0.0   0.0  1 # module 0 ; AF2 to counter START measured
+ 2.39750E-08  0.0  0.0   0.0  1 # module 1 ; AF2 to counter START measured
+ 2.39250E-08  0.0  0.0   0.0  1 # module 2 ; AF2 to counter START measured
+ 2.38350E-08  0.0  0.0   0.0  1 # module 3 ; AF2 to counter START measured
+ 9.09500E-09  0.0  0.0   0.0  1 # module 0 ; AF2 to CLKRB measured
+ 8.95500E-09  0.0  0.0   0.0  1 # module 1 ; AF2 to CLKRB measured
+ 8.38500E-09  0.0  0.0   0.0  1 # module 2 ; AF2 to CLKRB measured
+ 8.59500E-09  0.0  0.0   0.0  1 # module 3 ; AF2 to CLKRB measured 
+ 1.21600E-08  0.0  0.0   0.0  1 # module 0 ; probe to CLKRB measured 
+ 1.23150E-08  0.0  0.0   0.0  1 # module 1 ; probe to CLKRB measured 
+ 1.17900E-08  0.0  0.0   0.0  1 # module 2 ; probe to CLKRB measured 
+ 1.14600E-08  0.0  0.0   0.0  1 # module 3 ; probe to CLKRB measured 
+#2843A03924 Prod 6

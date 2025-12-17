@@ -1,0 +1,4 @@
+10907 8 3  9.50000  11.00000  13.00000         OHMS 
+'PARALLEL Xn TO Xall_others BUS RESISTANCE (log)   '
+ 1.00000E+00  0.00000E+00            0 
+

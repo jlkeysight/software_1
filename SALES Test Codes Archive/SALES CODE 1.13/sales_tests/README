@@ -1,0 +1,76 @@
+How to build a sales version of dgn:
+------------------------------------
+- to see what version you are currently set to type
+   'version'
+- find out that versions are available:
+  - 'showver hpmtle2'
+- set to the appropriate version
+  - 'ccversion B.02.50 hpmtle2'
+- If your are setting to a B.02.50 version you must add one line to
+  your config spec after you run 'ccversion B.02.50 hpmtle2':
+  'edcs'
+  Right after the line:
+    element * CHECKEDOUT
+  add this line:
+    element .../uCC/src/future.h /main/3
+
+   If you change from one version to another do the following:
+  -----------------------------------------------------------
+    - After changing from one version to another you must be sure to remove
+      all libraries and objects left over from the previous version.  This
+      means you must do the following commands in the following directories:
+        dgn/src
+        pvi/src
+        tsi/src
+        vmc/src
+        vth/src
+        pm/src
+        u/src
+        uCC/src
+        trc/src
+      cd into each of these directories and do the following:
+        'make clean'
+        'make lib'
+    - cd into bin/src
+        'make clean'
+        'make' 
+    - Go back to the dgn directory:
+        'cd dgn/src'
+    - remove the dgn library so it will be rebuilt.  This needs to
+      happen so the compiler will create the ptrepository directory
+      which is used when dgn_sales gets created.  This is the
+      way HP's C++ compiler implements C++ templates.
+        'rm libdgn.a'
+    - set the appropriate C++ compiler options:
+      - for a non-debug version of dgn_sales do the following:
+        'export CXXOPTS="-z -DNDEBUG"
+      - for a debug version of dgn_sales:
+        'export CXXOPTS="-z -g"'
+    - make sure that /proj/hp3070/bin/src is in your PATH environment variable
+    - build the dgn_sales executable:
+      'make dgn_sales'
+    - cp the dgn_sales to wherever you need it, renaming it if necessary
+
+  If you did not change versions, but you made a change to something
+  in dgn/src/sales_tests, do the following to rebuild the dgn_sales
+  executable.
+  ------------------------------------------------------------------
+    - cd dgn/src/sales_tests
+      'make'
+    - check that the appropriate C++ compiler options:
+      - for a non-debug version of dgn_sales do the following:
+        'export CXXOPTS="-z -DNDEBUG"
+      - for a debug version of dgn_sales:
+        'export CXXOPTS="-z -g"'
+    - cd dgn/src
+      'make dgn_sales'
+    
+Help for how to run lint on the files in dgn/src/sales_tests:
+-------------------------------------------------------------
+login to lint machine
+version B.02.50 hpmtle2
+cd dgn/src/sales_tests/vml
+make
+cd dgn/src/sales_tests
+export LINTOPTS="-u -I../../../u/src -I../../../qcomp/src -I../../../ppb/src -I../../../vth/src -I../../../pm/src -I../../../dgn/src -I../../../trc/src"
+make -k lint

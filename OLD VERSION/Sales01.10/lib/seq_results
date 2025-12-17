@@ -1,0 +1,66 @@
+51               33H  # Sequencer Status
+28               1CH  # Vector Counter
+43694          AAAEH  # SRP log RAM result 1
+21845          5555H  # SRP log RAM result 2
+21846          5556H  # SRP log RAM result 3
+21847          5557H  # SRP log RAM result 4
+21848          5558H  # SRP log RAM result 5
+21849          5559H  # SRP log RAM result 6
+13107          3333H  # SRP log RAM result 7
+39321          9999H  # SRP log RAM result 8
+43690          AAAAH  # SRP log RAM result 9
+43691          AAABH  # SRP log RAM result 10
+43692          AAACH  # SRP log RAM result 11
+43693          AAADH  # SRP log RAM result 12
+43694          AAAEH  # SRP log RAM result 13
+43695          AAAFH  # SRP log RAM result 14
+43696          AAB0H  # SRP log RAM result 15
+52428          CCCCH  # SRP log RAM result 16
+13107          3333H  # SRP log RAM result 17
+39322          999AH  # SRP log RAM result 18
+26215          6667H  # SRP log RAM result 19
+26214          6666H  # SRP log RAM result 20
+21845          5555H  # SRP log RAM result 21
+43697          AAB1H  # SRP log RAM result 22
+43690          AAAAH  # SRP log RAM result 23
+21846          5556H  # SRP log RAM result 24
+21847          5557H  # SRP log RAM result 25
+21848          5558H  # SRP log RAM result 26
+21849          5559H  # SRP log RAM result 27
+21846          5556H  # SRP log RAM result 28
+0              Currently unused result
+0              Currently unused result
+0              Currently unused result
+0              Currently unused result
+24               18H  # Stat log RAM result 1
+12                CH  # Stat log RAM result 2
+12                CH  # Stat log RAM result 3
+12                CH  # Stat log RAM result 4
+12                CH  # Stat log RAM result 5
+12                CH  # Stat log RAM result 6
+10                AH  # Stat log RAM result 7
+14                EH  # Stat log RAM result 8
+8                 8H  # Stat log RAM result 9
+8                 8H  # Stat log RAM result 10
+8                 8H  # Stat log RAM result 11
+8                 8H  # Stat log RAM result 12
+8                 8H  # Stat log RAM result 13
+8                 8H  # Stat log RAM result 14
+8                 8H  # Stat log RAM result 15
+4                 4H  # Stat log RAM result 16
+12                CH  # Stat log RAM result 17
+10                AH  # Stat log RAM result 18
+14                EH  # Stat log RAM result 19
+0                 0H  # Stat log RAM result 20
+4                 4H  # Stat log RAM result 21
+8                 8H  # Stat log RAM result 22
+12                CH  # Stat log RAM result 23
+14                EH  # Stat log RAM result 24
+14                EH  # Stat log RAM result 25
+14                EH  # Stat log RAM result 26
+14                EH  # Stat log RAM result 27
+14                EH  # Stat log RAM result 28
+0                 Unused stat log ram result
+0                 Unused stat log ram result
+0                 Unused stat log ram result
+0                 Unused stat log ram result

@@ -1,0 +1,48 @@
+16330 1 3  -10.017230  -10.000000   -9.982767        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (-10V)                 '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 1 3  -5.012280  -5.000000  -4.987720        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (-5V)                  '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 1 3  -0.210000  -0.200000  -0.190000        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (-0.2V)                '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 1 3  -0.110000  -0.100000  -0.090000        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (-0.1V)                '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 1 3  -0.001000   0.000000   0.001000        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (0V)                   '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 1 3  0.090000  0.100000  0.110000        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (0.1V)                 '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 1 3  0.190000  0.200000  0.210000        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (0.2V)                 '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 1 3  4.987720  5.000000  5.012280        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (5V)                   '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 1 3   9.982767  10.000000  10.017230        VOLTS 
+'DC SOURCE VOLTAGE ACCURACY (10V)                  '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 3 1 1      DECIMAL 
+'DC SOURCE HIGH RANGE                              '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 3 1 0      DECIMAL 
+'DC SOURCE LOW RANGE                               '
+ 1.00000E+00  0.00000E+00            0 
+
+16330 3 1 1      DECIMAL 
+'DC SOURCE HIGH RANGE                              '
+ 1.00000E+00  0.00000E+00            0 
+

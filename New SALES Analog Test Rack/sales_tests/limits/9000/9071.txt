@@ -1,0 +1,32 @@
+9071 8 1 0      DECIMAL 
+'USER TIME AT 12.5MHz - RCV LO PRIOR TO DRV HI 30nS'
+ 1.00000E+00  0.00000E+00            0 
+
+9071 8 1 0      DECIMAL 
+'USER TIME AT 12.5MHz - WERR                       '
+ 1.00000E+00  0.00000E+00            0 
+
+9071 8 1 0      DECIMAL 
+'USER TIME AT 12.5MHz - RCV LO AFTER DRIVE LO  30nS'
+ 1.00000E+00  0.00000E+00            0 
+
+9071 8 1 0      DECIMAL 
+'USER TIME AT 12.5MHz - WERR                       '
+ 1.00000E+00  0.00000E+00            0 
+
+9071 8 1 1      DECIMAL 
+'USER TIME AT 12.5MHz - RCV HI PRIOR TO DRV LO 30nS'
+ 1.00000E+00  0.00000E+00            0 
+
+9071 8 1 0      DECIMAL 
+'USER TIME AT 12.5MHz - WERR                       '
+ 1.00000E+00  0.00000E+00            0 
+
+9071 8 1 1      DECIMAL 
+'USER TIME AT 12.5MHz - RCV HI AFTER DRIVE HI  30nS'
+ 1.00000E+00  0.00000E+00            0 
+
+9071 8 1 0      DECIMAL 
+'USER TIME AT 12.5MHz - WERR - Expected 0          '
+ 1.00000E+00  0.00000E+00            0 
+

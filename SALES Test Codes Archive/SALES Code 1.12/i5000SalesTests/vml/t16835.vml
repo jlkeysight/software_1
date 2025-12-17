@@ -1,0 +1,332 @@
+/*																			  */
+/*       This is the vmc code file for t16835 { DR OUTPUT Z (750mA Sourcing)} */
+/*       This file sets the fclks per vector pair to 4 (2 fclks per vector),  */
+/*       sets the drive levels to 0v drive low and a 5.0v drive high at .75A  */
+/*       and pulse high for a period of time long enough to reach a peak      */
+/*       across the load.													  */
+/*		 This test is expected to pass.										  */
+/*----------------------------------------------------------------------------*/
+ 
+setup
+  fclks_per_vector_pair 4
+end setup
+
+/*
+ *-----------------------------------------------------------------------------
+ * driver <label>
+ * mod            0  // 'vmc -command' will be replaced with 'mod_id'
+ * slot           2  // 'vmc -command' will be replaced with 'slot'
+ * channel        <number>
+ * [default]      0|1|k|t|x|z
+ * fclks          <number>[(+|-)<delay>] <number[(+|-)<delay>]
+ * [data src]     adrv0|adrv1|flip_flop|static0|static1
+ * [3-state src]  adrv0|adrv1|flip_flop|static_en|static_dis
+ *
+ * receiver <label>
+ * mod            0  // 'vmc -command' will be replaced with 'mod_id'
+ * slot           2  // 'vmc -command' will be replaced with 'slot'
+ * channel        <number>
+ * [default]      0|1|k|t|x|z
+ * fclks          <number>[(+|-)<delay>] <number[(+|-)<delay>]
+ * [pull]         pull_up|pull_down
+ * [clamp]        clamp_on|clamp_off
+ *-----------------------------------------------------------------------------
+ */
+channel_section
+  driver_range   0.0 3.5
+  receiver_range 2.5 2.5
+
+  driver   d001 mod 0 slot 2 channel 001 z fclks 1 3
+  driver   d002 mod 0 slot 2 channel 002 z fclks 1 3
+  driver   d003 mod 0 slot 2 channel 003 z fclks 1 3
+  driver   d004 mod 0 slot 2 channel 004 z fclks 1 3
+  driver   d005 mod 0 slot 2 channel 005 z fclks 1 3
+  driver   d006 mod 0 slot 2 channel 006 z fclks 1 3
+  driver   d007 mod 0 slot 2 channel 007 z fclks 1 3
+  driver   d008 mod 0 slot 2 channel 008 z fclks 1 3
+  driver   d009 mod 0 slot 2 channel 009 z fclks 1 3
+  driver   d010 mod 0 slot 2 channel 010 z fclks 1 3
+  driver   d011 mod 0 slot 2 channel 011 z fclks 1 3
+  driver   d012 mod 0 slot 2 channel 012 z fclks 1 3
+  driver   d013 mod 0 slot 2 channel 013 z fclks 1 3
+  driver   d014 mod 0 slot 2 channel 014 z fclks 1 3
+  driver   d015 mod 0 slot 2 channel 015 z fclks 1 3
+  driver   d016 mod 0 slot 2 channel 016 z fclks 1 3
+  driver   d017 mod 0 slot 2 channel 017 z fclks 1 3
+  driver   d018 mod 0 slot 2 channel 018 z fclks 1 3
+  driver   d021 mod 0 slot 2 channel 021 z fclks 1 3
+  driver   d022 mod 0 slot 2 channel 022 z fclks 1 3
+  driver   d023 mod 0 slot 2 channel 023 z fclks 1 3
+  driver   d024 mod 0 slot 2 channel 024 z fclks 1 3
+  driver   d025 mod 0 slot 2 channel 025 z fclks 1 3
+  driver   d026 mod 0 slot 2 channel 026 z fclks 1 3
+  driver   d027 mod 0 slot 2 channel 027 z fclks 1 3
+  driver   d028 mod 0 slot 2 channel 028 z fclks 1 3
+  driver   d029 mod 0 slot 2 channel 029 z fclks 1 3
+  driver   d030 mod 0 slot 2 channel 030 z fclks 1 3
+  driver   d031 mod 0 slot 2 channel 031 z fclks 1 3
+  driver   d032 mod 0 slot 2 channel 032 z fclks 1 3
+  driver   d033 mod 0 slot 2 channel 033 z fclks 1 3
+  driver   d034 mod 0 slot 2 channel 034 z fclks 1 3
+  driver   d035 mod 0 slot 2 channel 035 z fclks 1 3
+  driver   d036 mod 0 slot 2 channel 036 z fclks 1 3
+  driver   d037 mod 0 slot 2 channel 037 z fclks 1 3
+  driver   d038 mod 0 slot 2 channel 038 z fclks 1 3
+  driver   d041 mod 0 slot 2 channel 041 z fclks 1 3
+  driver   d042 mod 0 slot 2 channel 042 z fclks 1 3
+  driver   d043 mod 0 slot 2 channel 043 z fclks 1 3
+  driver   d044 mod 0 slot 2 channel 044 z fclks 1 3
+  driver   d045 mod 0 slot 2 channel 045 z fclks 1 3
+  driver   d046 mod 0 slot 2 channel 046 z fclks 1 3
+  driver   d047 mod 0 slot 2 channel 047 z fclks 1 3
+  driver   d048 mod 0 slot 2 channel 048 z fclks 1 3
+  driver   d049 mod 0 slot 2 channel 049 z fclks 1 3
+  driver   d050 mod 0 slot 2 channel 050 z fclks 1 3
+  driver   d051 mod 0 slot 2 channel 051 z fclks 1 3
+  driver   d052 mod 0 slot 2 channel 052 z fclks 1 3
+  driver   d053 mod 0 slot 2 channel 053 z fclks 1 3
+  driver   d054 mod 0 slot 2 channel 054 z fclks 1 3
+  driver   d055 mod 0 slot 2 channel 055 z fclks 1 3
+  driver   d056 mod 0 slot 2 channel 056 z fclks 1 3
+  driver   d057 mod 0 slot 2 channel 057 z fclks 1 3
+  driver   d058 mod 0 slot 2 channel 058 z fclks 1 3
+  driver   d061 mod 0 slot 2 channel 061 z fclks 1 3
+  driver   d062 mod 0 slot 2 channel 062 z fclks 1 3
+  driver   d063 mod 0 slot 2 channel 063 z fclks 1 3
+  driver   d064 mod 0 slot 2 channel 064 z fclks 1 3
+  driver   d065 mod 0 slot 2 channel 065 z fclks 1 3
+  driver   d066 mod 0 slot 2 channel 066 z fclks 1 3
+  driver   d067 mod 0 slot 2 channel 067 z fclks 1 3
+  driver   d068 mod 0 slot 2 channel 068 z fclks 1 3
+  driver   d069 mod 0 slot 2 channel 069 z fclks 1 3
+  driver   d070 mod 0 slot 2 channel 070 z fclks 1 3
+  driver   d071 mod 0 slot 2 channel 071 z fclks 1 3
+  driver   d072 mod 0 slot 2 channel 072 z fclks 1 3
+  driver   d073 mod 0 slot 2 channel 073 z fclks 1 3
+  driver   d074 mod 0 slot 2 channel 074 z fclks 1 3
+  driver   d075 mod 0 slot 2 channel 075 z fclks 1 3
+  driver   d076 mod 0 slot 2 channel 076 z fclks 1 3
+  driver   d077 mod 0 slot 2 channel 077 z fclks 1 3
+  driver   d078 mod 0 slot 2 channel 078 z fclks 1 3
+  driver   d101 mod 0 slot 2 channel 101 z fclks 1 3
+  driver   d102 mod 0 slot 2 channel 102 z fclks 1 3
+  driver   d103 mod 0 slot 2 channel 103 z fclks 1 3
+  driver   d104 mod 0 slot 2 channel 104 z fclks 1 3
+  driver   d105 mod 0 slot 2 channel 105 z fclks 1 3
+  driver   d106 mod 0 slot 2 channel 106 z fclks 1 3
+  driver   d107 mod 0 slot 2 channel 107 z fclks 1 3
+  driver   d108 mod 0 slot 2 channel 108 z fclks 1 3
+  driver   d109 mod 0 slot 2 channel 109 z fclks 1 3
+  driver   d110 mod 0 slot 2 channel 110 z fclks 1 3
+  driver   d111 mod 0 slot 2 channel 111 z fclks 1 3
+  driver   d112 mod 0 slot 2 channel 112 z fclks 1 3
+  driver   d113 mod 0 slot 2 channel 113 z fclks 1 3
+  driver   d114 mod 0 slot 2 channel 114 z fclks 1 3
+  driver   d115 mod 0 slot 2 channel 115 z fclks 1 3
+  driver   d116 mod 0 slot 2 channel 116 z fclks 1 3
+  driver   d117 mod 0 slot 2 channel 117 z fclks 1 3
+  driver   d118 mod 0 slot 2 channel 118 z fclks 1 3
+  driver   d121 mod 0 slot 2 channel 121 z fclks 1 3
+  driver   d122 mod 0 slot 2 channel 122 z fclks 1 3
+  driver   d123 mod 0 slot 2 channel 123 z fclks 1 3
+  driver   d124 mod 0 slot 2 channel 124 z fclks 1 3
+  driver   d125 mod 0 slot 2 channel 125 z fclks 1 3
+  driver   d126 mod 0 slot 2 channel 126 z fclks 1 3
+  driver   d127 mod 0 slot 2 channel 127 z fclks 1 3
+  driver   d128 mod 0 slot 2 channel 128 z fclks 1 3
+  driver   d129 mod 0 slot 2 channel 129 z fclks 1 3
+  driver   d130 mod 0 slot 2 channel 130 z fclks 1 3
+  driver   d131 mod 0 slot 2 channel 131 z fclks 1 3
+  driver   d132 mod 0 slot 2 channel 132 z fclks 1 3
+  driver   d133 mod 0 slot 2 channel 133 z fclks 1 3
+  driver   d134 mod 0 slot 2 channel 134 z fclks 1 3
+  driver   d135 mod 0 slot 2 channel 135 z fclks 1 3
+  driver   d136 mod 0 slot 2 channel 136 z fclks 1 3
+  driver   d137 mod 0 slot 2 channel 137 z fclks 1 3
+  driver   d138 mod 0 slot 2 channel 138 z fclks 1 3
+  driver   d141 mod 0 slot 2 channel 141 z fclks 1 3
+  driver   d142 mod 0 slot 2 channel 142 z fclks 1 3
+  driver   d143 mod 0 slot 2 channel 143 z fclks 1 3
+  driver   d144 mod 0 slot 2 channel 144 z fclks 1 3
+  driver   d145 mod 0 slot 2 channel 145 z fclks 1 3
+  driver   d146 mod 0 slot 2 channel 146 z fclks 1 3
+  driver   d147 mod 0 slot 2 channel 147 z fclks 1 3
+  driver   d148 mod 0 slot 2 channel 148 z fclks 1 3
+  driver   d149 mod 0 slot 2 channel 149 z fclks 1 3
+  driver   d150 mod 0 slot 2 channel 150 z fclks 1 3
+  driver   d151 mod 0 slot 2 channel 151 z fclks 1 3
+  driver   d152 mod 0 slot 2 channel 152 z fclks 1 3
+  driver   d153 mod 0 slot 2 channel 153 z fclks 1 3
+  driver   d154 mod 0 slot 2 channel 154 z fclks 1 3
+  driver   d155 mod 0 slot 2 channel 155 z fclks 1 3
+  driver   d156 mod 0 slot 2 channel 156 z fclks 1 3
+  driver   d157 mod 0 slot 2 channel 157 z fclks 1 3
+  driver   d158 mod 0 slot 2 channel 158 z fclks 1 3
+  driver   d161 mod 0 slot 2 channel 161 z fclks 1 3
+  driver   d162 mod 0 slot 2 channel 162 z fclks 1 3
+  driver   d163 mod 0 slot 2 channel 163 z fclks 1 3
+  driver   d164 mod 0 slot 2 channel 164 z fclks 1 3
+  driver   d165 mod 0 slot 2 channel 165 z fclks 1 3
+  driver   d166 mod 0 slot 2 channel 166 z fclks 1 3
+  driver   d167 mod 0 slot 2 channel 167 z fclks 1 3
+  driver   d168 mod 0 slot 2 channel 168 z fclks 1 3
+  driver   d169 mod 0 slot 2 channel 169 z fclks 1 3
+  driver   d170 mod 0 slot 2 channel 170 z fclks 1 3
+  driver   d171 mod 0 slot 2 channel 171 z fclks 1 3
+  driver   d172 mod 0 slot 2 channel 172 z fclks 1 3
+  driver   d173 mod 0 slot 2 channel 173 z fclks 1 3
+  driver   d174 mod 0 slot 2 channel 174 z fclks 1 3
+  driver   d175 mod 0 slot 2 channel 175 z fclks 1 3
+  driver   d176 mod 0 slot 2 channel 176 z fclks 1 3
+  driver   d177 mod 0 slot 2 channel 177 z fclks 1 3
+  driver   d178 mod 0 slot 2 channel 178 z fclks 1 3
+end channel_section
+
+/*
+ *-----------------------------------------------------------------------------
+ * vector <label> <vector length in tclks> <1st fclk> <2nd fclk>
+ *-----------------------------------------------------------------------------
+ */
+vector_section
+  /*
+   *---------------------------------------------------------------------------
+   * Vector addresses 0x0000 through 0x000F are reserved for seq, sys clk gen,
+   * and formatter startup.
+   *---------------------------------------------------------------------------
+   */
+  org 0
+
+  vector v_slip_clk 2 256 256  
+  /* This vector MUST be at vector address 0 so NO fclks are generated on the first vector. */
+  end vector
+
+  vector v_flush 2 0 1
+  end vector
+
+  /*
+   *---------------------------------------------------------------------------
+   * Begin real vectors at address 0x0010
+   *---------------------------------------------------------------------------
+   */
+  org 16
+  
+  vector drive_high 2 0 1
+    d001 1  d002 1  d003 1  d004 1  d005 1  d006 1  d007 1  d008 1  d009 1
+    d010 1  d011 1  d012 1  d013 1  d014 1  d015 1  d016 1  d017 1  d018 1
+    d021 1  d022 1  d023 1  d024 1  d025 1  d026 1  d027 1  d028 1  d029 1
+    d030 1  d031 1  d032 1  d033 1  d034 1  d035 1  d036 1  d037 1  d038 1
+    d041 1  d042 1  d043 1  d044 1  d045 1  d046 1  d047 1  d048 1  d049 1
+    d050 1  d051 1  d052 1  d053 1  d054 1  d055 1  d056 1  d057 1  d058 1
+    d061 1  d062 1  d063 1  d064 1  d065 1  d066 1  d067 1  d068 1  d069 1
+    d070 1  d071 1  d072 1  d073 1  d074 1  d075 1  d076 1  d077 1  d078 1
+    d101 1  d102 1  d103 1  d104 1  d105 1  d106 1  d107 1  d108 1  d109 1
+    d110 1  d111 1  d112 1  d113 1  d114 1  d115 1  d116 1  d117 1  d118 1
+    d121 1  d122 1  d123 1  d124 1  d125 1  d126 1  d127 1  d128 1  d129 1
+    d130 1  d131 1  d132 1  d133 1  d134 1  d135 1  d136 1  d137 1  d138 1
+    d141 1  d142 1  d143 1  d144 1  d145 1  d146 1  d147 1  d148 1  d149 1
+    d150 1  d151 1  d152 1  d153 1  d154 1  d155 1  d156 1  d157 1  d158 1
+    d161 1  d162 1  d163 1  d164 1  d165 1  d166 1  d167 1  d168 1  d169 1
+    d170 1  d171 1  d172 1  d173 1  d174 1  d175 1  d176 1  d177 1  d178 1
+  end vector
+
+  vector drive_low 2 0 1
+    d001 0  d002 0  d003 0  d004 0  d005 0  d006 0  d007 0  d008 0  d009 0
+    d010 0  d011 0  d012 0  d013 0  d014 0  d015 0  d016 0  d017 0  d018 0
+    d021 0  d022 0  d023 0  d024 0  d025 0  d026 0  d027 0  d028 0  d029 0
+    d030 0  d031 0  d032 0  d033 0  d034 0  d035 0  d036 0  d037 0  d038 0
+    d041 0  d042 0  d043 0  d044 0  d045 0  d046 0  d047 0  d048 0  d049 0
+    d050 0  d051 0  d052 0  d053 0  d054 0  d055 0  d056 0  d057 0  d058 0
+    d061 0  d062 0  d063 0  d064 0  d065 0  d066 0  d067 0  d068 0  d069 0
+    d070 0  d071 0  d072 0  d073 0  d074 0  d075 0  d076 0  d077 0  d078 0
+    d101 0  d102 0  d103 0  d104 0  d105 0  d106 0  d107 0  d108 0  d109 0
+    d110 0  d111 0  d112 0  d113 0  d114 0  d115 0  d116 0  d117 0  d118 0
+    d121 0  d122 0  d123 0  d124 0  d125 0  d126 0  d127 0  d128 0  d129 0
+    d130 0  d131 0  d132 0  d133 0  d134 0  d135 0  d136 0  d137 0  d138 0
+    d141 0  d142 0  d143 0  d144 0  d145 0  d146 0  d147 0  d148 0  d149 0
+    d150 0  d151 0  d152 0  d153 0  d154 0  d155 0  d156 0  d157 0  d158 0
+    d161 0  d162 0  d163 0  d164 0  d165 0  d166 0  d167 0  d168 0  d169 0
+    d170 0  d171 0  d172 0  d173 0  d174 0  d175 0  d176 0  d177 0  d178 0
+ end vector
+
+end vector_section
+
+/*
+ *-----------------------------------------------------------------------------
+ *  <seq_label> <vect_label> [crc|sync|rcen]
+ *-----------------------------------------------------------------------------
+ */
+sequence_section
+  /*
+   *---------------------------------------------------------------------------
+   * Sequence ram pointers 0x0000 through 0x000F are reserved for seq, sys clk
+   * gen, and formatter startup.
+   *---------------------------------------------------------------------------
+   */
+  org 0
+  s_flush_0     v_flush
+  s_flush_0001 	v_flush
+  s_flush_0002 	v_flush
+  s_flush_0003 	v_flush
+  s_flush_0004 	v_flush
+  s_flush_0005 	v_flush
+  s_flush_0006 	v_flush
+  s_flush_0007 	v_flush
+  s_flush_0008 	v_flush
+  s_flush_0009 	v_flush
+  s_flush_000A 	v_flush
+  s_flush_000B 	v_flush
+  s_flush_000C 	v_flush
+  s_flush_000D 	v_flush
+  s_flush_000E 	v_flush
+  s_flush_000F 	v_flush
+
+  /*
+   *---------------------------------------------------------------------------
+   * Begin real pointers at address 0x0010
+   *---------------------------------------------------------------------------
+   */
+  org 16
+  s_drive_high	drive_high
+  s_drive_low	drive_low
+end sequence_section
+
+program_section
+  /*
+   *---------------------------------------------------------------------------
+   * Directory ram pointers 0x0000 through 0x000F are reserved for seq, sys clk
+   * gen, and formatter startup.
+   *---------------------------------------------------------------------------
+   */
+  org 0
+  /*
+   *---------------------------------------------------------------------------
+   * The vector at vector address 0000 is executed HERE during the sequencer
+   * start up.
+   *---------------------------------------------------------------------------
+   */
+  p_startup_0           			apply s_flush_0  with nop, vceoff
+  p_startup_1           			apply s_flush_0  with nop
+  p_startup_2          				apply s_flush_0  with nop
+  p_startup_3 jmp to p_drive_high	apply s_flush_0  with nop
+  /*
+   *---------------------------------------------------------------------------
+   * Start real program at address. 0x0010
+   *---------------------------------------------------------------------------
+   */
+  org 16
+  p_drive_high							apply s_drive_high  with fe, vceon
+/*  p_drive_low1							apply s_drive_low */
+  p_drive_low jmpq cpu to p_drive_high apply s_drive_low	with fe, vceoff
+
+  /*
+   *---------------------------------------------------------------------------
+   * End real program.
+   *---------------------------------------------------------------------------
+   */
+   p_off						apply s_flush_0	  with      vceon
+   p_halt_flush_sls   sls 13	apply s_flush_0   with nop    
+   p_halt_assert				apply s_flush_0   with vceoff, nop, halt
+   p_halt_dis_vcen				apply s_flush_0   with nop
+   p_halt_flush					apply s_flush_0   with nop
+
+end program_section

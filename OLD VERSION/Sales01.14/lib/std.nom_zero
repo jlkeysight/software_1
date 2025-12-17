@@ -1,0 +1,92 @@
+9240   # Test Number of data below
+0.000000E+00	0    0.000000     # Zero Data       0.1 ohm         4-Wire
+0.000000E+00	1    0.000000     # Zero Data       1 ohm           4-Wire
+0.000000E+00	2    0.000000     # Zero Data       10 ohm          4-Wire
+0.000000E+00	3    0.000000     # Zero Data       10 ohm          4-Wire
+0.000000E+00	4    0.000000     # Zero Data       100 ohm         4-Wire
+0.000000E+00	5    0.000000     # Zero Data       100 ohm         4-Wire
+0.000000E+00	6    0.000000     # Zero Data       100 ohm         2-Wire
+0.000000E+00	7    0.000000     # Zero Data       1K ohm          4-Wire
+0.000000E+00	8    0.000000     # Zero Data       1K ohm          2-Wire
+0.000000E+00	9    0.000000     # Zero Data       1K ohm          4-Wire
+0.000000E+00   10    0.000000     # Zero Data       1K ohm          2-Wire
+0.000000E+00   11    0.000000     # Zero Data       10K ohm         4-Wire
+0.000000E+00   12    0.000000     # Zero Data       10K ohm         2-Wire
+0.000000E+00   13    0.000000     # Zero Data       10K ohm         2-Wire
+0.000000E+00   14    0.000000     # Zero Data       10K ohm         2-Wire
+0.000000E+00   15    0.000000     # Zero Data       100K ohm        2-Wire
+0.000000E+00   16    0.000000     # Zero Data       100K ohm        2-Wire
+0.000000E+00   17    0.000000     # Zero Data       100K ohm        2-Wire
+0.000000E+00   18    0.000000     # Zero Data       100K ohm        2-Wire
+0.000000E+00   19    0.000000     # Zero Data       1M ohm          2-Wire
+0.000000E+00   20    0.000000     # Zero Data       1M ohm          2-Wire
+0.000000E+00   21    0.000000     # Zero Data       10M ohm         2-Wire
+9241   # Test Number of data below
+0.000000E+00    0    0.000000     # Zero Data       150uF           4W-128
+0.000000E+00    1    ## 128Hz Value Not Available for 15uF ##       4W-128
+0.000000E+00    2    0.000000     # Zero Data       150uF           4W-1024
+0.000000E+00    3    0.000000     # Zero Data       15uF            4W-1024
+0.000000E+00    4    0.000000     # Zero Data       1.5uF           4W-1024
+0.000000E+00    5    0.000000     # Zero Data       1.5uF           4W-1024
+0.000000E+00    6    0.000000     # Zero Data       1.5uF           2W-1024
+0.000000E+00    7    0.000000     # Zero Data       150nF           4W-1024
+0.000000E+00    8    0.000000     # Zero Data       150nF           2W-1024
+0.000000E+00    9    0.000000     # Zero Data       150nF           4W-1024
+0.000000E+00   10    0.000000     # Zero Data       150nF           2W-1024
+0.000000E+00   11    0.000000     # Zero Data       15nF            2W-1024
+0.000000E+00   12    0.000000     # Zero Data       15nF            2W-1024
+0.000000E+00   13    0.000000     # Zero Data       1.5nF           2W-1024
+0.000000E+00   14    0.000000     # Zero Data       1.5nF           2W-1024
+0.000000E+00   15    0.000000     # Zero Data       150pF           2W-1024
+0.000000E+00   16    0.000000     # Zero Data       150pF           2W-1024
+0.000000E+00   17    0.000000     # Zero Data       15pF            2W-1024
+0.000000E+00   18    0.000000     # Zero Data       150pF           2W-8192
+0.000000E+00   19    0.000000     # Zero Data       15pF            2W-8192
+0.000000E+00   20    0.000000     # Zero Data       10pF            2W-8192
+9242   # Test Number of data below
+0.000000E+00    0    0.000000     # Zero Data       2uH             4W-8192    
+0.000000E+00    1    0.000000     # Zero Data       20uH            4W-8192    
+0.000000E+00    2    0.000000     # Zero Data       154uH           4W-1024    
+0.000000E+00    3    0.000000     # Zero Data       1.54mH          4W-1024    
+0.000000E+00    4    0.000000     # Zero Data       15.4mH          4W-1024    
+0.000000E+00    5    0.000000     # Zero Data       154mH           2W-1024    
+0.000000E+00    6    0.000000     # Zero Data       154mH           2W-1024    
+0.000000E+00    7    0.000000     # Zero Data       1.54H           2W-1024    
+0.000000E+00    8    0.000000     # Zero Data       1.54H           2W-1024    
+0.000000E+00    9    0.000000     # Zero Data       1.54H           2W-128     
+0.000000E+00   10    0.000000     # Zero Data       15.4H           2W-128    
+0.000000E+00   11    0.000000     # Zero Data       100H            2W-128    
+0.000000E+00   12    0.000000     # Zero Data       100H            2W-128    
+9243   # Test Number of data below
+0.000000E+00	0    0.000000     # Zero Data       10K ohm DELTA   6-Wire
+0.000000E+00 	1    0.000000     # Zero Data       100K ohm DELTA  6-Wire
+9244   # Test Number of data below
+0.000000E+00    0    0.000000     # Zero Data       1nF DELTA       6-Wire
+9245   # Test Number of data below
+0.000000E+00    0    0.000000     # Zero Data       10mH DELTA      6-Wire
+9246   # Test Number of data below
+0.000000E+00    0    0.000000     # Zero Data       150nF           2W-1024
+0.000000E+00    1    0.000000     # Zero Data       15nF            2W-1024
+0.000000E+00    2    0.000000     # Zero Data       15nF            2W-1024
+0.000000E+00    3    0.000000     # Zero Data       1.5nF           2W-1024
+0.000000E+00    4    0.000000     # Zero Data       1.5nF           2W-1024
+0.000000E+00    5    0.000000     # Zero Data       150pF           2W-1024
+0.000000E+00    6    0.000000     # Zero Data       150pF           2W-1024
+0.000000E+00    7    0.000000     # Zero Data       15pF            2W-1024
+0.000000E+00    8    0.000000     # Zero Data       150pF           2W-8192
+0.000000E+00    9    0.000000     # Zero Data       15pF            2W-8192
+0.000000E+00   10    0.000000     # Zero Data       10pF            2W-8192
+9247   # Test Number of data below
+0.000000E+00    0    0.000000     # Zero Data       10mF            4W-128 
+0.000000E+00    1    0.000000     # Zero Data       1mF             4W-128 
+0.000000E+00    2    0.000000     # Zero Data       100uF           4W-128 
+
+Other old junk follows:
+Deleted because of real math errors on compensation subtests 0 and 1 t9246
+1.500000E-06    0    0.000002     # Zero Data       1.5uF           2W-1024
+150.0000E-09    1    0.000001     # Zero Data       150nF           2W-1024
+The last two subtests were deleted because fixture cal restrictions t9247
+1.000000E-03    3    0.000020     # Zero Data       1mF             4W-1024
+1.000000E-04    4    0.000010     # Zero Data       100uF           4W-1024
+value     	     uncertainty ratio (percent = * 100) 
+# What String Identification: @(#)3.1	03/23/93 14:06:07 std.nom_zero

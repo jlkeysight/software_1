@@ -1,0 +1,92 @@
+# What String Identification: @(#)4.2	07/19/94 09:18:49 sales.aim
+9000            # HPIB Sales Rack Verification
+#9004            # Autocal the DMM once for the system.
+9006            # Null Multi-module test
+#9033		# DTRGOUT and DTRGIN VERIFICATION
+9002		# Analog Fixture Present
+#9186		# AIM FORMATTER CHECKERBOARD TEST
+9255            # DC SRC voltage accuracy and range
+9256            # DC SRC voltagey headroom test
+9260            # DC SRC output resistance
+9265            # DC SRC positive overvoltage limit accuracy
+9266            # DC SRC negative overvoltage limit accuracy
+9267            # DC SRC positive overvoltage protection
+9268            # DC SRC negative overvoltage protection
+9270            # DC SRC tri-state spike test
+9275            # DC SOURCE OUTPUT CURRENT TEST
+9277            # DC SRC max current (HIGH LEVEL ONLY)
+9305            # AUX SRC voltage accuracy and range
+9306            # AUX SRC voltage headroom test
+9310            # AUX SRC output resistance
+9315            # AUX SRC positive overvoltage limit accuracy
+9316            # AUX SRC negative overvoltage limit accuracy
+9317            # AUX SRC positive overvoltage protection
+9318            # AUX SRC negative overvoltage protection
+9320            # AUX SRC tri-state spike test
+9325            # AUX SOURCE OUTPUT CURRENT TEST
+9327            # AUX SRC max current (HIGH LEVEL ONLY)
+9355            # AC SRC voltage accuracy and range
+9360            # AC SRC dc offset voltage accuracy
+#9365           # AC SRC frequency accuracy (No Jitter)  ( replaced by 9367)
+#9366           # AC SRC jitter ( replaced by 9367 )
+#9367            # AC source frequency accuracy and jitter
+#9370            # AC SRC output resistance
+9371            # AC SRC THD
+9380            # ARB SRC THD Dual Frequency Mode
+#9383		# ARB THD
+#9385           # ARB SRC square wave rise/fall time         (replaced by T9386)
+9386            # ARB SRC square wave accuracy, % overshoot, slew rate
+9387            # ARB SRC triangle wave rise/fall time and linearity
+#9390           # ARB SRC frequency accuracy                 (replaced by T9391)
+9391            # ARB SOURCE SINE WAVE FREQUENCY ACCURACY USING DMM
+#9392		# ARB SOURCE SINE WAVE PERIOD JITTER MEASUREMENT USING DMM
+9393		# ARB SOURCE SQUARE WAVE PERIOD JITTER MEASUREMENT USING COUNTER
+9394		# ARB SOURCE SQUARE WAVE FREQUENCY ACCURACY USING COUNTER
+9410            # MOA output voltage range
+9415            # MOA positive overvoltage limit accuracy
+9416            # MOA negative overvoltage limit accuracy
+9420            # MOA dc output resistance
+#9421           # MOA ac output resistance
+#9426           # MOA maximum output current                 (replaced by T9427)
+9427            # MOA maximum output current (HIGH LEVEL ONLY)
+9440            # MOA CMRR
+#9450           # DC DETECTOR attenuator 160v test           (Manual test)
+9451            # DC DETECTOR ATTENUATOR ACCURACY (range 8)
+9452            # DC DETECTOR ATTENUATOR ACCURACY (range 7)
+9453            # DC DETECTOR ATTENUATOR ACCURACY (range 6)
+#9454		# DC DETECTOR ATTENUATOR ACCURACY (range 5)  (No R5 ATTENUATED )
+9455            # DC DETECTOR accuracy range 8
+9456            # DC DETECTOR accuracy range 7
+9457            # DC DETECTOR accuracy range 6
+9458            # DC DETECTOR accuracy range 5
+9459            # DC DETECTOR accuracy range 4
+9460            # DC DETECTOR accuracy range 3
+9461            # DC DETECTOR accuracy range 2
+9462            # DC DETECTOR accuracy range 1
+9463            # DC DETECTOR accuracy range 0
+9465            # DETECTOR true rms accuracy over frequency at 7.071 Vrms
+9466            # DETECTOR true rms accuracy over voltage ranges at 19 KHz
+9470            # DC DETECTOR input resistance
+9471		# DETECTOR CMRR
+9472		# DETECTOR CMRR (Attenuated)
+9475            # DC DETECTOR Quadrature Rejection - Loaded Source
+9476            # DC DETECTOR Source Crossover Quadrature Rejection
+9480		# DC DIGITIZER VOLTAGE ACCURACY
+9481		# DC DIGITIZER NOISE OVER RANGES
+9482		# DC DIGITIZER NOISE OVER RANGES
+10804
+10800
+10802
+10821
+10823
+10832
+10835
+10836
+10840
+10841
+10860
+10861
+10862
+10820
+10871
+10999

@@ -1,0 +1,6 @@
+   10E-3       1      2      1      1024   1      1      0      1      0.1    0.0001 0.1    0.50   1.500  0      0      100
+   value       fb     rc     avr    src    sa     sb     sl     extra  src    det    moa    lo     hi     opp    sm     ac
+                                    freq                               amp    wait   out
+
+
+# What String Identification: @(#)3.1	03/23/93 14:06:08 std.ldelta_MCU

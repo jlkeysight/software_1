@@ -1,0 +1,32 @@
+9276 1 2  0.0300  0.0420         AMPS 
+'+DC SOURCE SOURCING (LOW) MAXIMUM I               '
+ 1.00000E+00  0.00000E+00            0 
+
+9276 1 2  0.0300  0.0420         AMPS 
+'+DC SOURCE SINKING (LOW) MAXIMUM I                '
+ 1.00000E+00  0.00000E+00            0 
+
+9276 1 2  0.0300  0.0420         AMPS 
+'-DC SOURCE SOURCING (LOW) MAXIMUM I               '
+ 1.00000E+00  0.00000E+00            0 
+
+9276 1 2  0.0300  0.0420         AMPS 
+'-DC SOURCE SINKING (LOW) MAXIMUM I                '
+ 1.00000E+00  0.00000E+00            0 
+
+9276 1 2  0.1550  0.2100         AMPS 
+'+DC SOURCE SOURCING (HIGH) MAXIMUM I              '
+ 1.00000E+00  0.00000E+00            0 
+
+9276 1 2  0.1550  0.2100         AMPS 
+'+DC SOURCE SINKING (HIGH) MAXIMUM I               '
+ 1.00000E+00  0.00000E+00            0 
+
+9276 1 2  0.1550  0.2100         AMPS 
+'-DC SOURCE SOURCING (HIGH) MAXIMUM I              '
+ 1.00000E+00  0.00000E+00            0 
+
+9276 1 2  0.1550  0.2100         AMPS 
+'-DC SOURCE SINKING (HIGH) MAXIMUM I               '
+ 1.00000E+00  0.00000E+00            0 
+

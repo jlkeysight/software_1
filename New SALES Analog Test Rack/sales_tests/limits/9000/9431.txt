@@ -1,0 +1,96 @@
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR (-99v,rng8,dhi(GND),short)'
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS (-99v,rng8,dhi(GND),short)     '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR (-99v,rng8,dlo(GND),short) '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS (-99v,rng8,dlo(GND),short)     '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR(+/-49.5v,rng8,short)   '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS(-/+49.5v,rng8,short)          '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.45        VOLTS 
+'DC DETECTOR ATTENUATOR (+99v,rng8,dhi(GND),short) '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS (+99v,rng8,dhi(GND),short)     '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.45        VOLTS 
+'DC DETECTOR ATTENUATOR (+99v,rng8,dlo(GND),short) '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS (+99v,rng8,dlo(GND),short)     '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.45        VOLTS 
+'DC DETECTOR ATTENUATOR(+/-49.5v,rng8,short)      '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS(+/-49.5v,rng8,short)          '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR (-99v,rng8,dhi(GND),long)  '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS (-99v,rng8,dhi(GND),long)      '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR (-99v,rng8,dlo(GND),long)  '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS (-99v,rng8,dlo(GND),long)      '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR(+/-49.5v,rng8,long)        '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS(-/+49.5v,rng8,long)            '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR (+99v,rng8,dhi(GND),long)  '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS (+99v,rng8,dhi(GND),long)      '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR (+99v,rng8,dlo(GND),long)  '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS (+99v,rng8,dlo(GND),long)      '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 3  -0.33   0.00000   0.33        VOLTS 
+'DC DETECTOR ATTENUATOR(+/-49.5v,rng8,long)       '
+ 1.00000E+00  0.00000E+00            0 
+
+9431 1 1 0      DECIMAL 
+'DC DETECTOR STATUS(+/-49.5v,rng8,long)           '
+ 1.00000E+00  0.00000E+00            0 
+

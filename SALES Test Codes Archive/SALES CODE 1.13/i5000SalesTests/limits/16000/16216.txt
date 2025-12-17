@@ -1,0 +1,32 @@
+16216 1 2   9.0000  13.0000         OHMS 
+'SA Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+
+16216 1 2   9.0000  13.0000         OHMS 
+'SB Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+
+16216 1 2   9.0000  13.0000         OHMS 
+'IA Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+
+16216 1 2   9.0000  13.0000         OHMS 
+'IB Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+
+16216 1 2   9.0000  13.0000         OHMS 
+'AA Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+
+16216 1 2   9.0000  13.0000         OHMS 
+'AB Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+
+16216 1 2   9.0000  13.0000         OHMS 
+'BA Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+
+16216 1 2   9.0000  13.0000         OHMS 
+'BB Resistance to Ground ( Log ohms )              '
+ 1.00000E+00  0.00000E+00            0 
+

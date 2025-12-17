@@ -1,0 +1,4 @@
+9021 8 2  20.000  30.000         OHMS 
+'AIM LOAD PATH RESISTANCE CAL (24ohms)             '
+ 1.00000E+00  0.00000E+00            0 
+

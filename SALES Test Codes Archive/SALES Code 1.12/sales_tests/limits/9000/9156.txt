@@ -1,0 +1,8 @@
+9156 8 3 999000 1000000 1001000        HERTZ 
+'RECEIVER RINGING CLAMP (1MHz, GTH=2v)             '
+ 1.00000E+00  0.00000E+00            0 
+
+9156 8 2  0.000  0.700        VOLTS 
+'RECEIVER RINGING CLAMP (GTL=1MHz)                 '
+ 1.00000E+00  0.00000E+00            0 
+

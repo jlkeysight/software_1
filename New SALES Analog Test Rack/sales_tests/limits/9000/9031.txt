@@ -1,0 +1,4 @@
+9031 1 2   3.5000000E+05   3.6500000E+05        HERTZ 
+'DEBUG PORT 0 (Sync) VERIFICATION                  '
+ 1.00000E+00  0.00000E+00            0 
+

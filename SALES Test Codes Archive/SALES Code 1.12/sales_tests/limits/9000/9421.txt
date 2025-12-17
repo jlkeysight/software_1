@@ -1,0 +1,4 @@
+9421 1 2  0.250  1.500         OHMS 
+'M.O.A. AC OUTPUT RESISTANCE                       '
+ 1.00000E+00  0.00000E+00            0 
+

@@ -1,0 +1,19 @@
+16553 1 2  -0.00950   0.00950         OHMS 
+'STANDARD RESISTORS (1.0) STD MCU TEST             '
+ 1.00000E+00  0.00000E+00            0 
+
+16553 1 2  -0.0990   0.0990         OHMS 
+'STANDARD RESISTORS (10)  STD MCU TEST             '
+ 1.00000E+00  0.00000E+00            0 
+
+16553 1 2  -0.0990   0.0990         OHMS   
+'STANDARD RESISTORS (10)  STD MCU TEST             '
+ 1.00000E+00  0.00000E+00            0 
+
+16553 1 2  -0.2400   0.2400         OHMS 
+'STANDARD RESISTORS (100) STD MCU TEST             '
+ 1.00000E+00  0.00000E+00            0 
+
+16553 1 2  -0.2400   0.2400         OHMS 
+'STANDARD RESISTORS (100) STD MCU TEST             '
+ 1.00000E+00  0.00000E+00            0 

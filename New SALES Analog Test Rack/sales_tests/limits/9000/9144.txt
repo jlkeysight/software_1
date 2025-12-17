@@ -1,0 +1,4 @@
+9144 8 2   4.4999999E-01   5.5599999E-01         AMPS 
+'HIGH LEVEL CURRENT LIMIT SOURCING                 '
+ 1.00000E+00  0.00000E+00            0 
+

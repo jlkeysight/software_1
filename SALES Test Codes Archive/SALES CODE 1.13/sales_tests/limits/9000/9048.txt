@@ -1,0 +1,4 @@
+9048 1 3 -infinity 0 infinity      DECIMAL
+'FIXTURE LOCK                                      '
+ 1.00000E+00  0.00000E+00            0
+

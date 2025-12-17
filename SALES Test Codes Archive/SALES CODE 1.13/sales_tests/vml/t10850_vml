@@ -1,0 +1,455 @@
+/*                                                                            */
+/*   File    :  /users/jim/dgn/vml_routines/t9150_vml                         */
+/*   Purpose :                                                                */
+/*       This is a vmc code file for t9150 { Receiver Voltage Accuracy  5v }  */
+/*       Written 2/11/88   Jim Myers                                          */
+/*       This file sets the fclks per vector pair to 4 (2 fclks per vector)   */
+/*       sets up the receiver to receive at 5.0v and 5.0v                     */
+/*       and then commands the receiver to receive.  With every other vector, */
+/*       the aim ARB is single stepped.  The aim is programmed                */
+/*       to take the receiver input through it's threshold.                   */
+/*       The vml code ends after 128 vectors are complete.                    */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel executable file                  */
+
+/******************************************************************************/
+
+setup
+
+modules 1
+pin_cards 1
+fclks_per_vector_pair 4
+
+end setup
+
+/******************************************************************************/
+
+   /*   driver/receiver <label>                                      */
+   /*   mod             <number>                                     */
+   /*   slot            <number>                                     */
+   /*   channel         <number>                                     */
+   /*   { default }     <0,1,k,t>[z]                                 */
+   /*   fclks           <number [+/- delay]>   <number [+/- delay]>  */
+   /*   { data src }    <adrv0, adrv1, flip-flop>                    */
+   /*   { 3-state src } <adrv0, adrv1, flip-flop>                    */
+ 
+channel_section
+  receiver_range 5.0 5.0
+   
+  receiver r0 mod 0 slot 2 channel 0 1x fclks 2+15 4+15 
+  receiver r1 mod 0 slot 2 channel 1 1x fclks 2+15 4+15 
+  receiver r2 mod 0 slot 2 channel 2 1x fclks 2+15 4+15 
+  receiver r3 mod 0 slot 2 channel 3 1x fclks 2+15 4+15 
+  receiver r4 mod 0 slot 2 channel 4 1x fclks 2+15 4+15 
+  receiver r5 mod 0 slot 2 channel 5 1x fclks 2+15 4+15 
+  receiver r6 mod 0 slot 2 channel 6 1x fclks 2+15 4+15 
+  receiver r7 mod 0 slot 2 channel 7 1x fclks 2+15 4+15 
+  receiver r8 mod 0 slot 2 channel 8 1x fclks 2+15 4+15 
+  receiver r9 mod 0 slot 2 channel 9 1x fclks 2+15 4+15 
+  receiver r10 mod 0 slot 2 channel 10 1x fclks 2+15 4+15 
+  receiver r11 mod 0 slot 2 channel 11 1x fclks 2+15 4+15 
+  receiver r12 mod 0 slot 2 channel 12 1x fclks 2+15 4+15 
+  receiver r13 mod 0 slot 2 channel 13 1x fclks 2+15 4+15 
+  receiver r14 mod 0 slot 2 channel 14 1x fclks 2+15 4+15 
+  receiver r15 mod 0 slot 2 channel 15 1x fclks 2+15 4+15 
+
+  source      mod 0                     fclks 1    3
+
+  source_trigger mod 0 FLIP_FLOP
+  source_control mod 0 STATIC0
+
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved                        */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush               2     0     1
+   end vector
+
+   /*   begin real vectors at address 10H                                */
+
+   org 16 
+
+  vector rx_w_trigger 200   0   100 
+    r0 0 
+    r1 0 
+    r2 0 
+    r3 0 
+    r4 0 
+    r5 0 
+    r6 0 
+    r7 0 
+    r8 0 
+    r9 0 
+    r10 0 
+    r11 0 
+    r12 0 
+    r13 0 
+    r14 0 
+    r15 0 
+    trigger_source mod 0
+  end vector
+
+  vector rx_wo_trigger 200   0   100
+    r0 0 
+    r1 0 
+    r2 0 
+    r3 0 
+    r4 0 
+    r5 0 
+    r6 0 
+    r7 0 
+    r8 0 
+    r9 0 
+    r10 0 
+    r11 0 
+    r12 0 
+    r13 0 
+    r14 0 
+    r15 0 
+  end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]                             */
+   
+   /*   sequence ram pointers 0 through F are reserved                   */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+   s_flush_0      v_flush
+   s_flush_1      v_flush
+   s_flush_2      v_flush
+   s_flush_3      v_flush
+   s_flush_4      v_flush
+   s_flush_5      v_flush
+   s_flush_6      v_flush
+   s_flush_7      v_flush
+   s_flush_8      v_flush
+   s_flush_9      v_flush
+   s_flush_A      v_flush
+   s_flush_B      v_flush
+   s_flush_C      v_flush
+   s_flush_D      v_flush
+   s_flush_E      v_flush
+   s_flush_F      v_flush
+
+   /*   begin real pointers at address 10H                               */
+
+   org 16 
+   
+   sequence_rx_w_trigger   rx_w_trigger
+   sequence_rx_wo_trigger  rx_wo_trigger
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved                  */
+   /*   for seq, sys clk gen, and formatter startup                      */
+
+   org 0
+
+   /*   this section is the startup for the 2 fclk per vector mode   */
+
+   /*   this section is the startup for the 3 fclk per vector mode   */
+
+   /*   this section is the startup for the 4 fclk per vector mode   */
+
+   p_startup_0                                  apply s_flush_0 with vceoff,nop
+   p_startup_1                                  apply s_flush_0 with nop
+   p_startup_2                                  apply s_flush_0 with nop
+   p_startup_3 jmp to program_rx_wo_trigger001, apply s_flush_0 with nop
+
+   /* start real program at address 10H */
+
+   org 16 
+   
+   program_rx_wo_trigger001    apply sequence_rx_wo_trigger  with vceon, sce
+   program_rx_w_trigger001     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger002    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger002     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger003    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger003     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger004    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger004     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger005    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger005     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger006    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger006     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger007    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger007     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger008    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger008     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger009    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger009     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger010    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger010     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger011    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger011     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger012    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger012     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger013    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger013     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger014    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger014     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger015    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger015     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger016    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger016     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger017    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger017     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger018    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger018     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger019    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger019     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger020    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger020     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger021    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger021     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger022    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger022     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger023    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger023     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger024    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger024     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger025    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger025     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger026    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger026     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger027    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger027     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger028    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger028     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger029    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger029     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger030    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger030     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger031    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger031     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger032    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger032     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger033    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger033     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger034    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger034     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger035    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger035     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger036    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger036     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger037    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger037     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger038    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger038     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger039    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger039     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger040    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger040     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger041    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger041     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger042    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger042     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger043    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger043     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger044    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger044     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger045    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger045     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger046    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger046     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger047    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger047     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger048    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger048     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger049    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger049     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger050    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger050     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger051    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger051     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger052    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger052     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger053    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger053     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger054    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger054     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger055    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger055     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger056    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger056     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger057    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger057     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger058    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger058     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger059    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger059     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger060    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger060     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger061    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger061     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger062    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger062     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger063    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger063     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger064    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger064     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger065    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger065     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger066    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger066     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger067    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger067     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger068    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger068     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger069    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger069     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger070    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger070     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger071    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger071     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger072    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger072     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger073    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger073     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger074    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger074     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger075    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger075     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger076    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger076     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger077    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger077     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger078    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger078     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger079    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger079     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger080    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger080     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger081    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger081     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger082    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger082     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger083    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger083     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger084    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger084     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger085    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger085     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger086    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger086     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger087    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger087     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger088    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger088     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger089    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger089     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger090    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger090     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger091    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger091     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger092    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger092     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger093    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger093     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger094    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger094     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger095    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger095     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger096    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger096     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger097    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger097     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger098    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger098     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger099    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger099     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger100    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger100     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger101    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger101     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger102    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger102     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger103    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger103     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger104    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger104     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger105    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger105     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger106    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger106     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger107    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger107     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger108    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger108     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger109    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger109     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger110    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger110     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger111    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger111     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger112    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger112     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger113    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger113     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger114    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger114     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger115    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger115     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger116    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger116     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger117    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger117     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger118    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger118     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger119    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger119     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger120    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger120     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger121    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger121     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger122    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger122     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger123    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger123     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger124    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger124     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger125    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger125     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger126    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger126     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger127    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger127     apply sequence_rx_w_trigger    
+   program_rx_wo_trigger128    apply sequence_rx_wo_trigger  with sce
+   program_rx_w_trigger128     apply sequence_rx_w_trigger    
+
+   /* end   real program   */
+  
+   p_halt_flush_sls   sls 13           apply s_flush_0   with nop
+   p_halt_assert                       apply s_flush_0   with vceoff, nop, halt
+   p_halt_dis_vcen                     apply s_flush_0   with nop
+   p_halt_flush                        apply s_flush_0   with nop
+
+end program_section

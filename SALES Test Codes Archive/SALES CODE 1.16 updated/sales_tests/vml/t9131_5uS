@@ -1,0 +1,176 @@
+/*                                                                            */
+/*   File    :  /users/jim/dgn/vml_routines/t9131_5uS                         */
+/*   Purpose :                                                                */
+/*       This test is the vmc code file for t9131 { TRI_STATE EDGE PLACEMENT }*/
+/*       going from low into tri-state and from tri-state to low using a      */
+/*       delay of 0nS.                                                        */
+/*       Written 11/3/88  Jim Myers                                           */
+/*       This file sets the fclks per vector pair to 4 (2 fclks per vector),  */
+/*       driver range of .2 to 3.5v. This file sets the tristate time for     */
+/*       150uS and the drive low time to 5uS.  This allows the vectors to     */
+/*       execute without causing a power limit.                               */
+/*                                                                            */
+/*   Compile using vmc                                                        */
+/*      -  vmc <options> <directory>/<fnamr>                                  */
+/*      -  compiler output goes to <directory>/<fnamr>.out                    */
+/*      -  option "-debug 0" outputs a list of download data                  */
+/*      -  option "-command" outputs a command list for a dgn source          */
+/*      -  option "-makeasm" outputs a panel loadable file                    */
+/*                                                                            */
+
+/******************************************************************************/
+
+setup
+
+modules 1
+pin_cards 1
+fclks_per_vector_pair 4
+
+end setup
+
+/******************************************************************************/
+
+   /*   driver/receiver <label>                                      */
+   /*   mod             <number>                                     */
+   /*   slot            <number>                                     */
+   /*   channel         <number>                                     */
+   /*   { default }     <0,1,k,t>[z]                                 */
+   /*   fclks           <number [+/- delay]>   <number [+/- delay]>  */
+   /*   { data src }    <adrv0, adrv1, flip-flop>                    */
+   /*   { 3-state src } <adrv0, adrv1, flip-flop>                    */
+ 
+channel_section
+
+  driver_range 0.2 3.5
+  slew_rate 225
+
+  driver   da     mod 0   slot 2   channel 0   1z   fclks 1+0  3+0 
+  driver   db     mod 0   slot 2   channel 1   1z   fclks 1+0  3+0 
+  driver   dc     mod 0   slot 2   channel 2   1z   fclks 1+0  3+0 
+  driver   dd     mod 0   slot 2   channel 3   1z   fclks 1+0  3+0 
+  driver   de     mod 0   slot 2   channel 4   1z   fclks 1+0  3+0 
+  driver   df     mod 0   slot 2   channel 5   1z   fclks 1+0  3+0 
+  driver   dg     mod 0   slot 2   channel 6   1z   fclks 1+0  3+0 
+  driver   dh     mod 0   slot 2   channel 7   1z   fclks 1+0  3+0 
+end channel_section
+
+/******************************************************************************/
+
+vector_section
+
+   /*   vector <label> <vector length in tclks> <1st fclk> <2nd fclk>    */
+   
+   /*   vector addresses 0 through F are reserved     */
+   /*   for seq, sys clk gen, and formatter startup   */
+
+   org 0
+
+   vector   v_slip_clk            2   256   256
+   end vector
+
+   vector   v_flush               2     0     1
+   end vector
+
+   /*   begin real vectors at address 10H   */
+
+   org 16 
+
+   vector   drive_low           25   0   1
+     da 0
+     db 0
+     dc 0
+     dd 0
+     de 0
+     df 0
+     dg 0
+     dh 0
+   end vector
+
+   vector   tri_state         250   0   1
+     da 1z
+     db 1z
+     dc 1z
+     dd 1z
+     de 1z
+     df 1z
+     dg 1z
+     dh 1z
+   end vector
+
+end vector_section
+
+/******************************************************************************/
+
+sequence_section
+   
+   /*   <seq_label> <vect_label> [crc, sync]   */
+   
+   /*   sequence ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup      */
+
+   org 0
+
+   s_flush_0      v_flush
+   s_flush_1      v_flush
+   s_flush_2      v_flush
+   s_flush_3      v_flush
+   s_flush_4      v_flush
+   s_flush_5      v_flush
+   s_flush_6      v_flush
+   s_flush_7      v_flush
+   s_flush_8      v_flush
+   s_flush_9      v_flush
+   s_flush_A      v_flush
+   s_flush_B      v_flush
+   s_flush_C      v_flush
+   s_flush_D      v_flush
+   s_flush_E      v_flush
+   s_flush_F      v_flush
+
+   /*   begin real pointers at address 10H   */
+
+   org 16 
+   
+   s_drive_low     drive_low          
+   s_tri_state     tri_state
+
+end sequence_section
+
+/******************************************************************************/
+
+program_section
+
+   /*   directory ram pointers 0 through F are reserved   */
+   /*   for seq, sys clk gen, and formatter startup       */
+
+   org 0
+
+   /*   this section is the startup for the 2 fclk per vector mode   */
+
+   /*   this section is the startup for the 3 fclk per vector mode   */
+
+   /*   this section is the startup for the 4 fclk per vector mode   */
+
+   p_startup_0                     apply s_flush_0 with vceoff, nop
+   p_startup_1                     apply s_flush_0 with nop
+   p_startup_2                     apply s_flush_0 with nop
+   p_startup_3 jmp to p_drive_low, apply s_flush_0 with nop
+
+   /* start real program at address 10H */
+
+   org 16 
+   
+   p_drive_low                       apply s_drive_low  with vceon
+   p_tri_state_00                    apply s_tri_state
+   p_tri_state_01                    apply s_tri_state
+   p_tri_state_02 jmp to p_drive_low apply s_tri_state
+
+  
+   /* end   real program   */
+  
+   p_halt_flush_sls   sls 13           apply s_flush_0   with nop    
+   p_halt_assert                       apply s_flush_0   with vceoff, nop, halt
+   p_halt_dis_vcen                     apply s_flush_0   with nop
+   p_halt_flush                        apply s_flush_0   with nop
+
+end program_section

@@ -1,0 +1,13 @@
+Algorithm:
+   Connect AC Source to REFR2
+   Connect Synchronous DET to REFR2 and GND
+   Ground I via G
+
+   For Frequency 128, 1024, and 8192 do
+
+   | Setup the Source
+
+   | For Current Low to High do
+
+   | | Setup I Limit
+

@@ -1,0 +1,3 @@
+16872 144 2  -1.9999999E-08   1.9999999E-08      SECONDS 
+'Talon reciever edge placement - Falling           '
+ 1.00000E+00  0.00000E+00            0 

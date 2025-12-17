@@ -1,0 +1,8 @@
+9310 1 2  0.1000  1.4510         OHMS 
+'AUX SOURCE OUTPUT RESISTANCE (Sourcing)           '
+ 1.00000E+00  0.00000E+00            0 
+
+9310 1 2  0.1000  1.4510         OHMS 
+'AUX SOURCE OUTPUT RESISTANCE (Sinking)            '
+ 1.00000E+00  0.00000E+00            0 
+

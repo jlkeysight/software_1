@@ -1,0 +1,2727 @@
+test 9000
+  testtype  nmns
+  usage once_only
+endtest
+
+test 9001
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9003
+endtest
+
+test 9002
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb
+endtest
+
+test 9003
+  testtype  smss
+  usage once_per_slot
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+endtest
+
+test 9004
+  testtype  nmns
+  usage once_only
+endtest
+
+test 9005
+  testtype  nmns
+  usage once_only
+endtest
+
+test 9006
+  testtype  mmms
+  usage once_only
+  nummodules 1
+  aimset
+  controlset
+  pinset
+  spset
+  numpins 0
+endtest
+
+test 9007
+  testtype  nmns
+  usage once_only
+endtest
+
+test 9008
+  testtype  nmns
+  usage once_only
+endtest
+
+test 9010
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+##################
+### SUB Card Tests
+##################
+test 9300
+  testtype smss
+  usage once_per_slot
+  cardtype utility
+  restrictions
+endtest
+
+test 9301
+  testtype smss
+  usage once_per_slot
+  cardtype utility
+  restrictions
+endtest
+
+test 9011
+  testtype smss
+  usage once_per_slot
+  cardtype utility
+  restrictions
+9002
+endtest
+
+test 9012
+  testtype smss
+  usage once_per_slot
+  cardtype utility
+  restrictions
+9002
+endtest
+
+##################
+
+
+##################
+### NASRU Card Tests
+##################
+test 9232
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  #restrictions
+#9047
+endtest
+
+test 9231
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  #restrictions
+#9047
+endtest
+
+
+##################
+
+test 9015
+  testtype  nmns
+  usage once_only
+endtest
+
+test 9020
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 9021
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9030
+  testtype  smss
+  usage once_per_module
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+endtest
+
+test 9031
+  testtype  smss
+  usage once_per_module
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+endtest
+
+test 9032
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9033
+  testtype  smss
+  usage once_per_module
+  cardtype aim20 aimc nasru
+endtest
+
+test 9034
+testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+endtest
+
+test 9035
+testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+endtest
+
+test 9040
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+endtest
+
+test 9041
+  testtype  smss
+  usage once_per_module
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9042
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9040 9003
+endtest
+
+test 9043
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9005 9003
+endtest
+
+test 9044
+  testtype  smss
+  usage once_per_slot
+  cardtype channel chan20
+  restrictions
+9005 9003
+endtest
+
+test 9047
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+endtest
+
+test 9048
+  testtype  nmns
+  usage once_only
+endtest
+
+test 9049
+  testtype  nmns
+  usage once_only
+endtest
+
+test 9050
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9003
+endtest
+
+test 9052
+  testtype  smss
+  usage once_per_module
+  cardtype controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9003
+endtest
+
+test 9053
+  testtype  smss
+  usage once_per_module
+  cardtype control control6
+  restrictions
+9003
+endtest
+
+test 9055
+  testtype  smss
+  usage once_per_module
+  cardtype control control6
+  restrictions
+9003
+endtest
+
+test 9056
+  testtype  smss
+  usage once_per_module
+  cardtype controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9005 9003
+endtest
+
+test 9060
+  testtype  smss
+  usage once_per_module
+  cardtype control control6
+  restrictions
+9005 9003
+endtest
+
+test 9061
+  testtype  smss
+  usage once_per_module
+  cardtype controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9005 9003
+endtest
+
+test 9062
+  testtype  smss
+  usage once_per_module
+  cardtype controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9003
+endtest
+
+test 9065
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9003
+endtest
+
+test 9070
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9071
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9072
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9075
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+9003
+endtest
+
+test 9080
+  testtype  smss
+  usage once_per_module
+  cardtype controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+endtest
+
+#test 9081
+#  testtype  smss
+#  usage once_per_module
+#  cardtype controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+#  restrictions
+#endtest
+
+test 9082
+  testtype  smss
+  usage once_per_module
+  cardtype controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+  restrictions
+endtest
+
+test 9090
+  testtype  smss
+  usage once_per_module
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9091
+  testtype  smss
+  usage once_per_module
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9092
+  testtype  smss
+  usage once_per_module
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+endtest
+
+test 9095
+  testtype  smss
+  usage once_per_module
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9100
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9101
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9102
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9103
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9104
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9105
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9106
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9107
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9111
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9120
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9005 9003
+endtest
+
+test 9121
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+endtest
+
+test 9122
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+endtest
+
+test 9125
+  testtype  mmms
+  usage once_per_module
+  nummodules 2
+  aimset
+  controlset
+  pinset pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  spset
+  numpins 1
+  restrictions
+9005 9003
+endtest
+
+test 9126
+  testtype  mmms
+  usage once_per_module
+  nummodules 2
+  aimset
+  controlset
+  pinset pin pin6 pin6jb pin12jb pin20
+  spset
+  numpins 1
+endtest
+
+test 9127
+  testtype  mmms
+  usage once_per_module
+  nummodules 2
+  aimset
+  controlset
+  pinset pin pin6 pin6jb pin12jb pin20
+  spset
+  numpins 1
+  restrictions
+9005
+endtest
+
+test 9129
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9005 9003
+endtest
+
+test 9130
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9005 9003
+endtest
+
+test 9131
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9005 9003
+endtest
+
+test 9132
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9133
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9134
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9135
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9020 9003
+endtest
+
+test 9136
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9020 9003
+endtest
+
+test 9137
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9021 9003
+endtest
+
+test 9138
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9021 9003
+endtest
+
+test 9140
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9020 9003
+endtest
+
+test 9141
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9020 9003
+endtest
+
+test 9142
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9021 9003
+endtest
+
+test 9143
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9021 9003
+endtest
+
+test 9144
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9020 9003
+endtest
+
+test 9145
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9021 9003
+endtest
+
+test 9146
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9021 9003
+endtest
+
+test 9147
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9148
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9149
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9150
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9151
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9152
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9153
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9155
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pinterm pin20
+endtest
+
+test 9156
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pinterm pin20
+endtest
+
+test 9160
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9161
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9162
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9165
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9166
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9167
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9170
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9005 9003
+endtest
+
+test 9171
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9005 9003
+endtest
+
+test 9172
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9005 9003
+endtest
+
+test 9173
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9005 9003
+endtest
+
+test 9180
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9181
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9182
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9183
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+  restrictions
+9003
+endtest
+
+test 9184
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu sd6 sdp dda fdda channel chan20 analog
+endtest
+
+test 9185
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+endtest
+
+test 9186
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+endtest
+
+test 9187
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+endtest
+
+test 9188
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu sd6 sdp dda fdda channel chan20 analog
+endtest
+
+test 9189
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu sd6 sdp dda fdda channel chan20 analog
+endtest
+
+test 9191
+  testtype  nmns
+  usage once_only
+  restrictions
+9005 9003
+endtest
+
+test 9195
+  testtype  nmns
+  usage once_only
+  restrictions
+9005 9003
+endtest
+
+test 9196
+  testtype  nmns
+  usage once_only
+  restrictions
+9005 9003
+endtest
+
+test 9200
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9002
+endtest
+
+test 9201
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9002
+endtest
+
+test 9205
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+endtest
+
+test 9206
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+endtest
+
+test 9207
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9049
+endtest
+
+test 9208
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9049
+endtest
+
+test 9209
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9049
+endtest
+
+test 9210
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9002
+endtest
+
+test 9211
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9002
+endtest
+
+test 9217
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9049
+endtest
+
+test 9220
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9010 9002
+endtest
+
+test 9221
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9010 9002
+endtest
+
+test 9230
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20 channel chan20 analog
+  restrictions
+9002
+endtest
+
+test 9240
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9047
+endtest
+
+test 9223
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9233
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9241
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9234
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9242
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9047
+endtest
+
+test 9224
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9235
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9243
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9236
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9244
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9245
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9237
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9246
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9047
+endtest
+
+test 9225
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9238
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9247
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9239
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9226
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9047
+endtest
+
+test 9248
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9222
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9047
+endtest
+
+test 9249
+  testtype  smss
+  usage once_per_slot
+  cardtype pin pin6 pin6jb pin12jb pinterm pin20
+endtest
+
+test 9250
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+endtest
+
+test 9252
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+endtest
+
+test 9255
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9256
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9260
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9265
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9266
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9267
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9268
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9270
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9274
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9275
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9277
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9305
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9306
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9310
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9315
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9316
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9317
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9318
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9320
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9324
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9325
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9327
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9355
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9360
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9365
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9366
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9367
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9370
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9371
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9372
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9380
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9383
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9385
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9386
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9387
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9390
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9391
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9392
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9393
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9394
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9410
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9415
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9416
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9420
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9421
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+#test 9425
+#  testtype  smss
+#  usage once_per_module
+#  cardtype
+#  restrictions
+#9002
+#endtest
+
+test 9426
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9427
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+#test 9428
+#  testtype  smss
+#  usage once_per_module
+#  cardtype
+#  restrictions
+#9002
+#endtest
+
+test 9440
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9450
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9430
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+endtest
+
+test 9431
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9451
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9452
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9453
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9454
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9455
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9456
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9457
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9458
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9459
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9460
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9461
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9462
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+test 9463
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+  restrictions
+9002
+endtest
+
+########
+test 9441
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9442
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9443
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9444
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9445
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9446
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9447
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9448
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+test 9449
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+  restrictions
+9002
+endtest
+
+
+########
+
+test 9465
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9466
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9470
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9471
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+endtest
+
+test 9472
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+endtest
+
+test 9474
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+endtest
+
+test 9475
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+endtest
+
+test 9476
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc
+endtest
+
+test 9477
+  testtype  smss
+  usage once_per_module
+  cardtype nasru
+endtest
+
+test 9480
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9481
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+endtest
+
+test 9482
+  testtype  smss
+  usage once_per_module
+  cardtype aim aim20 aimc nasru
+  restrictions
+9002
+endtest
+
+test 9500
+  testtype  smss
+  usage once_per_module
+  cardtype control control6 controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+endtest
+
+test 9605
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+endtest
+
+test 9620
+  testtype  smss
+  usage once_per_slot
+  cardtype channel chan20
+  restrictions
+9005 9003
+endtest
+
+test 9671
+  testtype  smss
+  usage once_per_slot
+  cardtype channel chan20
+  restrictions
+9005 9003
+endtest
+
+test 9685
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+endtest
+
+test 9700
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+  restrictions
+9002
+endtest
+
+test 9701
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+  restrictions
+9002
+endtest
+
+test 9705
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+  restrictions
+9002
+endtest
+
+test 9706
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+  restrictions
+9002
+endtest
+
+test 9710
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+  restrictions
+9002
+endtest
+
+test 9711
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+  restrictions
+9002
+endtest
+
+test 9721
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+  restrictions
+9010 9002
+endtest
+
+test 9730
+  testtype  smss
+  usage once_per_slot
+  cardtype channel
+  restrictions
+9002
+endtest
+
+test 9800
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9801
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 ddjb ddp dd20
+  restrictions
+9003
+endtest
+
+test 9802
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9803
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 ddjb ddp dd20
+  restrictions
+9003
+endtest
+
+test 9804
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9805
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9806
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9807
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9811
+  testtype  mmms
+  usage once_per_module
+  nummodules 1
+  aimset
+  controlset
+  pinset sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  spset
+  numpins 1
+  restrictions
+9003 
+endtest
+
+test 9820
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9005 9003
+endtest
+
+test 9821
+  testtype  smss
+  usage once_per_slot
+  cardtype fdd6 fdd6h5 fddjb fddp fddph5 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9823
+  testtype  smss
+  usage once_per_slot
+  cardtype fdd6 fdd6h5 fddjb fddp fddph5 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9828
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6h5 ddjb fddjb ddp fddph5 dd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9005 9003
+endtest
+
+test 9829
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 ddjb fddjb ddp fddp dd20 fdd20 unprog cqdu
+  restrictions
+9005 9003
+endtest
+
+test 9830
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9005 9003
+endtest
+
+test 9832
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9835
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9020 9003
+endtest
+
+test 9836
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 ddjb fddjb ddp fddp dd20 fdd20 unprog cqdu
+  restrictions
+9020 9003
+endtest
+
+test 9837
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6h5 ddjb fddjb ddp fddph5 dd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9020 9003
+endtest
+
+test 9840
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9020 9003
+endtest
+
+test 9841
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9020 9003
+endtest
+
+test 9844
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9020 9003
+endtest
+
+test 9847
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9848
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9849
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9850
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9851
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9852
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9853
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9859
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6h5 ddjb fddjb ddp fddph5 dd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9860
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 ddjb fddjb ddp fddp dd20 fdd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9861
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9862
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9871
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 ddjb fddjb ddp fddp dd20 fdd20 unprog cqdu
+  restrictions
+9005 9003
+endtest
+
+test 9870
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6h5 ddjb fddjb ddp fddph5 dd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9005 9003
+endtest
+
+test 9882
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9883
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu
+  restrictions
+9003
+endtest
+
+test 9900
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9002
+endtest
+
+test 9901
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9002
+endtest
+
+test 9905
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+endtest
+
+test 9906
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+endtest
+
+test 9907
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9049
+endtest
+
+test 9909
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9049
+endtest
+
+test 9910
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9002
+endtest
+
+test 9911
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9002
+endtest
+
+test 9917
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda 
+  restrictions
+9049
+endtest
+
+test 9920
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9010 9002
+endtest
+
+test 9921
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9010 9002
+endtest
+
+test 9930
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9002
+endtest
+
+test 9995
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb pin pin6 pin6jb pin12jb pinterm pin20 dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu sd6 sdp dda fdda channel chan20 analog
+endtest
+
+#test 9996
+#  testtype  smss
+#  usage once_per_module
+#  cardtype controlplus controlxt controlxtp ctrlxtpa ctrlxtpb ctrlxtpb
+#  restrictions
+#9003
+#endtest
+
+test 9997
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9020 9003
+endtest
+
+test 9998
+  testtype  smss
+  usage once_per_slot
+  cardtype sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda
+  restrictions
+9005 9003
+endtest
+
+test 9999
+  testtype  nmns
+  usage once_only
+endtest
+
+test 10188
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+endtest
+
+test 10189
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+endtest
+
+test 10800
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10802
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10804
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10806
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10820
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9005 9003
+endtest
+
+test 10821
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10823
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10829
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9005 9003
+endtest
+
+test 10832
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10835
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9020 9003
+endtest
+
+test 10836
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9020 9003
+endtest
+
+test 10840
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9020 9003
+endtest
+
+test 10841
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9020 9003
+endtest
+
+test 10847
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10848
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10850
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10851
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10852
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10853
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10860
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10861
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10862
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10870
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9005 9003
+endtest
+
+test 10871
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9005 9003
+endtest
+
+test 10872
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9005 9003
+endtest
+
+test 10873
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9005 9003
+endtest
+
+test 10882
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10883
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9003
+endtest
+
+test 10900
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9002
+endtest
+
+test 10901
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9002
+endtest
+
+test 10907
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+endtest
+
+test 10909
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+endtest
+
+test 10910
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9002
+endtest
+
+test 10911
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9002
+endtest
+
+test 10917
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+endtest
+
+test 10918
+  testtype  smss
+  usage once_per_slot
+  cardtype pinterm sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9002
+endtest
+
+test 10919
+  testtype  smss
+  usage once_per_slot
+  cardtype pinterm sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda cddp vcdd2 cdd6 cddu cdd20 cddjb
+endtest
+
+test 10920
+  testtype  smss
+  usage once_per_slot
+  cardtype pinterm sd6 sdp dd6 fdd6 fdd6h5 ddjb fddjb ddp fddp fddph5 dd20 fdd20 cqdp cqd6 cqd20 unprog cqdu dda fdda cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9002
+endtest
+
+test 10921
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9010 9002
+endtest
+
+test 10930
+  testtype  smss
+  usage once_per_slot
+  cardtype cddp vcdd2 cdd6 cddu cdd20 cddjb
+  restrictions
+9002
+endtest
+
+test 10999
+  testtype  nmns
+  usage once_only
+endtest
+
+
+
+
+
+
+
+

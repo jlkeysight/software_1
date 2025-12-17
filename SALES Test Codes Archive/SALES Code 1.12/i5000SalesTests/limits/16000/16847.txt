@@ -1,0 +1,7 @@
+16847 1   1 xxxx111111111111                    BINARY
+'drvchk all 0 (Peregrine Drive Check status)      '
+ 1.000000E+00  0.000000E+00            0
+
+16847 12  1 xxxxxxxxxxxxxxxx                    BINARY
+'drvchk all 0 (Merlin Drive Check status)         '
+ 1.000000E+00  0.000000E+00            0
